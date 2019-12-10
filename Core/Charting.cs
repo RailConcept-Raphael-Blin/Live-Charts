@@ -110,9 +110,9 @@ namespace LiveCharts
 
             For<decimal>(Mappers.Xy<decimal>()
                 .X((value, index) => index)
-                .Y(value => (double) value), SeriesOrientation.Horizontal);
+                .Y(value => (double)value), SeriesOrientation.Horizontal);
             For<decimal>(Mappers.Xy<decimal>()
-                .X(value => (double) value)
+                .X(value => (double)value)
                 .Y((value, index) => index), SeriesOrientation.Vertical);
 
             For<short>(Mappers.Xy<short>()
@@ -171,6 +171,10 @@ namespace LiveCharts
                 .XStart(v => v.StartPoint)
                 .X(v => v.EndPoint), SeriesOrientation.Vertical);
 
+
+            For<object>(Mappers.Xy<object>()
+                .X((value, index) => index)
+                .Y(value => default), SeriesOrientation.Horizontal);
         }
 
         /// <summary>
@@ -204,6 +208,9 @@ namespace LiveCharts
 
         #endregion
 
+        public bool HasConfig<T>()
+            => Configurations.ContainsKey(typeof(T));
+
         /// <summary>
         /// Gets the configuration of a given type and orientation
         /// </summary>
@@ -212,14 +219,18 @@ namespace LiveCharts
         /// <returns></returns>
         public object GetConfig<T>(SeriesOrientation orientation = SeriesOrientation.Horizontal)
         {
-            ConfigWrapper wrapper;
-
-            if (!Configurations.TryGetValue(typeof(T), out wrapper))
+            if (!Configurations.TryGetValue(typeof(T), out var wrapper))
+            {
+                // Fallback to default configuration
+                wrapper = Configurations[typeof(object)];
+            }
+            /*
                 throw new LiveChartsException("LiveCharts does not know how to plot " + typeof(T).Name + ", " +
                                               "you can either, use an already configured type " +
                                               "or configure this type you are trying to use, " +
                                               "For more info see " +
                                               "http://lvcharts.net/App/examples/v1/wpf/Types%20and%20Configuration");
+                                              */
 
             return orientation == SeriesOrientation.Horizontal || orientation == SeriesOrientation.All
                 ? wrapper.HorizontalConfig

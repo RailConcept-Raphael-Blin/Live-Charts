@@ -39,7 +39,8 @@ namespace LiveCharts.Wpf
         /// </summary>
         public CartesianChart()
         {
-            var freq = DisableAnimations ? TimeSpan.FromMilliseconds(10) : AnimationsSpeed;
+            var freq = DisableAnimations ? TimeSpan.FromMilliseconds(500.0) : AnimationsSpeed;
+            //var freq = DisableAnimations ? TimeSpan.FromMilliseconds(10) : AnimationsSpeed;
             var updater = new Components.ChartUpdater(freq);
             ChartCoreModel = new CartesianChartCore(this, updater);
 

@@ -22,6 +22,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using LiveCharts.Definitions.Series;
 using LiveCharts.Dtos;
 
@@ -119,7 +120,7 @@ namespace LiveCharts.Helpers
             ChartPoint t = null;
             var delta = double.PositiveInfinity;
 
-            foreach (var point in series.Values.GetPoints(series))
+            foreach (var point in series.Values?.GetPoints(series) ?? Enumerable.Empty<ChartPoint>())
             {
                 var i = orientation == AxisOrientation.X ? point.X : point.Y;
 

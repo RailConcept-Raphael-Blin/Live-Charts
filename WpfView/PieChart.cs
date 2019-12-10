@@ -39,7 +39,10 @@ namespace LiveCharts.Wpf
         /// </summary>
         public PieChart()
         {
-            var freq = DisableAnimations ? TimeSpan.FromMilliseconds(10) : AnimationsSpeed;
+            // Woha boi let's slow down a bit 
+            var freq = DisableAnimations ? TimeSpan.FromMilliseconds(500.0) : AnimationsSpeed;
+            //var freq = DisableAnimations ? TimeSpan.FromMilliseconds(10) : AnimationsSpeed;
+
             var updater = new Components.ChartUpdater(freq);
             ChartCoreModel = new PieChartCore(this, updater);
 

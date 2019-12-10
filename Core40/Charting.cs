@@ -171,6 +171,11 @@ namespace LiveCharts
                 .XStart(v => v.StartPoint)
                 .X(v => v.EndPoint), SeriesOrientation.Vertical);
 
+            // Default mapper
+            For<object>(Mappers.Xy<object>()
+                .X((value, index) => index)
+                .Y(value => default), SeriesOrientation.Horizontal);
+
         }
 
         /// <summary>
@@ -212,14 +217,19 @@ namespace LiveCharts
         /// <returns></returns>
         public object GetConfig<T>(SeriesOrientation orientation = SeriesOrientation.Horizontal)
         {
-            ConfigWrapper wrapper;
-
-            if (!Configurations.TryGetValue(typeof(T), out wrapper))
+            if (!Configurations.TryGetValue(typeof(T), out var wrapper))
+            {
+                // fallback to default when no configuration is present to avoid a crash based on something silly like the view not appearing in time
+                wrapper = Configurations[typeof(object)];
+                /*
                 throw new LiveChartsException("LiveCharts does not know how to plot " + typeof(T).Name + ", " +
                                               "you can either, use an already configured type " +
                                               "or configure this type you are trying to use, " +
                                               "For more info see " +
                                               "http://lvcharts.net/App/examples/v1/wpf/Types%20and%20Configuration");
+                */
+            }
+
 
             return orientation == SeriesOrientation.Horizontal || orientation == SeriesOrientation.All
                 ? wrapper.HorizontalConfig

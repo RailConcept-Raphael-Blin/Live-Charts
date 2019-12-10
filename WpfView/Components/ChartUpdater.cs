@@ -58,9 +58,11 @@ namespace LiveCharts.Wpf.Components
             }
 
             RequiresRestart = restartView || RequiresRestart;
+            // What if the update runner was already launched and another Series is added ??
             if (IsUpdating) return;
 
             IsUpdating = true;
+            // Refreshing the chart every interval, in WPF ?!
             Timer.Start();
         }
 

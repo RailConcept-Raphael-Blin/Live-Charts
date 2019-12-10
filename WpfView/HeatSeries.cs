@@ -202,7 +202,7 @@ namespace LiveCharts.Wpf
         /// <param name="removeFromView"></param>
         public override void Erase(bool removeFromView = true)
         {
-            Values.GetPoints(this).ForEach(p =>
+            (Values?.GetPoints(this) ?? Enumerable.Empty<ChartPoint>()).ForEach(p =>
             {
                 if (p.View != null)
                     p.View.RemoveFromView(Model.Chart);

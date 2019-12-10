@@ -23,6 +23,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -130,6 +131,7 @@ namespace LiveCharts.Wpf
         [TypeConverter(typeof(NumericChartValuesConverter))]
         public IChartValues Values
         {
+            // This is doubtful
             get { return ThreadAccess.Resolve<IChartValues>(this, ValuesProperty); }
             set { SetValue(ValuesProperty, value); }
         }
@@ -465,7 +467,7 @@ namespace LiveCharts.Wpf
         /// </summary>
         public virtual void Erase(bool removeFromView = true)
         {
-            Values.GetPoints(this).ForEach(p =>
+            (Values?.GetPoints(this) ?? Enumerable.Empty<ChartPoint>()).ForEach(p =>
             {
                 if (p.View != null)
                     p.View.RemoveFromView(Model.Chart);
