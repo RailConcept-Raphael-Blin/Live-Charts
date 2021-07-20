@@ -1,4 +1,4 @@
-﻿namespace Winforms.Cartesian.Sections
+namespace Winforms.Cartesian.Sections
 {
     partial class SectionsExample
     {

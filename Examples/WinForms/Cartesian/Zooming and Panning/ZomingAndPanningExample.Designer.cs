@@ -1,4 +1,4 @@
-﻿namespace Winforms.Cartesian.Zooming_and_Panning
+namespace Winforms.Cartesian.Zooming_and_Panning
 {
     partial class ZomingAndPanningExample
     {

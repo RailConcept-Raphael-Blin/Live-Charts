@@ -1,4 +1,4 @@
-﻿namespace Winforms
+namespace Winforms
 {
     partial class Main
     {

@@ -1,4 +1,4 @@
-﻿namespace LiveChartsCore
+namespace LiveChartsCore
 {
     public class BezierData
     {

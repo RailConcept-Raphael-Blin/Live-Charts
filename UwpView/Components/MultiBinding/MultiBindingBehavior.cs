@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Reflection;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;

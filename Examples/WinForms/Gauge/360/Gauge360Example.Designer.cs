@@ -1,4 +1,4 @@
-﻿namespace Winforms.Gauge._360
+namespace Winforms.Gauge._360
 {
     partial class Gauge360Example
     {

@@ -1,4 +1,4 @@
-﻿namespace Winforms.Cartesian.Funnel_Chart
+namespace Winforms.Cartesian.Funnel_Chart
 {
     partial class FunnelExample
     {

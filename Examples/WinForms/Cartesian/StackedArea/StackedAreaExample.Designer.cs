@@ -1,4 +1,4 @@
-﻿namespace Winforms.Cartesian.StackedArea
+namespace Winforms.Cartesian.StackedArea
 {
     partial class StackedAreaExample
     {

@@ -1,4 +1,4 @@
-﻿namespace Winforms.Cartesian.StepLine
+namespace Winforms.Cartesian.StepLine
 {
     partial class StepLineExample
     {

@@ -1,4 +1,4 @@
-﻿namespace Winforms.Maps
+namespace Winforms.Maps
 {
     partial class GeoMapExample
     {

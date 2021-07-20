@@ -1,4 +1,4 @@
-﻿namespace Winforms.Cartesian.Basic_Stacked_Bar
+namespace Winforms.Cartesian.Basic_Stacked_Bar
 {
     partial class BasicsStackedRowExample
     {

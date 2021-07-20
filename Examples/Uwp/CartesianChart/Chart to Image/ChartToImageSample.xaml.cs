@@ -1,4 +1,4 @@
-﻿using System.IO;
+using System.IO;
 using Windows.Foundation;
 using Windows.Graphics.Imaging;
 using Windows.UI.Xaml;

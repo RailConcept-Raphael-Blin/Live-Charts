@@ -1,4 +1,4 @@
-﻿namespace Winforms.Cartesian.BasicBubbles
+namespace Winforms.Cartesian.BasicBubbles
 {
     partial class BasicBubblesExample
     {

@@ -1,4 +1,4 @@
-﻿namespace Winforms.Cartesian.PointState
+namespace Winforms.Cartesian.PointState
 {
     partial class PointState
     {

@@ -1,4 +1,4 @@
-﻿namespace Winforms.Cartesian.HeatSeriesExample
+namespace Winforms.Cartesian.HeatSeriesExample
 {
     partial class HeatSeriesExample
     {

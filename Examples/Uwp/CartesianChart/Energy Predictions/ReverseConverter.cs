@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using Windows.UI.Xaml.Data;
 using LiveCharts;

@@ -1,4 +1,4 @@
-﻿using LiveCharts.Uwp;
+using LiveCharts.Uwp;
 using System.Collections.Generic;
 using System.ComponentModel;
 using Windows.UI.Xaml.Controls;

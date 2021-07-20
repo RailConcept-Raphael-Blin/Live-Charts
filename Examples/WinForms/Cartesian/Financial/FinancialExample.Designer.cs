@@ -1,4 +1,4 @@
-﻿namespace Winforms.Cartesian.Financial
+namespace Winforms.Cartesian.Financial
 {
     partial class FinancialExample
     {

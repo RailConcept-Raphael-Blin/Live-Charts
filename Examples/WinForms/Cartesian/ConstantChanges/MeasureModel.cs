@@ -1,4 +1,4 @@
-﻿namespace Winforms.Cartesian.ConstantChanges
+namespace Winforms.Cartesian.ConstantChanges
 {
     public class MeasureModel
     {

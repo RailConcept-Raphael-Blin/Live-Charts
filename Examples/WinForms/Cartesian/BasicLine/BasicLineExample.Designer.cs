@@ -1,4 +1,4 @@
-﻿namespace Winforms.Cartesian.BasicLine
+namespace Winforms.Cartesian.BasicLine
 {
     partial class BasicLineExample
     {

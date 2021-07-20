@@ -1,4 +1,4 @@
-﻿using System.Windows.Forms;
+using System.Windows.Forms;
 using System.Windows.Media;
 using LiveCharts;
 using LiveCharts.Wpf;

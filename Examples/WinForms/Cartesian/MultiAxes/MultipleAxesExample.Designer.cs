@@ -1,4 +1,4 @@
-﻿namespace Winforms.Cartesian.MultiAxes
+namespace Winforms.Cartesian.MultiAxes
 {
     partial class MultipleAxesExample
     {

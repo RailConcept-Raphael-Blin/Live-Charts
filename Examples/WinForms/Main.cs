@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 using Winforms.Cartesian.BasicLine;
 using Winforms.Cartesian.ConstantChanges;

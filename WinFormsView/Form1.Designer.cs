@@ -1,4 +1,4 @@
-﻿namespace WinFormsView
+namespace WinFormsView
 {
     partial class Form1
     {

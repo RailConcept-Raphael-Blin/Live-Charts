@@ -1,4 +1,4 @@
-﻿namespace Winforms.Cartesian.Irregular_Intervals
+namespace Winforms.Cartesian.Irregular_Intervals
 {
     partial class IrregularIntervalsExample
     {

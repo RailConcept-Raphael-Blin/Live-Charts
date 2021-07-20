@@ -1,4 +1,4 @@
-﻿namespace Winforms.Cartesian.Events
+namespace Winforms.Cartesian.Events
 {
     partial class EventsExample
     {

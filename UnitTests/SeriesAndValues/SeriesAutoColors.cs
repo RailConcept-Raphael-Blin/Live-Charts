@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using LiveCharts;
 using LiveCharts.Dtos;
 using LiveCharts.Wpf;

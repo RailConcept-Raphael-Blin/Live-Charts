@@ -1,4 +1,4 @@
-﻿namespace Winforms.Cartesian.Inverted_Series
+namespace Winforms.Cartesian.Inverted_Series
 {
     partial class InvertedSeries
     {

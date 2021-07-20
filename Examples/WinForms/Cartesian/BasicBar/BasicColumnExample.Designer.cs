@@ -1,4 +1,4 @@
-﻿namespace Winforms.Cartesian.BasicBar
+namespace Winforms.Cartesian.BasicBar
 {
     partial class BasicColumnExample
     {

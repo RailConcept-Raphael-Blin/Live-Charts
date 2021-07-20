@@ -1,4 +1,4 @@
-﻿//MIT License(MIT)
+//MIT License(MIT)
 
 //copyright(c) 2016 Alberto Rodriguez
 

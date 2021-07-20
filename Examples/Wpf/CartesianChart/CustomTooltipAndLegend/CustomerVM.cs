@@ -1,4 +1,4 @@
-﻿namespace Wpf.CartesianChart.CustomTooltipAndLegend
+namespace Wpf.CartesianChart.CustomTooltipAndLegend
 {
     public class CustomerVm
     {

@@ -1,4 +1,4 @@
-﻿namespace Winforms.Cartesian.NegativeStackedRow
+namespace Winforms.Cartesian.NegativeStackedRow
 {
     partial class NegativeStackedRow
     {

@@ -1,4 +1,4 @@
-﻿namespace Winforms.PieChart
+namespace Winforms.PieChart
 {
     partial class DoughnutExample
     {

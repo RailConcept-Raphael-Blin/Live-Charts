@@ -1,4 +1,4 @@
-﻿namespace Winforms.Gauge.AngularGauge
+namespace Winforms.Gauge.AngularGauge
 {
     partial class AngularGugeForm
     {

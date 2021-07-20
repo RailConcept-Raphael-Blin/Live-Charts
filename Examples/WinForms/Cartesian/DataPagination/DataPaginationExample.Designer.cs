@@ -1,4 +1,4 @@
-﻿namespace Winforms.Cartesian.DataPagination
+namespace Winforms.Cartesian.DataPagination
 {
     partial class DataPaginationExample
     {

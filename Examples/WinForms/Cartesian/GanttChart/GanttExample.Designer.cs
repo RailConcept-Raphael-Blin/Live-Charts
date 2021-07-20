@@ -1,4 +1,4 @@
-﻿namespace Winforms.Cartesian.GanttChart
+namespace Winforms.Cartesian.GanttChart
 {
     partial class GanttExample
     {

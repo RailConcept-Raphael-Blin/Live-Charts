@@ -1,4 +1,4 @@
-﻿namespace Winforms.Cartesian.Linq
+namespace Winforms.Cartesian.Linq
 {
     partial class LinqExample
     {

@@ -1,4 +1,4 @@
-﻿namespace Winforms.Cartesian.LogarithmScale
+namespace Winforms.Cartesian.LogarithmScale
 {
     partial class LogarithmSacale
     {

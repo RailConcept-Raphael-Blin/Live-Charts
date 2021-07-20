@@ -1,4 +1,4 @@
-﻿namespace Winforms.Cartesian.Basic_Stacked_Column
+namespace Winforms.Cartesian.Basic_Stacked_Column
 {
     partial class BasicStackedColumnExample
     {

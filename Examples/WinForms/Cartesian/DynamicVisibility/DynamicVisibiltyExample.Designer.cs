@@ -1,4 +1,4 @@
-﻿namespace Winforms.Cartesian.DynamicVisibility
+namespace Winforms.Cartesian.DynamicVisibility
 {
     partial class DynamicVisibiltyExample
     {

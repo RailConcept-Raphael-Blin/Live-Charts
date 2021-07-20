@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 using System.Windows.Media;
 using System.Windows.Navigation;
 using LiveCharts;

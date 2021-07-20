@@ -1,4 +1,4 @@
-﻿namespace Winforms.Cartesian.UielementsExample
+namespace Winforms.Cartesian.UielementsExample
 {
     partial class UielementsExample
     {

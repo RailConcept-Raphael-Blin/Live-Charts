@@ -1,4 +1,4 @@
-﻿namespace UWP.CartesianChart.Using_DateTime
+namespace UWP.CartesianChart.Using_DateTime
 {
     public class DateModel
     {

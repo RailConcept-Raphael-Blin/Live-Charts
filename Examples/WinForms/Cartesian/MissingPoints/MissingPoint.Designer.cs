@@ -1,4 +1,4 @@
-﻿namespace Winforms.Cartesian.MissingPoints
+namespace Winforms.Cartesian.MissingPoints
 {
     partial class MissingPoint
     {

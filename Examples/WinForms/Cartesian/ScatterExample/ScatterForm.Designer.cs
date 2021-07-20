@@ -1,4 +1,4 @@
-﻿namespace Winforms.Cartesian.ScatterExample
+namespace Winforms.Cartesian.ScatterExample
 {
     partial class ScatterForm
     {

@@ -1,4 +1,4 @@
-﻿using Windows.UI.Xaml;
+using Windows.UI.Xaml;
 
 namespace LiveCharts.Uwp.Components.MultiBinding
 {

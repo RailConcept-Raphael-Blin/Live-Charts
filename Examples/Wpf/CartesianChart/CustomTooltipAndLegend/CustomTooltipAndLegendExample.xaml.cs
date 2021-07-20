@@ -1,4 +1,4 @@
-﻿using System.Windows.Controls;
+using System.Windows.Controls;
 using LiveCharts;
 using LiveCharts.Configurations;
 

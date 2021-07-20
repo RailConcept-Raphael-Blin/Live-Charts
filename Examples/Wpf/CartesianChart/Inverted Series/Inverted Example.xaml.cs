@@ -1,4 +1,4 @@
-﻿using System.Windows.Controls;
+using System.Windows.Controls;
 using LiveCharts;
 
 namespace Wpf.CartesianChart.Inverted_Series

@@ -1,4 +1,4 @@
-﻿//The MIT License(MIT)
+//The MIT License(MIT)
 
 //copyright(c) 2016 Greg Dennis & Alberto Rodríguez
 

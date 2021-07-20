@@ -1,4 +1,4 @@
-﻿using LiveCharts;
+using LiveCharts;
 using System.ComponentModel;
 using Windows.UI.Xaml.Controls;
 

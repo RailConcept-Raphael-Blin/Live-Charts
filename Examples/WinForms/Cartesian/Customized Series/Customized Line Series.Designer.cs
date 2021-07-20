@@ -1,4 +1,4 @@
-﻿using LiveCharts.WinForms;
+using LiveCharts.WinForms;
 
 namespace Winforms.Cartesian.Customized_Series
 {

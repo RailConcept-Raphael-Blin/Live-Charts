@@ -1,4 +1,4 @@
-﻿namespace Winforms.Cartesian.FullyResponsive
+namespace Winforms.Cartesian.FullyResponsive
 {
     partial class FullyResponsive
     {

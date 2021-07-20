@@ -1,4 +1,4 @@
-﻿using LiveCharts;
+using LiveCharts;
 using LiveCharts.Definitions.Charts;
 using LiveCharts.Uwp;
 using System;
