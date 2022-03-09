@@ -24,6 +24,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using LiveCharts.Charts;
 using LiveCharts.Configurations;
 using LiveCharts.Definitions.Series;
@@ -169,19 +170,11 @@ namespace LiveCharts
 
             var config = GetConfig(seriesView);
 
-#if NET40
-            var isClass = typeof(T).IsClass;
-            var isObservable = isClass && typeof(IObservableChartPoint).IsAssignableFrom(typeof(T));
-            var notifies = isClass && typeof(INotifyPropertyChanged).IsAssignableFrom(typeof(T));
-
-#endif
-#if NET45
             var isClass = typeof(T).GetTypeInfo().IsClass;
             var isObservable = isClass &&
                                typeof(IObservableChartPoint).GetTypeInfo().IsAssignableFrom(typeof(T).GetTypeInfo());
             var notifies = isClass && typeof(INotifyPropertyChanged).GetTypeInfo()
                                .IsAssignableFrom(typeof(T).GetTypeInfo());
-#endif
 
             var tracker = GetTracker(seriesView);
             var gci = tracker.Gci;
@@ -237,13 +230,8 @@ namespace LiveCharts
         /// </summary>
         public void CollectGarbage(ISeriesView seriesView)
         {
-#if NET40
-            var isclass = typeof(T).IsClass;
-#endif
-#if NET45
-            var isclass = typeof(T).GetTypeInfo().IsClass;
-#endif
 
+            var isclass = typeof(T).GetTypeInfo().IsClass;
             var tracker = GetTracker(seriesView);
 
             foreach (var garbage in GetGarbagePoints(seriesView).ToList())
