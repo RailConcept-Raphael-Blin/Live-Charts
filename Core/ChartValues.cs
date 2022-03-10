@@ -228,9 +228,7 @@ namespace LiveCharts
         /// </summary>
         public void CollectGarbage(ISeriesView seriesView)
         {
-
             var isclass = typeof(T).GetTypeInfo().IsClass;
-
             var tracker = GetTracker(seriesView);
 
             foreach (var garbage in GetGarbagePoints(seriesView).ToList())
