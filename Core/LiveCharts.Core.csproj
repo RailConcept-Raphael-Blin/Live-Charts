@@ -10,6 +10,12 @@
   <PropertyGroup>
     <DelaySign>false</DelaySign>
   </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+	    <DebugType>portable</DebugType>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+	    <DebugType>embedded</DebugType>
+    </PropertyGroup>
   <ItemGroup>
     <Compile Remove="BezierData.cs" />
     <Compile Remove="IBezierData.cs" />

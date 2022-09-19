@@ -10,11 +10,13 @@
 		<DefineConstants Condition=" '$(TargetFrameworkVersion)' == 'v4.0' ">NET40; DEBUG</DefineConstants>
 		<DefineConstants Condition=" '$(TargetFrameworkVersion)' == 'v4.5' ">NET45; DEBUG</DefineConstants>
 		<DocumentationFile>bin\Debug\LiveCharts.Wpf.XML</DocumentationFile>
+		<DebugType>portable</DebugType>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
 		<DefineConstants Condition=" '$(TargetFrameworkVersion)' == 'v4.0' ">NET40; TRACE</DefineConstants>
 		<DefineConstants Condition=" '$(TargetFrameworkVersion)' == 'v4.5' ">NET45; TRACE</DefineConstants>
 		<DocumentationFile>bin\Debug\LiveCharts.Wpf.XML</DocumentationFile>
+		<DebugType>embedded</DebugType>
 	</PropertyGroup>
 	<PropertyGroup>
 		<AssemblyOriginatorKeyFile>
