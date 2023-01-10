@@ -1,19 +1,23 @@
 <p align="center">
-  <a href="http://lvcharts.net/"><img src="http://lvcharts.net/Content/Images/LiveChartsWhite.gif" /></a>
+  <a href="http://http://v0.lvcharts.com/"><img src="http://v0.lvcharts.com/Content/Images/LiveChartsWhite.gif" /></a>
 </p>
 
-# LiveCharts 1.0 is coming soon (ETA ~~April~~ September 2018)!
+# This project will continue in another repo, please see  [LiveCharts2](https://github.com/Live-Charts/LiveCharts2) for more info
 
-We are doing a full rewrite of the library with all the learned lessons, the new version is focused on:
+# ~~LiveCharts 1.0 is coming soon (ETA AprilSeptember 2018)!~~
 
-* **If you own the Geared package** the new high performance version is already yours! thank you very much for all your support!
+~~We are doing a full rewrite of the library with all the learned lessons, the new version is focused on:~~
 
-* **Portability**: In version 0.x it was hard keep WPF, UWP and Winforms versions up to date, in the new version we extracted all the math to a dotnet core project, then we are working on 4 different platfomrs WPF, Xamarin, UWP and the new high performance package.
-* **Performance**: when the library started, performance was not the target, as the library community grow, the Geared package was released (the current high performance version), and it works for many cases, but we want LiveCharts to be the fastest library out there, in the new high performance package we are scaping from WPF performance limitations and drawing everything using DirectX with the well know [SharpDx](http://sharpdx.org/) package.
-* **3d**: 0.x layout was not designed to draw 3d plots, version 1.0 is really flexible and lucky we will be on 3d soon.
-* **Keep it easy!**: Even somethings might change, the idea of the library is the same, we only want to add support for the missing features and/or a better code quality so we can fix issues faster for all the platforms, all the samples will be updated with the new version.
+~~* **If you own the Geared package** the new high performance version is already yours! thank you very much for all your support!~~
 
-Check out our progress at [v1.0 branch](https://github.com/beto-rodriguez/Live-Charts/tree/v1.0).
+~~* **Portability**: In version 0.x it was hard keep WPF, UWP and Winforms versions up to date, in the new version we extracted all the math to a dotnet core project, then we are working on 4 different platfomrs WPF, Xamarin, UWP and the new high performance package.~~
+
+~~* **Performance**: when the library started, performance was not the target, as the library community grow, the Geared package was released (the current high performance version), and it works for many cases, but we want LiveCharts to be the fastest library out there, in the new high performance package we are scaping from WPF performance limitations and drawing everything using DirectX with the well know [SharpDx](http://sharpdx.org/) package.~~
+
+~~* **3d**: 0.x layout was not designed to draw 3d plots, version 1.0 is really flexible and lucky we will be on 3d soon.~~
+~~* **Keep it easy!**: Even somethings might change, the idea of the library is the same, we only want to add support for the missing features and/or a better code quality so we can fix issues faster for all the platforms, all the samples will be updated with the new version.~~
+
+~~Check out our progress at [v1.0 branch](https://github.com/beto-rodriguez/Live-Charts/tree/v1.0).~~
 
 [![GitHub license](https://img.shields.io/github/license/beto-rodriguez/Live-Charts.svg?style=flat-square)](https://github.com/beto-rodriguez/Live-Charts/blob/master/LICENSE.TXT)
 [![AppVeyor](https://ci.appveyor.com/api/projects/status/707m8sye0ggbfrcq)](https://ci.appveyor.com/project/beto-rodriguez/live-charts)
@@ -22,7 +26,7 @@ Check out our progress at [v1.0 branch](https://github.com/beto-rodriguez/Live-C
 <a href="http://isitmaintained.com/project/beto-rodriguez/live-charts" title="Average time to resolve an issue"><img src="http://isitmaintained.com/badge/resolution/beto-rodriguez/live-charts.svg" alt="Average time to resolve an issue"></a>
 <a href="http://isitmaintained.com/project/beto-rodriguez/live-charts" title="Percentage of issues still open"><img src="http://isitmaintained.com/badge/open/beto-rodriguez/live-charts.svg" alt="Percentage of issues still open"></a>
 
-* **[Get Started Here](http://lvcharts.net/App/examples/wpf/start)**, this repository has many examples also.
+* **[Get Started Here](http://v0.lvcharts.com/App/examples/wpf/start)**, this repository has many examples also.
 * **[Chat](https://gitter.im/beto-rodriguez/Live-Charts)**
 * **Questions and support?**, we are always happy to help you at our chat, if you require so you can also try [Stack Overflow](http://stackoverflow.com/questions/tagged/livecharts).
 
@@ -32,13 +36,13 @@ Check out our progress at [v1.0 branch](https://github.com/beto-rodriguez/Live-C
 *images in this section are built with LiveCharts, but designed by [Kingyo](https://dribbble.com/Kingyo)*
 
 <p align="center">
-  <img src="http://lvcharts.net/Content/Images/materialcards.gif" />
+  <img src="http://v0.lvcharts.com/Content/Images/materialcards.gif" />
 </p>
 <p align="center">
-  <img src="http://lvcharts.net/Content/Images/energy.gif" />
+  <img src="http://v0.lvcharts.com/Content/Images/energy.gif" />
 </p>
 <p align="center">
-  <img src="http://lvcharts.net/Content/Images/solid.gif" />
+  <img src="http://v0.lvcharts.com/Content/Images/solid.gif" />
 </p>
 
 ### it is also
@@ -47,10 +51,10 @@ Check out our progress at [v1.0 branch](https://github.com/beto-rodriguez/Live-C
 As easy as manipulating any generic list in .Net, LiveCharts updates and animates as your data changes in real time, charts are also sensitive to size changes.
 
 <p align="center">
-  <img src="https://lvcharts.net/Content/Images/Banner/linq.gif" />
-  <img src="https://lvcharts.net/Content/Images/Banner/responsive.gif" />
-  <img src="https://lvcharts.net/Content/Images/Banner/doughnut.gif" />/
-  <img src="https://lvcharts.net/Content/Images/Banner/constant.gif" />
+  <img src="https://v0.lvcharts.com/Content/Images/Banner/linq.gif" />
+  <img src="https://v0.lvcharts.com/Content/Images/Banner/responsive.gif" />
+  <img src="https://v0.lvcharts.com/Content/Images/Banner/doughnut.gif" />/
+  <img src="https://v0.lvcharts.com/Content/Images/Banner/constant.gif" />
 </p>
 
 ### and of course it also is
@@ -59,13 +63,13 @@ As easy as manipulating any generic list in .Net, LiveCharts updates and animate
 LiveCharts is not just beauty charts, this example contains 100,000 points, and the chart is being refreshed constantly, we support zooming, panning, multiple axes, sections, merged UIelemnts and much more!
 
 <p align="center">
-  <img src="https://lvcharts.net/Content/Images/scrll.gif" />
+  <img src="https://v0.lvcharts.com/Content/Images/scrll.gif" />
 </p>
 
 But that is not all, we try to support as many charts as possible, bars, lines, heat maps, gauges, maps:
 
 <p align="center">
-  <img src="https://lvcharts.net/content/images/darkpanel.gif" />
+  <img src="https://v0.lvcharts.com/content/images/darkpanel.gif" />
 </p>
 
 ### Road Map
@@ -89,8 +93,8 @@ WPF and Winforms, currenlty the library is in the process to become a cross net 
 
 ### Installation
 
-* [Wpf](http://lvcharts.net/App/examples/wpf/Install)
-* [WinForms](http://lvcharts.net/App/examples/wf/Install)
+* [Wpf](http://v0.lvcharts.com/App/examples/wpf/Install)
+* [WinForms](http://v0.lvcharts.com/App/examples/wf/Install)
 
 ### Migrating from older versions?
 
@@ -115,7 +119,7 @@ You can also buy me a beer
 
 ### Examples?
 
-The [web site](http://lvcharts.net/App/examples/wpf/start) has a nice set, they are also built in the examples folder up here ^^^^
+The [web site](http://v0.lvcharts.com/App/examples/wpf/start) has a nice set, they are also built in the examples folder up here ^^^^
 
 ### Special thanks to
 
