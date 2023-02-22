@@ -16,7 +16,7 @@
 		<DefineConstants Condition=" '$(TargetFrameworkVersion)' == 'v4.0' ">NET40; TRACE</DefineConstants>
 		<DefineConstants Condition=" '$(TargetFrameworkVersion)' == 'v4.5' ">NET45; TRACE</DefineConstants>
 		<DocumentationFile>bin\Debug\LiveCharts.Wpf.XML</DocumentationFile>
-		<DebugType>embedded</DebugType>
+		<DebugType>none</DebugType>
 	</PropertyGroup>
 	<PropertyGroup>
 		<AssemblyOriginatorKeyFile>
