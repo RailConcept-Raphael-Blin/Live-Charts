@@ -143,7 +143,7 @@ namespace LiveCharts
         {
             SeparatorElementCore elementCore;
 
-            var key = Math.Round(x / tolerance) * tolerance;
+            var key = Math.Round(x / tolerance, MidpointRounding.AwayFromZero) * tolerance;
 
             if (!Cache.TryGetValue(key, out elementCore))
             {

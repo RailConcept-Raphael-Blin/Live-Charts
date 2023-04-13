@@ -471,7 +471,7 @@ namespace LiveCharts
            
             SeparatorElementCore asc;
 
-            var key = Math.Round(i / tolerance) * tolerance;
+            var key = Math.Round(i / tolerance, MidpointRounding.AwayFromZero) * tolerance;
             if (!Cache.TryGetValue(key, out asc))
             {
                 asc = new SeparatorElementCore { IsNew = true };
