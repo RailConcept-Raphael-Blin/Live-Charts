@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+		<TargetFramework>net8.0-windows</TargetFramework>
 		<OutputType>Library</OutputType>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<UseWPF>true</UseWPF>
@@ -18,14 +18,6 @@
 		<DocumentationFile>bin\Debug\LiveCharts.Wpf.XML</DocumentationFile>
 		<DebugType>none</DebugType>
 	</PropertyGroup>
-	<PropertyGroup>
-		<AssemblyOriginatorKeyFile>
-		</AssemblyOriginatorKeyFile>
-	</PropertyGroup>
-	<PropertyGroup>
-		<DelaySign>false</DelaySign>
-		<SupportedOSPlatformVersion>10.0.19041.0</SupportedOSPlatformVersion>
-	</PropertyGroup>
 	<ItemGroup>
 		<AppDesigner Include="Properties\" />
 	</ItemGroup>
@@ -39,9 +31,9 @@
 			<DependentUpon>Resources.resx</DependentUpon>
 		</Compile>
 		<Compile Update="Properties\Settings.Designer.cs">
-		  <DesignTimeSharedInput>True</DesignTimeSharedInput>
-		  <AutoGen>True</AutoGen>
-		  <DependentUpon>Settings.settings</DependentUpon>
+			<DesignTimeSharedInput>True</DesignTimeSharedInput>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Settings.settings</DependentUpon>
 		</Compile>
 	</ItemGroup>
 	<ItemGroup>
@@ -51,14 +43,12 @@
 		</EmbeddedResource>
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
 		<PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
-		<PackageReference Include="Microsoft.Windows.Compatibility" Version="8.0.7" />
 	</ItemGroup>
 	<ItemGroup>
-	  <None Update="Properties\Settings.settings">
-	    <Generator>SettingsSingleFileGenerator</Generator>
-	    <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-	  </None>
+		<None Update="Properties\Settings.settings">
+			<Generator>SettingsSingleFileGenerator</Generator>
+			<LastGenOutput>Settings.Designer.cs</LastGenOutput>
+		</None>
 	</ItemGroup>
 </Project>

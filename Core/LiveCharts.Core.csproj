@@ -1,23 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
-    <OutputType>Library</OutputType>
-    <RootNamespace>LiveCharts</RootNamespace>
-    <AssemblyName>LiveCharts</AssemblyName>
-    <DefaultLanguage>en-US</DefaultLanguage>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-  </PropertyGroup>
-  <PropertyGroup>
-    <DelaySign>false</DelaySign>
-  </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-	    <DebugType>portable</DebugType>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-	    <DebugType>none</DebugType>
-    </PropertyGroup>
-  <ItemGroup>
-    <Compile Remove="BezierData.cs" />
-    <Compile Remove="IBezierData.cs" />
-  </ItemGroup>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+		<OutputType>Library</OutputType>
+		<RootNamespace>LiveCharts</RootNamespace>
+		<AssemblyName>LiveCharts</AssemblyName>
+		<DefaultLanguage>en-US</DefaultLanguage>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		<DebugType>portable</DebugType>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+		<DebugType>none</DebugType>
+	</PropertyGroup>
+	<ItemGroup>
+		<Compile Remove="BezierData.cs" />
+		<Compile Remove="IBezierData.cs" />
+	</ItemGroup>
 </Project>
