@@ -5,6 +5,10 @@
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<UseWPF>true</UseWPF>
 		<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+
+		<AnalysisLevel>latest-recommended</AnalysisLevel>
+		<ReportAnalyzer>true</ReportAnalyzer>
+		<CsWinRTAotOptimizerEnabled>false</CsWinRTAotOptimizerEnabled>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 		<DefineConstants Condition=" '$(TargetFrameworkVersion)' == 'v4.0' ">NET40; DEBUG</DefineConstants>

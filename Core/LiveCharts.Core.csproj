@@ -6,6 +6,10 @@
 		<AssemblyName>LiveCharts</AssemblyName>
 		<DefaultLanguage>en-US</DefaultLanguage>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+
+		<AnalysisLevel>latest-recommended</AnalysisLevel>
+		<ReportAnalyzer>true</ReportAnalyzer>
+		<CsWinRTAotOptimizerEnabled>false</CsWinRTAotOptimizerEnabled>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 		<DebugType>portable</DebugType>
