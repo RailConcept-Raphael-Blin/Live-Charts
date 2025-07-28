@@ -10,6 +10,7 @@
 		<AnalysisLevel>latest-recommended</AnalysisLevel>
 		<ReportAnalyzer>true</ReportAnalyzer>
 		<CsWinRTAotOptimizerEnabled>false</CsWinRTAotOptimizerEnabled>
+		<CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 		<DebugType>portable</DebugType>
