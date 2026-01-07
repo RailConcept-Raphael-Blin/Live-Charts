@@ -22,6 +22,7 @@
 		<DefineConstants Condition=" '$(TargetFrameworkVersion)' == 'v4.5' ">NET45; TRACE</DefineConstants>
 		<DocumentationFile>bin\Debug\LiveCharts.Wpf.XML</DocumentationFile>
 		<DebugType>none</DebugType>
+		<DebugSymbols>False</DebugSymbols>
 	</PropertyGroup>
 	<ItemGroup>
 		<AppDesigner Include="Properties\" />
