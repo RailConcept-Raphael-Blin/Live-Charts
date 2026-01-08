@@ -10,6 +10,7 @@
 		<ReportAnalyzer>true</ReportAnalyzer>
 		<CsWinRTAotOptimizerEnabled>false</CsWinRTAotOptimizerEnabled>
 		<CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+		<PublishRelease>true</PublishRelease>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 		<DefineConstants Condition=" '$(TargetFrameworkVersion)' == 'v4.0' ">NET40; DEBUG</DefineConstants>
@@ -21,7 +22,7 @@
 		<DefineConstants Condition=" '$(TargetFrameworkVersion)' == 'v4.0' ">NET40; TRACE</DefineConstants>
 		<DefineConstants Condition=" '$(TargetFrameworkVersion)' == 'v4.5' ">NET45; TRACE</DefineConstants>
 		<DocumentationFile>bin\Debug\LiveCharts.Wpf.XML</DocumentationFile>
-		<DebugType>none</DebugType>
+		<DebugType>None</DebugType>
 		<DebugSymbols>False</DebugSymbols>
 	</PropertyGroup>
 	<ItemGroup>

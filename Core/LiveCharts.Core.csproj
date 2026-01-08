@@ -11,12 +11,13 @@
 		<ReportAnalyzer>true</ReportAnalyzer>
 		<CsWinRTAotOptimizerEnabled>false</CsWinRTAotOptimizerEnabled>
 		<CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+		<PublishRelease>true</PublishRelease>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 		<DebugType>portable</DebugType>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-		<DebugType>none</DebugType>
+		<DebugType>None</DebugType>
 		<DebugSymbols>False</DebugSymbols>
 	</PropertyGroup>
 	<ItemGroup>
