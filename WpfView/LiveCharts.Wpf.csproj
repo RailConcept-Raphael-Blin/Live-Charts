@@ -12,13 +12,13 @@
 		<CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
 		<PublishRelease>true</PublishRelease>
 	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+	<PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
 		<DefineConstants Condition=" '$(TargetFrameworkVersion)' == 'v4.0' ">NET40; DEBUG</DefineConstants>
 		<DefineConstants Condition=" '$(TargetFrameworkVersion)' == 'v4.5' ">NET45; DEBUG</DefineConstants>
 		<DocumentationFile>bin\Debug\LiveCharts.Wpf.XML</DocumentationFile>
 		<DebugType>portable</DebugType>
 	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+	<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
 		<DefineConstants Condition=" '$(TargetFrameworkVersion)' == 'v4.0' ">NET40; TRACE</DefineConstants>
 		<DefineConstants Condition=" '$(TargetFrameworkVersion)' == 'v4.5' ">NET45; TRACE</DefineConstants>
 		<DocumentationFile>bin\Debug\LiveCharts.Wpf.XML</DocumentationFile>
