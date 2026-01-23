@@ -313,7 +313,7 @@ namespace LiveCharts.Wpf
                 B = nextColor.B
             };
 
-            if (!GradientStopCollection.Any())
+            if (GradientStopCollection.Count == 0)
             {
                 GradientStopCollection.Add(new GradientStop
                 {

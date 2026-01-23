@@ -477,7 +477,7 @@ namespace LiveCharts.Wpf
             var toAlpha = 360 - fromAlpha;
             var d = ActualWidth < ActualHeight ? ActualWidth : ActualHeight;
 
-            if (Sections.Any())
+            if (Sections.Count != 0)
             {
                 SectionsInnerRadius = SectionsInnerRadius > 1
                     ? 1
