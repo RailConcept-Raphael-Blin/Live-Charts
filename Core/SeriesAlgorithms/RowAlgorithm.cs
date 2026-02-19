@@ -20,12 +20,12 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
-using System;
-using System.Linq;
 using LiveCharts.Defaults;
 using LiveCharts.Definitions.Points;
 using LiveCharts.Definitions.Series;
 using LiveCharts.Dtos;
+using System;
+using System.Linq;
 
 namespace LiveCharts.SeriesAlgorithms
 {
@@ -54,11 +54,11 @@ namespace LiveCharts.SeriesAlgorithms
             var castedSeries = (IRowSeriesView) View;
 
             var padding = castedSeries.RowPadding;
-            
+
             var totalSpace = ChartFunctions.GetUnitWidth(AxisOrientation.Y, Chart, View.ScalesYAt) - padding;
             var typeSeries = Chart.View.ActualSeries.OfType<IRowSeriesView>().ToList();
 
-            var singleRowHeight = totalSpace/typeSeries.Count;
+            var singleRowHeight = totalSpace / typeSeries.Count;
 
             double exceed = 0;
 
@@ -66,7 +66,7 @@ namespace LiveCharts.SeriesAlgorithms
 
             if (singleRowHeight > castedSeries.MaxRowHeigth)
             {
-                exceed = (singleRowHeight - castedSeries.MaxRowHeigth)*typeSeries.Count/2;
+                exceed = (singleRowHeight - castedSeries.MaxRowHeigth) * typeSeries.Count / 2;
                 singleRowHeight = castedSeries.MaxRowHeigth;
             }
 
@@ -99,11 +99,14 @@ namespace LiveCharts.SeriesAlgorithms
                     ? reference.X
                     : zero;
 
-            
+
                 if (chartPoint.EvaluatesGantt)
                 {
                     l = ChartFunctions.ToDrawMargin(chartPoint.XStart, AxisOrientation.X, Chart, View.ScalesXAt);
-                    if (!(reference.X < zero && l < zero)) w -= l;
+                    if (!(reference.X < zero && l < zero))
+                    {
+                        w -= l;
+                    }
                 }
 
                 rectangleView.Data.Height = singleRowHeight - padding;

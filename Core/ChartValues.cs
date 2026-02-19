@@ -20,16 +20,16 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Reflection;
 using LiveCharts.Charts;
 using LiveCharts.Configurations;
 using LiveCharts.Definitions.Series;
 using LiveCharts.Dtos;
 using LiveCharts.Helpers;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Reflection;
 using System.Reflection;
 
 namespace LiveCharts
@@ -75,7 +75,10 @@ namespace LiveCharts
         public void Initialize(ISeriesView seriesView)
         {
             var config = GetConfig(seriesView);
-            if (config == null) return;
+            if (config == null)
+            {
+                return;
+            }
 
             var xMin = double.PositiveInfinity;
             var xMax = double.NegativeInfinity;
@@ -98,50 +101,111 @@ namespace LiveCharts
             var isHorizontal = seriesView.Model.SeriesOrientation == SeriesOrientation.Horizontal;
 
             var index = 0;
-            foreach(var item in this)
+            foreach (var item in this)
             {
                 config.Evaluate(index, item, cp);
                 index++;
 
                 if (isHorizontal)
                 {
-                    if (cp.X < fx || cp.X > tx) continue;
+                    if (cp.X < fx || cp.X > tx)
+                    {
+                        continue;
+                    }
                 }
                 else
                 {
-                    if (cp.Y < fy || cp.Y > ty) continue;
+                    if (cp.Y < fy || cp.Y > ty)
+                    {
+                        continue;
+                    }
                 }
 
                 if (seriesView is IFinancialSeriesView)
                 {
-                    if (cp.X < xMin) xMin = cp.X;
-                    if (cp.X > xMax) xMax = cp.X;
+                    if (cp.X < xMin)
+                    {
+                        xMin = cp.X;
+                    }
 
-                    if (cp.Low < yMin) yMin = cp.Low;
-                    if (cp.High > yMax) yMax = cp.High;
+                    if (cp.X > xMax)
+                    {
+                        xMax = cp.X;
+                    }
 
-                    if (cp.Weight < wMin) wMin = cp.Weight;
-                    if (cp.Weight > wMax) wMax = cp.Weight;
+                    if (cp.Low < yMin)
+                    {
+                        yMin = cp.Low;
+                    }
 
+                    if (cp.High > yMax)
+                    {
+                        yMax = cp.High;
+                    }
+
+                    if (cp.Weight < wMin)
+                    {
+                        wMin = cp.Weight;
+                    }
+
+                    if (cp.Weight > wMax)
+                    {
+                        wMax = cp.Weight;
+                    }
                 }
                 else if (seriesView is IScatterSeriesView || seriesView is IHeatSeriesView)
                 {
-                    if (cp.X < xMin) xMin = cp.X;
-                    if (cp.X > xMax) xMax = cp.X;
+                    if (cp.X < xMin)
+                    {
+                        xMin = cp.X;
+                    }
 
-                    if (cp.Y < yMin) yMin = cp.Y;
-                    if (cp.Y > yMax) yMax = cp.Y;
+                    if (cp.X > xMax)
+                    {
+                        xMax = cp.X;
+                    }
 
-                    if (cp.Weight < wMin) wMin = cp.Weight;
-                    if (cp.Weight > wMax) wMax = cp.Weight;
+                    if (cp.Y < yMin)
+                    {
+                        yMin = cp.Y;
+                    }
+
+                    if (cp.Y > yMax)
+                    {
+                        yMax = cp.Y;
+                    }
+
+                    if (cp.Weight < wMin)
+                    {
+                        wMin = cp.Weight;
+                    }
+
+                    if (cp.Weight > wMax)
+                    {
+                        wMax = cp.Weight;
+                    }
                 }
                 else
                 {
-                    if (cp.X < xMin) xMin = cp.X;
-                    if (cp.X > xMax) xMax = cp.X;
+                    if (cp.X < xMin)
+                    {
+                        xMin = cp.X;
+                    }
 
-                    if (cp.Y < yMin) yMin = cp.Y;
-                    if (cp.Y > yMax) yMax = cp.Y;
+                    if (cp.X > xMax)
+                    {
+                        xMax = cp.X;
+                    }
+
+                    if (cp.Y < yMin)
+                    {
+                        yMin = cp.Y;
+                    }
+
+                    if (cp.Y > yMax)
+                    {
+                        yMax = cp.Y;
+                    }
                 }
             }
 
@@ -164,7 +228,10 @@ namespace LiveCharts
         /// <returns></returns>
         public IEnumerable<ChartPoint> GetPoints(ISeriesView seriesView)
         {
-            if (seriesView == null) yield break;
+            if (seriesView == null)
+            {
+                yield break;
+            }
 
             var config = GetConfig(seriesView);
 
@@ -234,7 +301,9 @@ namespace LiveCharts
             foreach (var garbage in GetGarbagePoints(seriesView).ToList())
             {
                 if (garbage.View != null) //yes null, double.Nan Values, will generate null views.
+                {
                     garbage.View.RemoveFromView(seriesView.Model.Chart);
+                }
 
                 if (!isclass)
                 {
@@ -256,7 +325,10 @@ namespace LiveCharts
         {
             PointTracker tracker;
 
-            if (Trackers.TryGetValue(view, out tracker)) return tracker;
+            if (Trackers.TryGetValue(view, out tracker))
+            {
+                return tracker;
+            }
 
             tracker = new PointTracker();
             Trackers[view] = tracker;
@@ -274,12 +346,18 @@ namespace LiveCharts
 
             //series == null means that chart values are null, and LiveCharts
             //could not set the Series Instance tho the current chart values...
-            if (view == null || view.Model.SeriesCollection == null) return null;
+            if (view == null || view.Model.SeriesCollection == null)
+            {
+                return null;
+            }
 
             var config =
                 (view.Configuration ?? view.Model.SeriesCollection.Configuration) as IPointEvaluator<T>;
 
-            if (config != null) return config;
+            if (config != null)
+            {
+                return config;
+            }
 
             return DefaultConfiguration ??
                    (DefaultConfiguration =
@@ -292,7 +370,11 @@ namespace LiveCharts
 
             if (!isClass)
             {
-                if (tracker.Indexed.TryGetValue(index, out cp)) return cp;
+                if (tracker.Indexed.TryGetValue(index, out cp))
+                {
+                    return cp;
+                }
+
                 cp = new ChartPoint
                 {
                     Instance = value,
@@ -302,7 +384,11 @@ namespace LiveCharts
             }
             else
             {
-                if (tracker.Referenced.TryGetValue(value, out cp)) return cp;
+                if (tracker.Referenced.TryGetValue(value, out cp))
+                {
+                    return cp;
+                }
+
                 cp = new ChartPoint
                 {
                     Instance = value,
@@ -335,12 +421,17 @@ namespace LiveCharts
         {
             var tracker = GetTracker(view);
 
-            if (tracker.Gci != int.MaxValue) return;
+            if (tracker.Gci != int.MaxValue)
+            {
+                return;
+            }
 
             tracker.Gci = 0;
 
             foreach (var point in tracker.Indexed.Values.Concat(tracker.Referenced.Values))
+            {
                 point.Gci = 0;
+            }
         }
 
         private static bool IsGarbage(ChartPoint point, PointTracker tracker)
@@ -352,7 +443,9 @@ namespace LiveCharts
         private void OnChanged(IEnumerable<T> oldItems, IEnumerable<T> newItems)
         {
             if (Trackers.Keys.All(x => x != null && x.Model.Chart != null))
+            {
                 Trackers.Keys.ForEach(x => x.Model.Chart.Updater.Run());
+            }
         }
 
         #endregion

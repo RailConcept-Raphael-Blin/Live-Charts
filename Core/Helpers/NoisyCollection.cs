@@ -191,7 +191,7 @@ namespace LiveCharts.Helpers
                 var original = this[index];
                 lock (_sync)
                 {
-                    _source[index] = (T)value;
+                    _source[index] = (T) value;
                 }
                 ReplaceItem(original, value, index);
             }
@@ -233,7 +233,7 @@ namespace LiveCharts.Helpers
         /// <returns>result</returns>
         bool ICollection<T>.IsReadOnly
         {
-            get { return ((ICollection<T>)_source).IsReadOnly; }
+            get { return ((ICollection<T>) _source).IsReadOnly; }
         }
         /// <summary>
         /// Gets the number of items in the array
@@ -241,7 +241,7 @@ namespace LiveCharts.Helpers
         /// <returns>result</returns>
         bool IList.IsReadOnly
         {
-            get { return ((IList)_source).IsReadOnly; }
+            get { return ((IList) _source).IsReadOnly; }
         }
 
         /// <summary>
@@ -250,7 +250,7 @@ namespace LiveCharts.Helpers
         /// <returns>result</returns>
         public bool IsSynchronized
         {
-            get { return ((ICollection)_source).IsSynchronized; }
+            get { return ((ICollection) _source).IsSynchronized; }
         }
 
         /// <summary>
@@ -258,13 +258,13 @@ namespace LiveCharts.Helpers
         /// </summary>
         public object SyncRoot
         {
-            get { return ((ICollection)_source).SyncRoot; }
+            get { return ((ICollection) _source).SyncRoot; }
         }
 
         /// <summary>
         /// Gets whether the collection is fixed
         /// </summary>
-        public bool IsFixedSize { get { return ((IList)_source).IsFixedSize; } }
+        public bool IsFixedSize { get { return ((IList) _source).IsFixedSize; } }
 
         #endregion
 
@@ -277,7 +277,7 @@ namespace LiveCharts.Helpers
         /// <returns>number of items in the collection</returns>
         int IList.Add(object value)
         {
-            var v = (T)value;
+            var v = (T) value;
             Add(v);
             lock (_sync)
             {
@@ -356,7 +356,7 @@ namespace LiveCharts.Helpers
         /// <param name="value">item to insert</param>
         public void Insert(int index, object value)
         {
-            Insert(index, (T)value);
+            Insert(index, (T) value);
         }
 
         /// <summary>
@@ -396,7 +396,7 @@ namespace LiveCharts.Helpers
         /// <param name="value">item to remove</param>
         public void Remove(object value)
         {
-            Remove((T)value);
+            Remove((T) value);
         }
 
         /// <summary>
@@ -411,7 +411,11 @@ namespace LiveCharts.Helpers
             {
                 index = _source.IndexOf(item);
             }
-            if (index < 0) return false;
+            if (index < 0)
+            {
+                return false;
+            }
+
             RemoveAt(index);
             return true;
         }
@@ -494,7 +498,7 @@ namespace LiveCharts.Helpers
         /// <returns>evaluation</returns>
         public bool Contains(object value)
         {
-            return Contains((T)value);
+            return Contains((T) value);
         }
 
         /// <summary>
@@ -540,7 +544,7 @@ namespace LiveCharts.Helpers
         /// <returns></returns>
         public int IndexOf(object value)
         {
-            return IndexOf((T)value);
+            return IndexOf((T) value);
         }
 
         /// <summary>
@@ -589,13 +593,17 @@ namespace LiveCharts.Helpers
         private void OnNoisyCollectionChanged(IEnumerable<T> olditems, IEnumerable<T> newItems)
         {
             if (NoisyCollectionChanged != null)
+            {
                 NoisyCollectionChanged.Invoke(olditems, newItems);
+            }
         }
 
         private void OnNoisyCollectionReset()
         {
             if (CollectionReset != null)
+            {
                 CollectionReset.Invoke();
+            }
         }
 
         private void OnPropertyChanged(string propertyName)
@@ -606,7 +614,7 @@ namespace LiveCharts.Helpers
         private void ReplaceItem(object original, object item, int index)
         {
             OnPropertyChanged(IndexerString);
-            OnNoisyCollectionChanged(new List<T>{(T) original}, new List<T>{(T) item});
+            OnNoisyCollectionChanged(new List<T> { (T) original }, new List<T> { (T) item });
             OnCollectionChanged(new NotifyCollectionChangedEventArgs(
                 NotifyCollectionChangedAction.Replace, original, item, index));
         }

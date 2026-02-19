@@ -20,16 +20,16 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
-using System;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Shapes;
 using LiveCharts.Definitions.Points;
 using LiveCharts.Definitions.Series;
 using LiveCharts.SeriesAlgorithms;
 using LiveCharts.Wpf.Charts.Base;
 using LiveCharts.Wpf.Points;
+using System;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace LiveCharts.Wpf
 {
@@ -71,7 +71,7 @@ namespace LiveCharts.Wpf
         /// The maximum column width property
         /// </summary>
         public static readonly DependencyProperty MaxColumnWidthProperty = DependencyProperty.Register(
-            "MaxColumnWidth", typeof (double), typeof (OhlcSeries), new PropertyMetadata(default(double)));
+            "MaxColumnWidth", typeof(double), typeof(OhlcSeries), new PropertyMetadata(default(double)));
         /// <summary>
         /// Gets or sets the maximum with of a point, a point will be capped to this width.
         /// </summary>
@@ -85,7 +85,7 @@ namespace LiveCharts.Wpf
         /// The increase brush property
         /// </summary>
         public static readonly DependencyProperty IncreaseBrushProperty = DependencyProperty.Register(
-            "IncreaseBrush", typeof (Brush), typeof (OhlcSeries), new PropertyMetadata(default(Brush)));
+            "IncreaseBrush", typeof(Brush), typeof(OhlcSeries), new PropertyMetadata(default(Brush)));
         /// <summary>
         /// Gets or sets the brush of the point when close value is grater than open value
         /// </summary>
@@ -99,7 +99,7 @@ namespace LiveCharts.Wpf
         /// The decrease brush property
         /// </summary>
         public static readonly DependencyProperty DecreaseBrushProperty = DependencyProperty.Register(
-            "DecreaseBrush", typeof (Brush), typeof (OhlcSeries), new PropertyMetadata(default(Brush)));
+            "DecreaseBrush", typeof(Brush), typeof(OhlcSeries), new PropertyMetadata(default(Brush)));
         /// <summary>
         /// Gets or sets the brush of the point when close value is less than open value
         /// </summary>
@@ -129,7 +129,7 @@ namespace LiveCharts.Wpf
         /// <returns></returns>
         public override IChartPointView GetPointView(ChartPoint point, string label)
         {
-            var pbv = (OhlcPointView)point.View;
+            var pbv = (OhlcPointView) point.View;
 
             if (pbv == null)
             {
@@ -187,13 +187,16 @@ namespace LiveCharts.Wpf
 
                 Panel.SetZIndex(pbv.HoverShape, int.MaxValue);
 
-                var wpfChart = (Chart)Model.Chart.View;
+                var wpfChart = (Chart) Model.Chart.View;
                 wpfChart.AttachHoverableEventTo(pbv.HoverShape);
 
                 Model.Chart.View.AddToDrawMargin(pbv.HoverShape);
             }
 
-            if (pbv.HoverShape != null) pbv.HoverShape.Visibility = Visibility;
+            if (pbv.HoverShape != null)
+            {
+                pbv.HoverShape.Visibility = Visibility;
+            }
 
             if (DataLabels)
             {

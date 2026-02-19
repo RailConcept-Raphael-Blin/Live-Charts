@@ -20,12 +20,12 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
-using System;
-using System.Linq;
 using LiveCharts.Defaults;
 using LiveCharts.Definitions.Points;
 using LiveCharts.Definitions.Series;
 using LiveCharts.Dtos;
+using System;
+using System.Linq;
 
 namespace LiveCharts.SeriesAlgorithms
 {
@@ -58,7 +58,11 @@ namespace LiveCharts.SeriesAlgorithms
             var totalSpace = ChartFunctions.GetUnitWidth(AxisOrientation.X, Chart, View.ScalesXAt) - padding;
             var typeSeries = Chart.View.ActualSeries.Where(x =>
             {
-                if (x == View) return true;
+                if (x == View)
+                {
+                    return true;
+                }
+
                 var icsv = x as IColumnSeriesView;
                 return icsv != null && icsv.SharesPosition;
             }).ToList();
@@ -71,11 +75,11 @@ namespace LiveCharts.SeriesAlgorithms
 
             if (singleColWidth > columnSeries.MaxColumnWidth)
             {
-                exceed = (singleColWidth - columnSeries.MaxColumnWidth)*typeSeries.Count/2;
+                exceed = (singleColWidth - columnSeries.MaxColumnWidth) * typeSeries.Count / 2;
                 singleColWidth = columnSeries.MaxColumnWidth;
             }
 
-            var relativeLeft = padding + exceed + singleColWidth*(seriesPosition);
+            var relativeLeft = padding + exceed + singleColWidth * (seriesPosition);
 
             var startAt = CurrentYAxis.FirstSeparator >= 0 && CurrentYAxis.LastSeparator > 0   //both positive
                 ? CurrentYAxis.FirstSeparator                                                  //then use axisYMin
@@ -110,7 +114,7 @@ namespace LiveCharts.SeriesAlgorithms
 
                 rectangleView.ZeroReference = zero;
 
-                chartPoint.ChartLocation = new CorePoint(rectangleView.Data.Left + singleColWidth/2 - padding/2,
+                chartPoint.ChartLocation = new CorePoint(rectangleView.Data.Left + singleColWidth / 2 - padding / 2,
                     t);
 
                 chartPoint.View.DrawOrMove(null, chartPoint, 0, Chart);

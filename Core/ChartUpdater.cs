@@ -20,10 +20,10 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
-using System;
 using LiveCharts.Charts;
 using LiveCharts.Definitions.Series;
 using LiveCharts.Helpers;
+using System;
 
 namespace LiveCharts
 {
@@ -65,7 +65,7 @@ namespace LiveCharts
         /// <param name="restartView">if set to <c>true</c> [restart view].</param>
         /// <param name="updateNow">if set to <c>true</c> [update now].</param>
         /// <exception cref="System.NotImplementedException"></exception>
-        public virtual void Run(bool restartView = false, bool updateNow = false)   
+        public virtual void Run(bool restartView = false, bool updateNow = false)
         {
             throw new NotImplementedException();
         }
@@ -85,23 +85,39 @@ namespace LiveCharts
         /// </summary>
         /// <param name="restartsAnimations">if set to <c>true</c> [restarts animations].</param>
         /// <param name="force"></param>
-        protected void Update(bool restartsAnimations = false, bool force = false)   
+        protected void Update(bool restartsAnimations = false, bool force = false)
         {
-            if (!force && Chart.View.UpdaterState == UpdaterState.Paused) return;
-             
-            if (!force && !Chart.View.IsControlLoaded) return;
+            if (!force && Chart.View.UpdaterState == UpdaterState.Paused)
+            {
+                return;
+            }
+
+            if (!force && !Chart.View.IsControlLoaded)
+            {
+                return;
+            }
 
             if (restartsAnimations)
+            {
                 Chart.View.ActualSeries.ForEach(s =>
                 {
-                    if (s.ActualValues == null) return;
+                    if (s.ActualValues == null)
+                    {
+                        return;
+                    }
+
                     s.ActualValues.GetPoints(s).ForEach(p =>
                     {
-                        if (p == null || p.View == null) return;
+                        if (p == null || p.View == null)
+                        {
+                            return;
+                        }
+
                         p.View.RemoveFromView(Chart);
                         p.View = null;
                     });
                 });
+            }
 
             Chart.AxisX = Chart.View.MapXAxes(Chart);
             Chart.AxisY = Chart.View.MapYAxes(Chart);

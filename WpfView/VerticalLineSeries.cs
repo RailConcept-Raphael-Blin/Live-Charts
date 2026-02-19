@@ -20,6 +20,11 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
+using LiveCharts.Definitions.Points;
+using LiveCharts.Dtos;
+using LiveCharts.SeriesAlgorithms;
+using LiveCharts.Wpf.Charts.Base;
+using LiveCharts.Wpf.Points;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -27,11 +32,6 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using LiveCharts.Definitions.Points;
-using LiveCharts.Dtos;
-using LiveCharts.SeriesAlgorithms;
-using LiveCharts.Wpf.Charts.Base;
-using LiveCharts.Wpf.Points;
 
 namespace LiveCharts.Wpf
 {
@@ -157,13 +157,16 @@ namespace LiveCharts.Wpf
 
                 Panel.SetZIndex(pbv.HoverShape, int.MaxValue);
 
-                var wpfChart = (Chart)Model.Chart.View;
+                var wpfChart = (Chart) Model.Chart.View;
                 wpfChart.AttachHoverableEventTo(pbv.HoverShape);
 
                 Model.Chart.View.AddToDrawMargin(pbv.HoverShape);
             }
 
-            if (pbv.HoverShape != null) pbv.HoverShape.Visibility = Visibility;
+            if (pbv.HoverShape != null)
+            {
+                pbv.HoverShape.Visibility = Visibility;
+            }
 
             if (PointGeometry != null && Math.Abs(PointGeometrySize) > 0.1 && pbv.Shape == null)
             {
@@ -190,11 +193,18 @@ namespace LiveCharts.Wpf
                 pbv.Shape.Visibility = Visibility;
                 Panel.SetZIndex(pbv.Shape, Panel.GetZIndex(this) + 1);
 
-                if (point.Stroke != null) pbv.Shape.Stroke = (Brush)point.Stroke;
-                if (point.Fill != null) pbv.Shape.Fill = (Brush)point.Fill;
+                if (point.Stroke != null)
+                {
+                    pbv.Shape.Stroke = (Brush) point.Stroke;
+                }
+
+                if (point.Fill != null)
+                {
+                    pbv.Shape.Fill = (Brush) point.Fill;
+                }
             }
 
-            if (DataLabels )
+            if (DataLabels)
             {
                 pbv.DataLabel = UpdateLabelContent(new DataLabelViewModel
                 {
@@ -223,7 +233,9 @@ namespace LiveCharts.Wpf
         public override void StartSegment(int atIndex, CorePoint location)
         {
             if (Splitters.Count <= ActiveSplitters)
+            {
                 Splitters.Add(new LineSegmentSplitter { IsNew = true });
+            }
 
             var splitter = Splitters[ActiveSplitters];
             splitter.SplitterCollectorIndex = SplittersCollector;
@@ -239,10 +251,14 @@ namespace LiveCharts.Wpf
             if (Values != null && atIndex == 0)
             {
                 if (Model.Chart.View.DisableAnimations || IsNew)
+                {
                     Figure.StartPoint = new Point(areaLimit, location.Y);
+                }
                 else
+                {
                     Figure.BeginAnimation(PathFigure.StartPointProperty,
                         new PointAnimation(new Point(areaLimit, location.Y), animSpeed));
+                }
 
                 IsNew = false;
             }
@@ -258,18 +274,28 @@ namespace LiveCharts.Wpf
                 }
 
                 if (noAnim)
+                {
                     splitter.Bottom.Point = new Point(Model.Chart.DrawMargin.Width, location.Y);
+                }
                 else
+                {
                     splitter.Bottom.BeginAnimation(LineSegment.PointProperty,
                         new PointAnimation(new Point(Model.Chart.DrawMargin.Width, location.Y), animSpeed));
+                }
+
                 Figure.Segments.Insert(atIndex, splitter.Bottom);
 
                 Figure.Segments.Remove(splitter.Left);
                 if (noAnim)
+                {
                     splitter.Left.Point = location.AsPoint();
+                }
                 else
+                {
                     splitter.Left.BeginAnimation(LineSegment.PointProperty,
                         new PointAnimation(location.AsPoint(), animSpeed));
+                }
+
                 Figure.Segments.Insert(atIndex + 1, splitter.Left);
 
                 return;
@@ -283,10 +309,15 @@ namespace LiveCharts.Wpf
 
             Figure.Segments.Remove(splitter.Left);
             if (Model.Chart.View.DisableAnimations)
+            {
                 splitter.Left.Point = location.AsPoint();
+            }
             else
+            {
                 splitter.Left.BeginAnimation(LineSegment.PointProperty,
                     new PointAnimation(location.AsPoint(), animSpeed));
+            }
+
             Figure.Segments.Insert(atIndex, splitter.Left);
         }
 
@@ -318,10 +349,15 @@ namespace LiveCharts.Wpf
 
             Figure.Segments.Remove(splitter.Right);
             if (noAnim)
+            {
                 splitter.Right.Point = new Point(areaLimit, location.Y);
+            }
             else
+            {
                 splitter.Right.BeginAnimation(LineSegment.PointProperty,
                     new PointAnimation(new Point(areaLimit, location.Y), animSpeed));
+            }
+
             Figure.Segments.Insert(atIndex, splitter.Right);
 
             splitter.IsNew = false;

@@ -46,7 +46,7 @@ namespace LiveCharts.Wpf
         /// The corner radius property
         /// </summary>
         public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(
-            "CornerRadius", typeof (double), typeof (DefaultGeoMapTooltip), new PropertyMetadata(default(double)));
+            "CornerRadius", typeof(double), typeof(DefaultGeoMapTooltip), new PropertyMetadata(default(double)));
 
         /// <summary>
         /// Gets or sets the corner radius.
@@ -64,7 +64,7 @@ namespace LiveCharts.Wpf
         /// The label formatter property
         /// </summary>
         public static readonly DependencyProperty LabelFormatterProperty = DependencyProperty.Register(
-            "LabelFormatter", typeof (Func<double, string>), typeof (DefaultGeoMapTooltip), new PropertyMetadata(default(Func<double, string>)));
+            "LabelFormatter", typeof(Func<double, string>), typeof(DefaultGeoMapTooltip), new PropertyMetadata(default(Func<double, string>)));
 
         /// <summary>
         /// Gets or sets the label formatter.
@@ -82,7 +82,7 @@ namespace LiveCharts.Wpf
         /// The geo data property
         /// </summary>
         public static readonly DependencyProperty GeoDataProperty = DependencyProperty.Register(
-            "GeoData", typeof (GeoData), typeof (DefaultGeoMapTooltip), new PropertyMetadata(default(GeoData)));
+            "GeoData", typeof(GeoData), typeof(DefaultGeoMapTooltip), new PropertyMetadata(default(GeoData)));
 
         /// <summary>
         /// Gets or sets the geo data.

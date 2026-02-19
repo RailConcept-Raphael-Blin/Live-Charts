@@ -20,17 +20,17 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
-using System;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Shapes;
 using LiveCharts.Definitions.Points;
 using LiveCharts.Definitions.Series;
 using LiveCharts.Dtos;
 using LiveCharts.SeriesAlgorithms;
 using LiveCharts.Wpf.Charts.Base;
 using LiveCharts.Wpf.Points;
+using System;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace LiveCharts.Wpf
 {
@@ -72,7 +72,7 @@ namespace LiveCharts.Wpf
         /// The maximum row heigth property
         /// </summary>
         public static readonly DependencyProperty MaxRowHeigthProperty = DependencyProperty.Register(
-            "MaxRowHeigth", typeof (double), typeof (RowSeries), new PropertyMetadata(35d));
+            "MaxRowHeigth", typeof(double), typeof(RowSeries), new PropertyMetadata(35d));
         /// <summary>
         /// Gets or sets the maximum row height, the height of a column will be capped at this value
         /// </summary>
@@ -86,7 +86,7 @@ namespace LiveCharts.Wpf
         /// The row padding property
         /// </summary>
         public static readonly DependencyProperty RowPaddingProperty = DependencyProperty.Register(
-            "RowPadding", typeof (double), typeof (RowSeries), new PropertyMetadata(2d));
+            "RowPadding", typeof(double), typeof(RowSeries), new PropertyMetadata(2d));
         /// <summary>
         /// Gets or sets the padding between rows in this series
         /// </summary>
@@ -100,14 +100,14 @@ namespace LiveCharts.Wpf
         /// The labels position property
         /// </summary>
         public static readonly DependencyProperty LabelsPositionProperty = DependencyProperty.Register(
-            "LabelsPosition", typeof(BarLabelPosition), typeof(RowSeries), 
+            "LabelsPosition", typeof(BarLabelPosition), typeof(RowSeries),
             new PropertyMetadata(default(BarLabelPosition), CallChartUpdater()));
         /// <summary>
         /// Gets or sets where the label is placed
         /// </summary>
         public BarLabelPosition LabelsPosition
         {
-            get { return (BarLabelPosition)GetValue(LabelsPositionProperty); }
+            get { return (BarLabelPosition) GetValue(LabelsPositionProperty); }
             set { SetValue(LabelsPositionProperty, value); }
         }
 
@@ -124,7 +124,7 @@ namespace LiveCharts.Wpf
         /// </value>
         public bool SharesPosition
         {
-            get { return (bool)GetValue(SharesPositionProperty); }
+            get { return (bool) GetValue(SharesPositionProperty); }
             set { SetValue(SharesPositionProperty, value); }
         }
 
@@ -140,7 +140,7 @@ namespace LiveCharts.Wpf
         /// <returns></returns>
         public override IChartPointView GetPointView(ChartPoint point, string label)
         {
-            var pbv = (RowPointView)point.View;
+            var pbv = (RowPointView) point.View;
 
             if (pbv == null)
             {
@@ -181,13 +181,16 @@ namespace LiveCharts.Wpf
 
                 Panel.SetZIndex(pbv.HoverShape, int.MaxValue);
 
-                var wpfChart = (Chart)Model.Chart.View;
+                var wpfChart = (Chart) Model.Chart.View;
                 wpfChart.AttachHoverableEventTo(pbv.HoverShape);
 
                 Model.Chart.View.AddToDrawMargin(pbv.HoverShape);
             }
 
-            if (pbv.HoverShape != null) pbv.HoverShape.Visibility = Visibility;
+            if (pbv.HoverShape != null)
+            {
+                pbv.HoverShape.Visibility = Visibility;
+            }
 
             if (DataLabels)
             {
@@ -204,8 +207,15 @@ namespace LiveCharts.Wpf
                 pbv.DataLabel = null;
             }
 
-            if (point.Stroke != null) pbv.Rectangle.Stroke = (Brush)point.Stroke;
-            if (point.Fill != null) pbv.Rectangle.Fill = (Brush)point.Fill;
+            if (point.Stroke != null)
+            {
+                pbv.Rectangle.Stroke = (Brush) point.Stroke;
+            }
+
+            if (point.Fill != null)
+            {
+                pbv.Rectangle.Fill = (Brush) point.Fill;
+            }
 
             pbv.LabelPosition = LabelsPosition;
 

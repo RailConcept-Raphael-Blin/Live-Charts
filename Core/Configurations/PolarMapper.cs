@@ -45,8 +45,15 @@ namespace LiveCharts.Configurations
         {
             point.Radius = _r(value, key);
             point.Angle = _angle(value, key);
-            if (_stroke != null) point.Stroke = _stroke(value, key);
-            if (_fill != null) point.Fill = _fill(value, key);
+            if (_stroke != null)
+            {
+                point.Stroke = _stroke(value, key);
+            }
+
+            if (_fill != null)
+            {
+                point.Fill = _fill(value, key);
+            }
         }
 
         /// <summary>

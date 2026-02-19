@@ -51,7 +51,10 @@ namespace LiveCharts
                     return false;
                 }
 
-                if (!IsSeparator(index)) continue;
+                if (!IsSeparator(index))
+                {
+                    continue;
+                }
 
                 // Add this separator
                 separatorList.Add(index);

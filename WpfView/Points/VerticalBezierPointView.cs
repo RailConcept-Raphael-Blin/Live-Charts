@@ -20,12 +20,12 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
+using LiveCharts.Charts;
+using LiveCharts.Dtos;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using LiveCharts.Charts;
-using LiveCharts.Dtos;
 
 namespace LiveCharts.Wpf.Points
 {
@@ -89,7 +89,7 @@ namespace LiveCharts.Wpf.Points
                         if (Shape != null)
                         {
                             Canvas.SetTop(Shape, startPoint.Y - Shape.Height * .5);
-                            Canvas.SetLeft(Shape,  startPoint.X);
+                            Canvas.SetLeft(Shape, startPoint.X);
                         }
                         if (DataLabel != null)
                         {
@@ -183,18 +183,25 @@ namespace LiveCharts.Wpf.Points
 
         public override void OnHover(ChartPoint point)
         {
-            var lineSeries = (LineSeries)point.SeriesView;
-            if (Shape != null) Shape.Fill = Shape.Stroke;
+            var lineSeries = (LineSeries) point.SeriesView;
+            if (Shape != null)
+            {
+                Shape.Fill = Shape.Stroke;
+            }
+
             lineSeries.Path.StrokeThickness = lineSeries.StrokeThickness + 1;
         }
 
         public override void OnHoverLeave(ChartPoint point)
         {
-            var lineSeries = (LineSeries)point.SeriesView;
+            var lineSeries = (LineSeries) point.SeriesView;
             if (Shape != null)
+            {
                 Shape.Fill = point.Fill == null
                     ? lineSeries.PointForeground
                     : (Brush) point.Fill;
+            }
+
             lineSeries.Path.StrokeThickness = lineSeries.StrokeThickness;
         }
     }

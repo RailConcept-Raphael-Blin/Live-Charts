@@ -18,13 +18,13 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
+using LiveCharts.Charts;
+using LiveCharts.Definitions.Points;
+using LiveCharts.Dtos;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Shapes;
-using LiveCharts.Charts;
-using LiveCharts.Definitions.Points;
-using LiveCharts.Dtos;
 
 namespace LiveCharts.Wpf.Points
 {
@@ -47,12 +47,12 @@ namespace LiveCharts.Wpf.Points
 
         public virtual void OnHover(ChartPoint point)
         {
-            
+
         }
 
         public virtual void OnHoverLeave(ChartPoint point)
         {
-            
+
         }
     }
 }

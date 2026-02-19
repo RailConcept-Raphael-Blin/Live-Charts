@@ -45,7 +45,7 @@ namespace LiveCharts.Wpf
         public DefaultTooltip()
         {
             InitializeComponent();
-            
+
             DataContext = this;
         }
 
@@ -60,7 +60,7 @@ namespace LiveCharts.Wpf
                 typeof(DefaultTooltip), new FrameworkPropertyMetadata(new Thickness(10, 5, 10, 5)));
             EffectProperty.OverrideMetadata(
                 typeof(DefaultTooltip),
-                new FrameworkPropertyMetadata(new DropShadowEffect {BlurRadius = 3, Color = Color.FromRgb(50,50,50), Opacity = .2}));
+                new FrameworkPropertyMetadata(new DropShadowEffect { BlurRadius = 3, Color = Color.FromRgb(50, 50, 50), Opacity = .2 }));
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace LiveCharts.Wpf
         /// The corner radius property
         /// </summary>
         public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(
-            "CornerRadius", typeof (CornerRadius), typeof (DefaultTooltip), new PropertyMetadata(new CornerRadius(4)));
+            "CornerRadius", typeof(CornerRadius), typeof(DefaultTooltip), new PropertyMetadata(new CornerRadius(4)));
         /// <summary>
         /// Gets or sets the corner radius of the tooltip
         /// </summary>
@@ -115,7 +115,7 @@ namespace LiveCharts.Wpf
         /// The selection mode property
         /// </summary>
         public static readonly DependencyProperty SelectionModeProperty = DependencyProperty.Register(
-            "SelectionMode", typeof (TooltipSelectionMode?), typeof (DefaultTooltip),
+            "SelectionMode", typeof(TooltipSelectionMode?), typeof(DefaultTooltip),
             new PropertyMetadata(null));
         /// <summary>
         /// Gets or sets the tooltip selection mode, default is null, if this property is null LiveCharts will decide the selection mode based on the series (that fired the tooltip) preferred section mode
@@ -130,7 +130,7 @@ namespace LiveCharts.Wpf
         /// The bullet size property
         /// </summary>
         public static readonly DependencyProperty BulletSizeProperty = DependencyProperty.Register(
-            "BulletSize", typeof (double), typeof (DefaultTooltip), new PropertyMetadata(15d));
+            "BulletSize", typeof(double), typeof(DefaultTooltip), new PropertyMetadata(15d));
         /// <summary>
         /// Gets or sets the bullet size, the bullet size modifies the drawn shape size.
         /// </summary>
@@ -144,7 +144,7 @@ namespace LiveCharts.Wpf
         /// The is wrapped property
         /// </summary>
         public static readonly DependencyProperty IsWrappedProperty = DependencyProperty.Register(
-            "IsWrapped", typeof (bool), typeof (DefaultTooltip), new PropertyMetadata(default(bool)));
+            "IsWrapped", typeof(bool), typeof(DefaultTooltip), new PropertyMetadata(default(bool)));
         /// <summary>
         /// Gets or sets whether the tooltip is shared in the current view, this property is useful to control
         /// the z index of a tooltip according to a set of controls in a container.
@@ -183,7 +183,9 @@ namespace LiveCharts.Wpf
         protected virtual void OnPropertyChanged(string propertyName = null)
         {
             if (PropertyChanged != null)
+            {
                 PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
     }
 
@@ -207,9 +209,15 @@ namespace LiveCharts.Wpf
         {
             var v = value as TooltipData;
 
-            if (v == null) return null;
+            if (v == null)
+            {
+                return null;
+            }
 
-            if (v.SelectionMode == TooltipSelectionMode.OnlySender) return string.Empty;
+            if (v.SelectionMode == TooltipSelectionMode.OnlySender)
+            {
+                return string.Empty;
+            }
 
             return v.SelectionMode == TooltipSelectionMode.SharedXValues
                 ? v.XFormatter(v.SharedValue ?? 0)
@@ -253,7 +261,10 @@ namespace LiveCharts.Wpf
         {
             var chartPoint = value as ChartPoint;
 
-            if (chartPoint == null) return null;
+            if (chartPoint == null)
+            {
+                return null;
+            }
 
             return chartPoint.SeriesView.LabelPoint(chartPoint);
         }
@@ -294,7 +305,10 @@ namespace LiveCharts.Wpf
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var v = value as TooltipData;
-            if (v == null) return null;
+            if (v == null)
+            {
+                return null;
+            }
 
             return v.Points.Any(x => x.ChartPoint.Participation > 0) ? Visibility.Visible : Visibility.Collapsed;
         }
@@ -337,13 +351,20 @@ namespace LiveCharts.Wpf
             var v = values[0] as TooltipData;
             var show = values[1] as bool?;
 
-            if (v == null || show == null) return null;
+            if (v == null || show == null)
+            {
+                return null;
+            }
 
             if (show.Value == false)
+            {
                 return Visibility.Collapsed;
+            }
 
             if (v.SelectionMode == TooltipSelectionMode.OnlySender)
+            {
                 return Visibility.Collapsed;
+            }
 
             return v.SharedValue == null
                 ? Visibility.Collapsed
@@ -404,7 +425,7 @@ namespace LiveCharts.Wpf
     /// <summary>
     /// Point Data
     /// </summary>
-    public class DataPointViewModel 
+    public class DataPointViewModel
     {
         /// <summary>
         /// Gets info about the series that owns the point, like stroke and stroke thickness

@@ -20,13 +20,13 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
+using LiveCharts.Charts;
+using LiveCharts.Definitions.Points;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using LiveCharts.Charts;
-using LiveCharts.Definitions.Points;
 
 namespace LiveCharts.Wpf.Points
 {
@@ -76,7 +76,7 @@ namespace LiveCharts.Wpf.Points
             }
 
 
-            var candleSeries = (CandleSeries)current.SeriesView;
+            var candleSeries = (CandleSeries) current.SeriesView;
 
             if (candleSeries.ColoringRules == null)
             {
@@ -97,7 +97,10 @@ namespace LiveCharts.Wpf.Points
             {
                 foreach (var rule in candleSeries.ColoringRules)
                 {
-                    if (!rule.Condition(current, previousDrawn)) continue;
+                    if (!rule.Condition(current, previousDrawn))
+                    {
+                        continue;
+                    }
 
                     HighToLowLine.Stroke = rule.Stroke;
                     OpenToCloseRectangle.Fill = rule.Fill;
@@ -135,7 +138,7 @@ namespace LiveCharts.Wpf.Points
                 return;
             }
 
-            
+
 
             var animSpeed = chart.View.AnimationsSpeed;
 
@@ -177,12 +180,20 @@ namespace LiveCharts.Wpf.Points
 
         protected double CorrectXLabel(double desiredPosition, ChartCore chart)
         {
-            if (desiredPosition + DataLabel.ActualWidth * .5 < -0.1) return -DataLabel.ActualWidth;
+            if (desiredPosition + DataLabel.ActualWidth * .5 < -0.1)
+            {
+                return -DataLabel.ActualWidth;
+            }
 
             if (desiredPosition + DataLabel.ActualWidth > chart.DrawMargin.Width)
+            {
                 desiredPosition -= desiredPosition + DataLabel.ActualWidth - chart.DrawMargin.Width + 2;
+            }
 
-            if (desiredPosition < 0) desiredPosition = 0;
+            if (desiredPosition < 0)
+            {
+                desiredPosition = 0;
+            }
 
             return desiredPosition;
         }
@@ -192,12 +203,17 @@ namespace LiveCharts.Wpf.Points
             //desiredPosition -= Ellipse.ActualHeight * .5 + DataLabel.ActualHeight * .5 + 2;
 
             if (desiredPosition + DataLabel.ActualHeight > chart.DrawMargin.Height)
+            {
                 desiredPosition -= desiredPosition + DataLabel.ActualHeight - chart.DrawMargin.Height + 2;
+            }
 
-            if (desiredPosition < 0) desiredPosition = 0;
+            if (desiredPosition < 0)
+            {
+                desiredPosition = 0;
+            }
 
             return desiredPosition;
         }
-        
+
     }
 }

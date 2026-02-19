@@ -1,5 +1,5 @@
-using System;
 using LiveCharts.Helpers;
+using System;
 
 namespace LiveCharts.Definitions.Charts
 {

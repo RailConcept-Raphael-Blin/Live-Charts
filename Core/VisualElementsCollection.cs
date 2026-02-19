@@ -20,10 +20,10 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
-using System.Collections.Generic;
 using LiveCharts.Charts;
 using LiveCharts.Definitions.Charts;
 using LiveCharts.Helpers;
+using System.Collections.Generic;
 
 namespace LiveCharts
 {
@@ -50,8 +50,21 @@ namespace LiveCharts
 
         private void OnNoisyCollectionChanged(IEnumerable<ICartesianVisualElement> oldItems, IEnumerable<ICartesianVisualElement> newItems)
         {
-            if (oldItems != null) foreach (var oltItem in oldItems) oltItem.Remove(Chart);
-            if (newItems != null) foreach (var newItem in newItems) newItem.AddOrMove(Chart);
+            if (oldItems != null)
+            {
+                foreach (var oltItem in oldItems)
+                {
+                    oltItem.Remove(Chart);
+                }
+            }
+
+            if (newItems != null)
+            {
+                foreach (var newItem in newItems)
+                {
+                    newItem.AddOrMove(Chart);
+                }
+            }
         }
     }
 }

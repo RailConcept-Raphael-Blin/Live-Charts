@@ -91,7 +91,10 @@ namespace LiveCharts.Wpf
         {
             var angularSection = (AngularSection) dependencyObject;
 
-            if (angularSection.Owner == null) return;
+            if (angularSection.Owner == null)
+            {
+                return;
+            }
 
             angularSection.Owner.UpdateSections();
         }

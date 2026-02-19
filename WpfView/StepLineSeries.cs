@@ -20,17 +20,17 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
-using System;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Shapes;
 using LiveCharts.Definitions.Points;
 using LiveCharts.Definitions.Series;
 using LiveCharts.SeriesAlgorithms;
 using LiveCharts.Wpf.Charts.Base;
 using LiveCharts.Wpf.Components;
 using LiveCharts.Wpf.Points;
+using System;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace LiveCharts.Wpf
 {
@@ -79,7 +79,7 @@ namespace LiveCharts.Wpf
         /// </summary>
         public double PointGeometrySize
         {
-            get { return (double)GetValue(PointGeometrySizeProperty); }
+            get { return (double) GetValue(PointGeometrySizeProperty); }
             set { SetValue(PointGeometrySizeProperty, value); }
         }
 
@@ -94,7 +94,7 @@ namespace LiveCharts.Wpf
         /// </summary>
         public Brush PointForeground
         {
-            get { return (Brush)GetValue(PointForegroundProperty); }
+            get { return (Brush) GetValue(PointForegroundProperty); }
             set { SetValue(PointForegroundProperty, value); }
         }
 
@@ -102,7 +102,7 @@ namespace LiveCharts.Wpf
         /// The alternative stroke property
         /// </summary>
         public static readonly DependencyProperty AlternativeStrokeProperty = DependencyProperty.Register(
-            "AlternativeStroke", typeof (Brush), typeof (StepLineSeries), new PropertyMetadata(default(Brush)));
+            "AlternativeStroke", typeof(Brush), typeof(StepLineSeries), new PropertyMetadata(default(Brush)));
 
         /// <summary>
         /// Gets or sets the alternative stroke.
@@ -212,8 +212,15 @@ namespace LiveCharts.Wpf
                 pbv.Shape.Data = PointGeometry;
                 Panel.SetZIndex(pbv.Shape, Panel.GetZIndex(this) + 1);
 
-                if (point.Stroke != null) pbv.Shape.Stroke = (Brush) point.Stroke;
-                if (point.Fill != null) pbv.Shape.Fill = (Brush) point.Fill;
+                if (point.Stroke != null)
+                {
+                    pbv.Shape.Stroke = (Brush) point.Stroke;
+                }
+
+                if (point.Fill != null)
+                {
+                    pbv.Shape.Fill = (Brush) point.Fill;
+                }
             }
 
             if (Model.Chart.RequiresHoverShape && pbv.HoverShape == null)
@@ -232,7 +239,10 @@ namespace LiveCharts.Wpf
                 Model.Chart.View.AddToDrawMargin(pbv.HoverShape);
             }
 
-            if (pbv.HoverShape != null) pbv.HoverShape.Visibility = Visibility;
+            if (pbv.HoverShape != null)
+            {
+                pbv.HoverShape.Visibility = Visibility;
+            }
 
             if (DataLabels)
             {
@@ -259,14 +269,22 @@ namespace LiveCharts.Wpf
         {
             var wpfChart = (Chart) Model.Chart.View;
 
-            if (Stroke != null && AlternativeStroke != null) return;
+            if (Stroke != null && AlternativeStroke != null)
+            {
+                return;
+            }
 
             var nextColor = wpfChart.GetNextDefaultColor();
-            
+
             if (Stroke == null)
+            {
                 SetValue(StrokeProperty, new SolidColorBrush(nextColor));
+            }
+
             if (AlternativeStroke == null)
+            {
                 SetValue(AlternativeStrokeProperty, new SolidColorBrush(nextColor));
+            }
         }
 
         #endregion
@@ -278,7 +296,7 @@ namespace LiveCharts.Wpf
         /// <returns></returns>
         public double GetPointDiameter()
         {
-            return PointGeometrySize/2;
+            return PointGeometrySize / 2;
         }
         #endregion
 

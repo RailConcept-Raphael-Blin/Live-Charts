@@ -20,14 +20,14 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
 using LiveCharts.Charts;
 using LiveCharts.Definitions.Charts;
 using LiveCharts.Dtos;
 using LiveCharts.Helpers;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 
 namespace LiveCharts
 {
@@ -263,22 +263,36 @@ namespace LiveCharts
             var residual = minimum / Magnitude;
             double tick;
             if (residual > 5)
+            {
                 tick = 10 * Magnitude;
+            }
             else if (residual > 2)
+            {
                 tick = 5 * Magnitude;
+            }
             else if (residual > 1)
+            {
                 tick = 2 * Magnitude;
+            }
             else
+            {
                 tick = Magnitude;
+            }
 
             S = tick;
 
-            if (Labels != null) S = S < 1 ? 1 : S;
+            if (Labels != null)
+            {
+                S = S < 1 ? 1 : S;
+            }
         }
 
         internal virtual CoreMargin PrepareChart(AxisOrientation source, ChartCore chart)
         {
-            if (!(Math.Abs(TopLimit - BotLimit) > S * .01) || !ShowLabels) return new CoreMargin();
+            if (!(Math.Abs(TopLimit - BotLimit) > S * .01) || !ShowLabels)
+            {
+                return new CoreMargin();
+            }
 
             CalculateSeparator(chart, source);
 
@@ -317,7 +331,7 @@ namespace LiveCharts
                 FirstSeparator = l;
                 for (var i = l; i <= TopLimit - (EvaluatesUnitWidth ? u : 0); i += S)
                 {
-                     LastSeparator = i;
+                    LastSeparator = i;
                     DrawSeparator(i, tolerance, currentMargin, f, source);
                 }
             }
@@ -350,13 +364,17 @@ namespace LiveCharts
                     {
                         if (toLabel + element.View.LabelModel.ActualHeight >
                             chart.DrawMargin.Top + chart.DrawMargin.Height)
+                        {
                             toLabel -= element.View.LabelModel.ActualHeight + padding;
+                        }
                     }
                     else
                     {
                         if (toLabel + element.View.LabelModel.ActualWidth >
                             chart.DrawMargin.Left + chart.DrawMargin.Width)
+                        {
                             toLabel -= element.View.LabelModel.ActualWidth + padding;
+                        }
                     }
                 }
 
@@ -411,7 +429,10 @@ namespace LiveCharts
 
         internal double FromPreviousState(double value, AxisOrientation source, ChartCore chart)
         {
-            if (LastAxisMax == null) return 0;
+            if (LastAxisMax == null)
+            {
+                return 0;
+            }
 
             var p1 = new CorePoint();
             var p2 = new CorePoint();
@@ -467,8 +488,11 @@ namespace LiveCharts
 
         private void DrawSeparator(double i, double tolerance, CoreMargin currentMargin, Func<double, string> f, AxisOrientation source)
         {
-            if (i < BotLimit) return;
-           
+            if (i < BotLimit)
+            {
+                return;
+            }
+
             SeparatorElementCore asc;
 
             var key = Math.Round(i / tolerance, MidpointRounding.AwayFromZero) * tolerance;
@@ -529,9 +553,13 @@ namespace LiveCharts
                     : LabelFormatter(x);
             }
 
-            if (x < 0) x *= -1;
+            if (x < 0)
+            {
+                x *= -1;
+            }
+
             return Labels.Count > x && x >= 0
-                ? Labels[checked((int)x)]
+                ? Labels[checked((int) x)]
                 : "";
         }
 

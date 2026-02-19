@@ -39,7 +39,9 @@ namespace LiveCharts.Wpf.Components
             DependencyProperty dependencyProperty)
         {
             if (dependencyObject.Dispatcher.CheckAccess())
+            {
                 return (T) dependencyObject.GetValue(dependencyProperty);
+            }
 
             return (T) dependencyObject.Dispatcher.Invoke(
                 new Func<T>(() => (T) dependencyObject.GetValue(dependencyProperty)));

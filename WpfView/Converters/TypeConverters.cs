@@ -20,11 +20,11 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
+using LiveCharts.Helpers;
 using System;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
-using LiveCharts.Helpers;
 
 namespace LiveCharts.Wpf.Converters
 {
@@ -44,7 +44,7 @@ namespace LiveCharts.Wpf.Converters
         /// </returns>
         public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
         {
-            return sourceType == typeof (string) || base.CanConvertFrom(context, sourceType);
+            return sourceType == typeof(string) || base.CanConvertFrom(context, sourceType);
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace LiveCharts.Wpf.Converters
             var valueString = value as string;
             if (valueString != null)
             {
-                return valueString.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries)
+                return valueString.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
                     .Select(x => x.Trim())
                     .ToArray();
             }
@@ -103,7 +103,7 @@ namespace LiveCharts.Wpf.Converters
 
             if (valueString != null)
             {
-                return valueString.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries)
+                return valueString.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
                     .Select(d => double.Parse(d, CultureInfo.InvariantCulture))
                     .AsChartValues();
             }

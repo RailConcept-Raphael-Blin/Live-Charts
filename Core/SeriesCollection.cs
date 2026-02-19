@@ -20,10 +20,10 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
-using System.Collections.Generic;
 using LiveCharts.Charts;
 using LiveCharts.Definitions.Series;
 using LiveCharts.Helpers;
+using System.Collections.Generic;
 
 namespace LiveCharts
 {
@@ -88,8 +88,11 @@ namespace LiveCharts
                     view.Erase(true);
                 }
             }
-           
-            if (Chart != null) Chart.Updater.Run();
+
+            if (Chart != null)
+            {
+                Chart.Updater.Run();
+            }
         }
 
         private void OnCollectionReset()

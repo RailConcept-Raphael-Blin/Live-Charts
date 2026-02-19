@@ -28,7 +28,7 @@ namespace LiveCharts.Wpf.Points
         /// </summary>
         public double Radius
         {
-            get { return (double)GetValue(RadiusProperty); }
+            get { return (double) GetValue(RadiusProperty); }
             set { SetValue(RadiusProperty, value); }
         }
 
@@ -44,7 +44,7 @@ namespace LiveCharts.Wpf.Points
         /// </summary>
         public double PushOut
         {
-            get { return (double)GetValue(PushOutProperty); }
+            get { return (double) GetValue(PushOutProperty); }
             set { SetValue(PushOutProperty, value); }
         }
 
@@ -59,7 +59,7 @@ namespace LiveCharts.Wpf.Points
         /// </summary>
         public double InnerRadius
         {
-            get { return (double)GetValue(InnerRadiusProperty); }
+            get { return (double) GetValue(InnerRadiusProperty); }
             set { SetValue(InnerRadiusProperty, value); }
         }
 
@@ -75,7 +75,7 @@ namespace LiveCharts.Wpf.Points
         /// </summary>
         public double WedgeAngle
         {
-            get { return (double)GetValue(WedgeAngleProperty); }
+            get { return (double) GetValue(WedgeAngleProperty); }
             set
             {
                 SetValue(WedgeAngleProperty, value);
@@ -95,7 +95,7 @@ namespace LiveCharts.Wpf.Points
         /// </summary>
         public double RotationAngle
         {
-            get { return (double)GetValue(RotationAngleProperty); }
+            get { return (double) GetValue(RotationAngleProperty); }
             set { SetValue(RotationAngleProperty, value); }
         }
 
@@ -111,7 +111,7 @@ namespace LiveCharts.Wpf.Points
         /// </summary>
         public double CentreX
         {
-            get { return (double)GetValue(CentreXProperty); }
+            get { return (double) GetValue(CentreXProperty); }
             set { SetValue(CentreXProperty, value); }
         }
 
@@ -127,7 +127,7 @@ namespace LiveCharts.Wpf.Points
         /// </summary>
         public double CentreY
         {
-            get { return (double)GetValue(CentreYProperty); }
+            get { return (double) GetValue(CentreYProperty); }
             set { SetValue(CentreYProperty, value); }
         }
 
@@ -143,7 +143,7 @@ namespace LiveCharts.Wpf.Points
         /// </summary>
         public double Percentage
         {
-            get { return (double)GetValue(PercentageProperty); }
+            get { return (double) GetValue(PercentageProperty); }
             private set { SetValue(PercentageProperty, value); }
         }
 
@@ -159,7 +159,7 @@ namespace LiveCharts.Wpf.Points
         /// </summary>
         public double PieceValue
         {
-            get { return (double)GetValue(PieceValueProperty); }
+            get { return (double) GetValue(PieceValueProperty); }
             set { SetValue(PieceValueProperty, value); }
         }
 

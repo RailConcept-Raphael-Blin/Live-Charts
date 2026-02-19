@@ -38,9 +38,9 @@ namespace LiveCharts.Defaults
         /// </summary>
         public ObservablePoint()
         {
-            
+
         }
-        
+
         /// <summary>
         /// Initializes a new instance of ObservablePoint class giving the x and y coordinates
         /// </summary>
@@ -92,7 +92,10 @@ namespace LiveCharts.Defaults
         protected virtual void OnPropertyChanged(string propertyName = null)
         {
             var handler = PropertyChanged;
-            if (PropertyChanged != null) PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            if (PropertyChanged != null)
+            {
+                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
 
         #endregion

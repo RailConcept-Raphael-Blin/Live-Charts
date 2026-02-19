@@ -40,7 +40,7 @@ namespace LiveCharts.Defaults
         /// </summary>
         public OhlcPoint()
         {
-            
+
         }
 
         /// <summary>
@@ -123,7 +123,10 @@ namespace LiveCharts.Defaults
         /// <param name="propertyName">Name of the property.</param>
         protected virtual void OnPropertyChanged(string propertyName = null)
         {
-            if (PropertyChanged != null) PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            if (PropertyChanged != null)
+            {
+                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
 
         #endregion

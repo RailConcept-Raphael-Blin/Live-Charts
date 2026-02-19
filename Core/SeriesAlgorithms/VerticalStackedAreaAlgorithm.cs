@@ -52,9 +52,11 @@ namespace LiveCharts.SeriesAlgorithms
         protected override CorePoint GetStackedPoint(ChartPoint chartPoint)
         {
             if (_stackModelable.StackMode == StackMode.Values)
+            {
                 return new CorePoint(
                     ChartFunctions.ToDrawMargin(chartPoint.To, AxisOrientation.X, Chart, View.ScalesXAt),
                     ChartFunctions.ToDrawMargin(chartPoint.Y, AxisOrientation.Y, Chart, View.ScalesYAt));
+            }
 
             return new CorePoint(
                 ChartFunctions.ToDrawMargin(chartPoint.StackedParticipation, AxisOrientation.X, Chart, View.ScalesXAt),

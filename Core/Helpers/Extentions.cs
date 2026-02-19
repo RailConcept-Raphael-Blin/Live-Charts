@@ -20,11 +20,11 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
+using LiveCharts.Definitions.Series;
+using LiveCharts.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using LiveCharts.Definitions.Series;
-using LiveCharts.Dtos;
 
 namespace LiveCharts.Helpers
 {
@@ -41,7 +41,10 @@ namespace LiveCharts.Helpers
         /// <param name="predicate">action to execute</param>
         internal static void ForEach<T>(this IEnumerable<T> source, Action<T> predicate)
         {
-            foreach (var item in source) predicate(item);
+            foreach (var item in source)
+            {
+                predicate(item);
+            }
         }
 
         /// <summary>

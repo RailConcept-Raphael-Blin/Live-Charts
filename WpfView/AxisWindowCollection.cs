@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using LiveCharts.Helpers;
+using System.Collections.Generic;
 
 namespace LiveCharts.Wpf
 {
@@ -15,7 +15,7 @@ namespace LiveCharts.Wpf
 
         private void OnNoisyCollectionChanged(IEnumerable<AxisWindow> oldItems, IEnumerable<AxisWindow> newItems)
         {
-            
+
         }
     }
 }

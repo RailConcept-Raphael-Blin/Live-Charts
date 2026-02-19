@@ -20,15 +20,15 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
+using LiveCharts.Charts;
+using LiveCharts.Definitions.Points;
+using LiveCharts.Dtos;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using LiveCharts.Charts;
-using LiveCharts.Definitions.Points;
-using LiveCharts.Dtos;
 
 namespace LiveCharts.Wpf.Points
 {
@@ -36,7 +36,7 @@ namespace LiveCharts.Wpf.Points
     {
         public Rectangle Rectangle { get; set; }
         public CoreRectangle Data { get; set; }
-        public double ZeroReference  { get; set; }
+        public double ZeroReference { get; set; }
         public BarLabelPosition LabelPosition { get; set; }
         private RotateTransform Transform { get; set; }
 
@@ -62,17 +62,25 @@ namespace LiveCharts.Wpf.Points
                 if (LabelPosition == BarLabelPosition.Perpendicular)
                 {
                     if (Transform == null)
+                    {
                         Transform = new RotateTransform(270);
+                    }
 
                     DataLabel.RenderTransform = Transform;
-                    return Data.Top + Data.Height/2 + DataLabel.ActualWidth*.5;
+                    return Data.Top + Data.Height / 2 + DataLabel.ActualWidth * .5;
                 }
 
                 var r = Data.Top + Data.Height / 2 - DataLabel.ActualHeight / 2;
 
-                if (r < 0) r = 2;
+                if (r < 0)
+                {
+                    r = 2;
+                }
+
                 if (r + DataLabel.ActualHeight > chart.DrawMargin.Height)
+                {
                     r -= r + DataLabel.ActualHeight - chart.DrawMargin.Height + 2;
+                }
 
                 return r;
             };
@@ -85,24 +93,29 @@ namespace LiveCharts.Wpf.Points
                 if (LabelPosition == BarLabelPosition.Parallel || LabelPosition == BarLabelPosition.Merged)
 #pragma warning restore 618
                 {
-                    r = Data.Left + Data.Width/2 - DataLabel.ActualWidth/2;
+                    r = Data.Left + Data.Width / 2 - DataLabel.ActualWidth / 2;
                 }
                 else if (LabelPosition == BarLabelPosition.Perpendicular)
                 {
-                    r = Data.Left + Data.Width/2 - DataLabel.ActualHeight/2;
+                    r = Data.Left + Data.Width / 2 - DataLabel.ActualHeight / 2;
                 }
                 else
                 {
                     if (Data.Left < ZeroReference)
                     {
                         r = Data.Left - DataLabel.ActualWidth - 5;
-                        if (r < 0) r = Data.Left + 5;
+                        if (r < 0)
+                        {
+                            r = Data.Left + 5;
+                        }
                     }
                     else
                     {
                         r = Data.Left + Data.Width + 5;
                         if (r + DataLabel.ActualWidth > chart.DrawMargin.Width)
+                        {
                             r -= DataLabel.ActualWidth + 10;
+                        }
                     }
                 }
 
@@ -146,12 +159,12 @@ namespace LiveCharts.Wpf.Points
                 DataLabel.BeginAnimation(Canvas.TopProperty, new DoubleAnimation(getY(), animSpeed));
             }
 
-            Rectangle.BeginAnimation(Canvas.TopProperty, 
+            Rectangle.BeginAnimation(Canvas.TopProperty,
                 new DoubleAnimation(Data.Top, animSpeed));
             Rectangle.BeginAnimation(Canvas.LeftProperty,
                 new DoubleAnimation(Data.Left, animSpeed));
 
-            Rectangle.BeginAnimation(FrameworkElement.HeightProperty, 
+            Rectangle.BeginAnimation(FrameworkElement.HeightProperty,
                 new DoubleAnimation(Data.Height, animSpeed));
             Rectangle.BeginAnimation(FrameworkElement.WidthProperty,
                 new DoubleAnimation(Data.Width, animSpeed));
@@ -181,11 +194,14 @@ namespace LiveCharts.Wpf.Points
 
         public override void OnHoverLeave(ChartPoint point)
         {
-            if (Rectangle == null) return;
+            if (Rectangle == null)
+            {
+                return;
+            }
 
             if (point.Fill != null)
             {
-                Rectangle.Fill = (Brush)point.Fill;
+                Rectangle.Fill = (Brush) point.Fill;
             }
             else
             {

@@ -20,9 +20,9 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
-using System;
 using LiveCharts.Charts;
 using LiveCharts.Dtos;
+using System;
 
 namespace LiveCharts.Definitions.Charts
 {

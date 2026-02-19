@@ -63,7 +63,7 @@ namespace LiveCharts
         protected bool IsDay(DateTime x)
         {
             return x.Hour == 0 && IsHour(x);
-        }    
+        }
         protected bool IsYear(DateTime x)
         {
             return x.DayOfYear == 1 && IsDay(x);

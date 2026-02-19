@@ -20,11 +20,11 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
-using System;
 using LiveCharts.Charts;
 using LiveCharts.Definitions.Charts;
 using LiveCharts.Dtos;
 using LiveCharts.Helpers;
+using System;
 
 namespace LiveCharts
 {
@@ -55,7 +55,7 @@ namespace LiveCharts
         {
             // Get the current configued values from the view
             _initialDateTime = ((IDateAxisView) View).InitialDateTime;
-            _period = ((IDateAxisView)View).Period;
+            _period = ((IDateAxisView) View).Period;
 
             return base.PrepareChart(source, chart);
         }
@@ -65,7 +65,7 @@ namespace LiveCharts
             // For the points, we use the actual value based upon the period
             var dateTime = GetdateTime(x);
 
-            switch (((IDateAxisView)View).Period)
+            switch (((IDateAxisView) View).Period)
             {
                 case PeriodUnits.Seconds:
                     return dateTime.ToString("G");
@@ -91,7 +91,7 @@ namespace LiveCharts
         {
             // All our X values are based upon this starting point (configured by the user)
             // Using this starting point, we can calculate the DateTime represented by this X value           
-            
+
             // We use the series period (configured by the user) to determine which period unit to use to increase the reference date.
             DateTime dateTime;
 

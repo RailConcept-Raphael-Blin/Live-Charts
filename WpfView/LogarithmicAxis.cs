@@ -18,10 +18,10 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
-using System.Linq;
-using System.Windows;
 using LiveCharts.Charts;
 using LiveCharts.Definitions.Charts;
+using System.Linq;
+using System.Windows;
 
 namespace LiveCharts.Wpf
 {
@@ -39,7 +39,10 @@ namespace LiveCharts.Wpf
         /// <returns></returns>
         public override AxisCore AsCoreElement(ChartCore chart, AxisOrientation source)
         {
-            if(Model == null) Model = new LogarithmicAxisCore(this);
+            if (Model == null)
+            {
+                Model = new LogarithmicAxisCore(this);
+            }
 
             Model.ShowLabels = ShowLabels;
             Model.Chart = chart;

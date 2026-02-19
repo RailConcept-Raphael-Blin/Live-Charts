@@ -87,7 +87,10 @@ namespace LiveCharts.Dtos
             set
             {
                 _left = value;
-                if (SetLeft != null) SetLeft.Invoke(value);
+                if (SetLeft != null)
+                {
+                    SetLeft.Invoke(value);
+                }
             }
         }
 
@@ -103,7 +106,10 @@ namespace LiveCharts.Dtos
             set
             {
                 _top = value;
-                if (SetTop != null) SetTop.Invoke(value);
+                if (SetTop != null)
+                {
+                    SetTop.Invoke(value);
+                }
             }
         }
 
@@ -119,7 +125,10 @@ namespace LiveCharts.Dtos
             set
             {
                 _width = value < 0 ? 0 : value;
-                if (SetWidth != null) SetWidth.Invoke(value);
+                if (SetWidth != null)
+                {
+                    SetWidth.Invoke(value);
+                }
             }
         }
 
@@ -135,7 +144,10 @@ namespace LiveCharts.Dtos
             set
             {
                 _height = value < 0 ? 0 : value;
-                if (SetHeight != null) SetHeight.Invoke(value);
+                if (SetHeight != null)
+                {
+                    SetHeight.Invoke(value);
+                }
             }
         }
     }

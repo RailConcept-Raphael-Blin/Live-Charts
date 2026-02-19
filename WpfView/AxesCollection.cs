@@ -20,9 +20,9 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
-using System.Collections.Generic;
 using LiveCharts.Helpers;
 using LiveCharts.Wpf.Charts.Base;
+using System.Collections.Generic;
 
 namespace LiveCharts.Wpf
 {
@@ -49,17 +49,30 @@ namespace LiveCharts.Wpf
 
         private void OnNoisyCollectionChanged(IEnumerable<Axis> oldItems, IEnumerable<Axis> newItems)
         {
-            if(Chart != null && Chart.Model != null)
+            if (Chart != null && Chart.Model != null)
+            {
                 Chart.Model.Updater.Run();
+            }
 
-            if (oldItems == null) return;
+            if (oldItems == null)
+            {
+                return;
+            }
 
             foreach (var oldAxis in oldItems)
             {
                 oldAxis.Clean();
-                if (oldAxis.Model == null) continue;
+                if (oldAxis.Model == null)
+                {
+                    continue;
+                }
+
                 var chart = oldAxis.Model.Chart.View;
-                if (chart == null) continue;
+                if (chart == null)
+                {
+                    continue;
+                }
+
                 chart.RemoveFromView(oldAxis);
                 chart.RemoveFromView(oldAxis.Separator);
             }

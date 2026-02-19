@@ -34,7 +34,7 @@ namespace LiveCharts.Defaults
         {
 
         }
-        
+
         /// <summary>
         /// _initializes a new instance of HeatPoint class, giving x, y and weight
         /// </summary>

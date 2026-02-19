@@ -20,13 +20,13 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.5
 
-using System.Collections.Generic;
-using System.Linq;
 using LiveCharts.Defaults;
 using LiveCharts.Definitions.Points;
 using LiveCharts.Definitions.Series;
 using LiveCharts.Dtos;
 using LiveCharts.Helpers;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace LiveCharts.SeriesAlgorithms
 {
@@ -52,7 +52,7 @@ namespace LiveCharts.SeriesAlgorithms
         /// <exception cref="LiveCharts.Helpers.LiveChartsException">There is no a valid gradient to create a heat series.</exception>
         public override void Update()
         {
-            var heatSeries = (IHeatSeriesView)View;
+            var heatSeries = (IHeatSeriesView) View;
 
             var uw = new CorePoint(
                 0 * ChartFunctions.GetUnitWidth(AxisOrientation.X, Chart, View.ScalesXAt) / 2,
@@ -72,7 +72,9 @@ namespace LiveCharts.SeriesAlgorithms
             //lets force the gradients to always have an 'interpol-able' model
 
             if (!heatSeries.Stops.Any())
+            {
                 throw new LiveChartsException("There is no a valid gradient to create a heat series.");
+            }
 
             var correctedGradients = heatSeries.Stops.Select(x => new CoreGradientStop
             {
@@ -96,10 +98,10 @@ namespace LiveCharts.SeriesAlgorithms
                 chartPoint.View = View.GetPointView(chartPoint,
                     View.DataLabels ? View.GetLabelPointFormatter()(chartPoint) : null);
 
-                var heatView = (IHeatPointView)chartPoint.View;
+                var heatView = (IHeatPointView) chartPoint.View;
 
                 heatView.ColorComponents = ColorInterpolation(correctedGradients,
-                    (chartPoint.Weight - Chart.WLimit.Min)/(Chart.WLimit.Max - Chart.WLimit.Min));
+                    (chartPoint.Weight - Chart.WLimit.Min) / (Chart.WLimit.Max - Chart.WLimit.Min));
 
                 heatView.Width = w;
                 heatView.Height = h;
@@ -188,7 +190,7 @@ namespace LiveCharts.SeriesAlgorithms
                 // ReSharper disable once CompareOfFloatsByEqualityOperator
                 var m = (toComponent - fromComponent) / (deltaX == 0 ? double.MinValue : deltaX);
 
-                return (byte)(m * (value - fromOffset) + fromComponent);
+                return (byte) (m * (value - fromOffset) + fromComponent);
             }
         }
     }

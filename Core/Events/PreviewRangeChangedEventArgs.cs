@@ -33,7 +33,7 @@ namespace LiveCharts.Events
         /// </summary>
         public PreviewRangeChangedEventArgs()
         {
-            
+
         }
 
         /// <summary>

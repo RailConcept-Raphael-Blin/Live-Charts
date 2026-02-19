@@ -69,7 +69,7 @@ namespace LiveCharts.Wpf
         /// The orientation property
         /// </summary>
         public static readonly DependencyProperty OrientationProperty = DependencyProperty.Register(
-            "Orientation", typeof (Orientation?), typeof (DefaultLegend), new PropertyMetadata(null));
+            "Orientation", typeof(Orientation?), typeof(DefaultLegend), new PropertyMetadata(null));
         /// <summary>
         /// Gets or sets the orientation of the legend, default is null, if null LiveCharts will decide which orientation to use, based on the Chart.Legend location property.
         /// </summary>
@@ -83,7 +83,7 @@ namespace LiveCharts.Wpf
         /// The internal orientation property
         /// </summary>
         public static readonly DependencyProperty InternalOrientationProperty = DependencyProperty.Register(
-            "InternalOrientation", typeof (Orientation), typeof (DefaultLegend), 
+            "InternalOrientation", typeof(Orientation), typeof(DefaultLegend),
             new PropertyMetadata(default(Orientation)));
 
         /// <summary>
@@ -108,7 +108,7 @@ namespace LiveCharts.Wpf
         /// </summary>
         public double BulletSize
         {
-            get { return (double)GetValue(BulletSizeProperty); }
+            get { return (double) GetValue(BulletSizeProperty); }
             set { SetValue(BulletSizeProperty, value); }
         }
 
@@ -118,7 +118,10 @@ namespace LiveCharts.Wpf
         /// <param name="propertyName">Name of the property.</param>
         protected virtual void OnPropertyChanged(string propertyName = null)
         {
-            if (PropertyChanged != null) PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            if (PropertyChanged != null)
+            {
+                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
     }
 
@@ -140,7 +143,10 @@ namespace LiveCharts.Wpf
         /// </returns>
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            if (values[0] == DependencyProperty.UnsetValue) return null;
+            if (values[0] == DependencyProperty.UnsetValue)
+            {
+                return null;
+            }
 
             return (Orientation?) values[0] ?? (Orientation) values[1];
         }

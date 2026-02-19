@@ -20,11 +20,11 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
+using LiveCharts.Maps;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml;
-using LiveCharts.Maps;
 
 namespace LiveCharts.Wpf.Maps
 {
@@ -46,12 +46,20 @@ namespace LiveCharts.Wpf.Maps
                 Data = new List<MapData>()
             };
 
-            using (var reader = XmlReader.Create(file, new XmlReaderSettings {IgnoreComments = true}))
+            using (var reader = XmlReader.Create(file, new XmlReaderSettings { IgnoreComments = true }))
             {
                 while (reader.Read())
                 {
-                    if (reader.Name == "Height") svgMap.DesiredHeight = double.Parse(reader.ReadInnerXml());
-                    if (reader.Name == "Width") svgMap.DesiredWidth = double.Parse(reader.ReadInnerXml());
+                    if (reader.Name == "Height")
+                    {
+                        svgMap.DesiredHeight = double.Parse(reader.ReadInnerXml());
+                    }
+
+                    if (reader.Name == "Width")
+                    {
+                        svgMap.DesiredWidth = double.Parse(reader.ReadInnerXml());
+                    }
+
                     if (reader.Name == "MapShape")
                     {
                         var p = new MapData
@@ -61,10 +69,25 @@ namespace LiveCharts.Wpf.Maps
                         reader.Read();
                         while (reader.NodeType != XmlNodeType.EndElement)
                         {
-                            if (reader.NodeType != XmlNodeType.Element) reader.Read();
-                            if (reader.Name == "Id") p.Id = reader.ReadInnerXml();
-                            if (reader.Name == "Name") p.Name = reader.ReadInnerXml();
-                            if (reader.Name == "Path") p.Data = reader.ReadInnerXml();
+                            if (reader.NodeType != XmlNodeType.Element)
+                            {
+                                reader.Read();
+                            }
+
+                            if (reader.Name == "Id")
+                            {
+                                p.Id = reader.ReadInnerXml();
+                            }
+
+                            if (reader.Name == "Name")
+                            {
+                                p.Name = reader.ReadInnerXml();
+                            }
+
+                            if (reader.Name == "Path")
+                            {
+                                p.Data = reader.ReadInnerXml();
+                            }
                         }
                         svgMap.Data.Add(p);
                     }

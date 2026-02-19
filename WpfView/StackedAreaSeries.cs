@@ -20,6 +20,8 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
+using LiveCharts.Definitions.Series;
+using LiveCharts.SeriesAlgorithms;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -27,8 +29,6 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using LiveCharts.Definitions.Series;
-using LiveCharts.SeriesAlgorithms;
 
 namespace LiveCharts.Wpf
 {
@@ -77,7 +77,7 @@ namespace LiveCharts.Wpf
         /// </summary>
         public StackMode StackMode
         {
-            get { return (StackMode)GetValue(StackModeProperty); }
+            get { return (StackMode) GetValue(StackModeProperty); }
             set { SetValue(StackModeProperty, value); }
         }
         #endregion
@@ -105,11 +105,15 @@ namespace LiveCharts.Wpf
                 var xIni = ChartFunctions.ToDrawMargin(Values.GetTracker(this).XLimit.Min, AxisOrientation.X, Model.Chart, ScalesXAt);
 
                 if (Model.Chart.View.DisableAnimations)
+                {
                     Figure.StartPoint = new Point(xIni, Model.Chart.DrawMargin.Height);
+                }
                 else
+                {
                     Figure.BeginAnimation(PathFigure.StartPointProperty,
                         new PointAnimation(new Point(xIni, Model.Chart.DrawMargin.Height),
                             Model.Chart.View.AnimationsSpeed));
+                }
             }
 
             if (IsPathInitialized)

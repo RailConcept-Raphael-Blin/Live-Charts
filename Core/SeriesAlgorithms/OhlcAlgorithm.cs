@@ -50,7 +50,7 @@ namespace LiveCharts.SeriesAlgorithms
         public override void Update()
         {
             var castedSeries = (IFinancialSeriesView) View;
-            
+
             const double padding = 1.2;
 
             var totalSpace = ChartFunctions.GetUnitWidth(AxisOrientation.X, Chart, View.ScalesXAt) - padding;
@@ -85,10 +85,10 @@ namespace LiveCharts.SeriesAlgorithms
                 ohclView.Low = ChartFunctions.ToDrawMargin(chartPoint.Low, AxisOrientation.Y, Chart, View.ScalesYAt);
 
                 ohclView.Width = candleWidth - padding > 0 ? candleWidth - padding : 0;
-                ohclView.Left = x + exceed/2 + padding;
-                ohclView.StartReference = (ohclView.High + ohclView.Low)/2;
+                ohclView.Left = x + exceed / 2 + padding;
+                ohclView.StartReference = (ohclView.High + ohclView.Low) / 2;
 
-                chartPoint.ChartLocation = new CorePoint(x + exceed/2, (ohclView.High + ohclView.Low)/2);
+                chartPoint.ChartLocation = new CorePoint(x + exceed / 2, (ohclView.High + ohclView.Low) / 2);
 
                 chartPoint.View.DrawOrMove(null, chartPoint, 0, Chart);
             }

@@ -20,12 +20,12 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
-using System;
-using System.Windows;
 using LiveCharts.Charts;
 using LiveCharts.Definitions.Charts;
 using LiveCharts.Wpf.Charts.Base;
 using LiveCharts.Wpf.Points;
+using System;
+using System.Windows;
 
 namespace LiveCharts.Wpf
 {
@@ -53,7 +53,7 @@ namespace LiveCharts.Wpf
         /// The inner radius property
         /// </summary>
         public static readonly DependencyProperty InnerRadiusProperty = DependencyProperty.Register(
-            "InnerRadius", typeof (double), typeof (PieChart), new PropertyMetadata(0d, CallChartUpdater()));
+            "InnerRadius", typeof(double), typeof(PieChart), new PropertyMetadata(0d, CallChartUpdater()));
         /// <summary>
         /// Gets or sets the pie inner radius, increasing this property will result in a doughnut chart.
         /// </summary>
@@ -67,7 +67,7 @@ namespace LiveCharts.Wpf
         /// The starting rotation angle property
         /// </summary>
         public static readonly DependencyProperty StartingRotationAngleProperty = DependencyProperty.Register(
-            "StartingRotationAngle", typeof (double), typeof (PieChart), new PropertyMetadata(45d, CallChartUpdater()));
+            "StartingRotationAngle", typeof(double), typeof(PieChart), new PropertyMetadata(45d, CallChartUpdater()));
         /// <summary>
         /// Gets or sets the starting rotation angle in degrees.
         /// </summary>
@@ -81,7 +81,7 @@ namespace LiveCharts.Wpf
         /// The hover push out property
         /// </summary>
         public static readonly DependencyProperty HoverPushOutProperty = DependencyProperty.Register(
-            "HoverPushOut", typeof (double), typeof (PieChart), new PropertyMetadata(5d));
+            "HoverPushOut", typeof(double), typeof(PieChart), new PropertyMetadata(5d));
         /// <summary>
         /// Gets or sets the units that a slice is pushed out when a user moves the mouse over data point.
         /// </summary>
@@ -106,12 +106,12 @@ namespace LiveCharts.Wpf
 
             DataTooltip.UpdateLayout();
 
-            var y = DrawMargin.ActualHeight*.5 +
-                    (sliceMidAngle > 90 && sliceMidAngle < 270 ? -1 : 0)*DataTooltip.ActualHeight -
-                    Math.Cos(alphaRad)*15;
-            var x = DrawMargin.ActualWidth*.5 +
-                    (sliceMidAngle > 0 && sliceMidAngle < 180 ? -1 : 0)*DataTooltip.ActualWidth +
-                    Math.Sin(alphaRad)*15;
+            var y = DrawMargin.ActualHeight * .5 +
+                    (sliceMidAngle > 90 && sliceMidAngle < 270 ? -1 : 0) * DataTooltip.ActualHeight -
+                    Math.Cos(alphaRad) * 15;
+            var x = DrawMargin.ActualWidth * .5 +
+                    (sliceMidAngle > 0 && sliceMidAngle < 180 ? -1 : 0) * DataTooltip.ActualWidth +
+                    Math.Sin(alphaRad) * 15;
 
             return new Point(x, y);
         }

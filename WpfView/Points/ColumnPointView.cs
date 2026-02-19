@@ -20,15 +20,15 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
+using LiveCharts.Charts;
+using LiveCharts.Definitions.Points;
+using LiveCharts.Dtos;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using LiveCharts.Charts;
-using LiveCharts.Definitions.Points;
-using LiveCharts.Dtos;
 
 namespace LiveCharts.Wpf.Points
 {
@@ -36,7 +36,7 @@ namespace LiveCharts.Wpf.Points
     {
         public Rectangle Rectangle { get; set; }
         public CoreRectangle Data { get; set; }
-        public double ZeroReference  { get; set; }
+        public double ZeroReference { get; set; }
         public BarLabelPosition LabelPosition { get; set; }
         private RotateTransform Transform { get; set; }
 
@@ -56,7 +56,7 @@ namespace LiveCharts.Wpf.Points
                 Canvas.SetTop(DataLabel, ZeroReference);
                 Canvas.SetLeft(DataLabel, current.ChartLocation.X);
             }
-          
+
             Func<double> getY = () =>
             {
                 double y;
@@ -66,26 +66,34 @@ namespace LiveCharts.Wpf.Points
 #pragma warning restore 618
                 {
                     if (Transform == null)
+                    {
                         Transform = new RotateTransform(270);
+                    }
 
-                    y = Data.Top + Data.Height/2 + DataLabel.ActualWidth*.5;
+                    y = Data.Top + Data.Height / 2 + DataLabel.ActualWidth * .5;
                     DataLabel.RenderTransform = Transform;
                 }
                 else if (LabelPosition == BarLabelPosition.Perpendicular)
                 {
-                    y = Data.Top + Data.Height/2 - DataLabel.ActualHeight * .5;
+                    y = Data.Top + Data.Height / 2 - DataLabel.ActualHeight * .5;
                 }
                 else
                 {
                     if (ZeroReference > Data.Top)
                     {
                         y = Data.Top - DataLabel.ActualHeight;
-                        if (y < 0) y = Data.Top;
+                        if (y < 0)
+                        {
+                            y = Data.Top;
+                        }
                     }
                     else
                     {
                         y = Data.Top + Data.Height;
-                        if (y + DataLabel.ActualHeight > chart.DrawMargin.Height) y -= DataLabel.ActualHeight;
+                        if (y + DataLabel.ActualHeight > chart.DrawMargin.Height)
+                        {
+                            y -= DataLabel.ActualHeight;
+                        }
                     }
                 }
 
@@ -100,19 +108,24 @@ namespace LiveCharts.Wpf.Points
                 if (LabelPosition == BarLabelPosition.Parallel || LabelPosition == BarLabelPosition.Merged)
 #pragma warning restore 618
                 {
-                    x = Data.Left + Data.Width/2 - DataLabel.ActualHeight/2;
+                    x = Data.Left + Data.Width / 2 - DataLabel.ActualHeight / 2;
                 }
                 else if (LabelPosition == BarLabelPosition.Perpendicular)
                 {
-                    x = Data.Left + Data.Width/2 - DataLabel.ActualWidth/2;
+                    x = Data.Left + Data.Width / 2 - DataLabel.ActualWidth / 2;
                 }
                 else
                 {
                     x = Data.Left + Data.Width / 2 - DataLabel.ActualWidth / 2;
                     if (x < 0)
+                    {
                         x = 2;
+                    }
+
                     if (x + DataLabel.ActualWidth > chart.DrawMargin.Width)
+                    {
                         x -= x + DataLabel.ActualWidth - chart.DrawMargin.Width + 2;
+                    }
                 }
 
                 return x;
@@ -155,7 +168,7 @@ namespace LiveCharts.Wpf.Points
                 DataLabel.BeginAnimation(Canvas.TopProperty, new DoubleAnimation(getY(), animSpeed));
             }
 
-            Rectangle.BeginAnimation(Canvas.LeftProperty, 
+            Rectangle.BeginAnimation(Canvas.LeftProperty,
                 new DoubleAnimation(Data.Left, animSpeed));
             Rectangle.BeginAnimation(Canvas.TopProperty,
                 new DoubleAnimation(Data.Top, animSpeed));
@@ -190,7 +203,10 @@ namespace LiveCharts.Wpf.Points
 
         public override void OnHoverLeave(ChartPoint point)
         {
-            if (Rectangle == null) return;
+            if (Rectangle == null)
+            {
+                return;
+            }
 
             if (point.Fill != null)
             {

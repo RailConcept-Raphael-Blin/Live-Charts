@@ -20,6 +20,13 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
+using LiveCharts.Definitions.Points;
+using LiveCharts.Definitions.Series;
+using LiveCharts.Dtos;
+using LiveCharts.Helpers;
+using LiveCharts.SeriesAlgorithms;
+using LiveCharts.Wpf.Charts.Base;
+using LiveCharts.Wpf.Points;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -29,13 +36,6 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Shapes;
-using LiveCharts.Definitions.Points;
-using LiveCharts.Definitions.Series;
-using LiveCharts.Dtos;
-using LiveCharts.Helpers;
-using LiveCharts.SeriesAlgorithms;
-using LiveCharts.Wpf.Charts.Base;
-using LiveCharts.Wpf.Points;
 
 namespace LiveCharts.Wpf
 {
@@ -86,7 +86,7 @@ namespace LiveCharts.Wpf
         /// </summary>
         public bool DrawsHeatRange
         {
-            get { return (bool)GetValue(DrawsHeatRangeProperty); }
+            get { return (bool) GetValue(DrawsHeatRangeProperty); }
             set { SetValue(DrawsHeatRangeProperty, value); }
         }
 
@@ -100,7 +100,7 @@ namespace LiveCharts.Wpf
         /// </summary>
         public GradientStopCollection GradientStopCollection
         {
-            get { return (GradientStopCollection)GetValue(GradientStopCollectionProperty); }
+            get { return (GradientStopCollection) GetValue(GradientStopCollectionProperty); }
             set { SetValue(GradientStopCollectionProperty, value); }
         }
 
@@ -170,13 +170,16 @@ namespace LiveCharts.Wpf
 
                 Panel.SetZIndex(pbv.HoverShape, int.MaxValue);
 
-                var wpfChart = (Chart)Model.Chart.View;
+                var wpfChart = (Chart) Model.Chart.View;
                 wpfChart.AttachHoverableEventTo(pbv.HoverShape);
 
                 Model.Chart.View.AddToDrawMargin(pbv.HoverShape);
             }
 
-            if (pbv.HoverShape != null) pbv.HoverShape.Visibility = Visibility;
+            if (pbv.HoverShape != null)
+            {
+                pbv.HoverShape.Visibility = Visibility;
+            }
 
             if (DataLabels)
             {
@@ -205,9 +208,14 @@ namespace LiveCharts.Wpf
             (Values?.GetPoints(this) ?? Enumerable.Empty<ChartPoint>()).ForEach(p =>
             {
                 if (p.View != null)
+                {
                     p.View.RemoveFromView(Model.Chart);
+                }
             });
-            if (removeFromView) Model.Chart.View.RemoveFromView(this);
+            if (removeFromView)
+            {
+                Model.Chart.View.RemoveFromView(this);
+            }
         }
 
         /// <summary>
@@ -223,7 +231,7 @@ namespace LiveCharts.Wpf
                 }
 
                 ColorRangeControl.SetBinding(TextBlock.FontFamilyProperty,
-                    new Binding {Path = new PropertyPath(FontFamilyProperty), Source = this});
+                    new Binding { Path = new PropertyPath(FontFamilyProperty), Source = this });
                 ColorRangeControl.SetBinding(TextBlock.FontSizeProperty,
                     new Binding { Path = new PropertyPath(FontSizeProperty), Source = this });
                 ColorRangeControl.SetBinding(TextBlock.FontStretchProperty,
@@ -262,7 +270,10 @@ namespace LiveCharts.Wpf
         /// </summary>
         public override void PlaceSpecializedElements()
         {
-            if (!DrawsHeatRange) return;
+            if (!DrawsHeatRange)
+            {
+                return;
+            }
 
             ColorRangeControl.UpdateFill(GradientStopCollection);
 
@@ -295,17 +306,22 @@ namespace LiveCharts.Wpf
         /// </summary>
         public override void InitializeColors()
         {
-            var wpfChart = (Chart)Model.Chart.View;
+            var wpfChart = (Chart) Model.Chart.View;
             var nextColor = wpfChart.GetNextDefaultColor();
 
             if (Stroke == null)
+            {
                 SetValue(StrokeProperty, new SolidColorBrush(nextColor));
+            }
+
             if (Fill == null)
+            {
                 SetValue(FillProperty, new SolidColorBrush(nextColor));
+            }
 
             var defaultColdColor = new Color
             {
-                A = (byte)(nextColor.A * (DefaultFillOpacity > 1
+                A = (byte) (nextColor.A * (DefaultFillOpacity > 1
                     ? 1
                     : (DefaultFillOpacity < 0 ? 0 : DefaultFillOpacity))),
                 R = nextColor.R,

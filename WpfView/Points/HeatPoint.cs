@@ -20,13 +20,13 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
+using LiveCharts.Charts;
+using LiveCharts.Definitions.Points;
+using LiveCharts.Dtos;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using LiveCharts.Charts;
-using LiveCharts.Definitions.Points;
-using LiveCharts.Dtos;
 
 namespace LiveCharts.Wpf.Points
 {
@@ -61,8 +61,8 @@ namespace LiveCharts.Wpf.Points
             if (DataLabel != null)
             {
                 DataLabel.UpdateLayout();
-                Canvas.SetTop(DataLabel, current.ChartLocation.Y + (Height/2) - DataLabel.ActualHeight*.5);
-                Canvas.SetLeft(DataLabel, current.ChartLocation.X + (Width/2) - DataLabel.ActualWidth*.5);
+                Canvas.SetTop(DataLabel, current.ChartLocation.Y + (Height / 2) - DataLabel.ActualHeight * .5);
+                Canvas.SetLeft(DataLabel, current.ChartLocation.X + (Width / 2) - DataLabel.ActualWidth * .5);
             }
 
             var targetColor = new Color

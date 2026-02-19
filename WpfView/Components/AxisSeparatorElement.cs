@@ -20,6 +20,10 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
+using LiveCharts.Charts;
+using LiveCharts.Definitions.Charts;
+using LiveCharts.Dtos;
+using LiveCharts.Wpf.Charts.Base;
 using System;
 using System.Globalization;
 using System.Windows;
@@ -27,10 +31,6 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using LiveCharts.Charts;
-using LiveCharts.Definitions.Charts;
-using LiveCharts.Dtos;
-using LiveCharts.Wpf.Charts.Base;
 
 namespace LiveCharts.Wpf.Components
 {
@@ -124,7 +124,7 @@ namespace LiveCharts.Wpf.Components
         /// <param name="toLabel">To label.</param>
         /// <param name="toLine">To line.</param>
         /// <param name="tab">The tab.</param>
-        public void Place(ChartCore chart, AxisCore axis, AxisOrientation direction, int axisIndex, 
+        public void Place(ChartCore chart, AxisCore axis, AxisOrientation direction, int axisIndex,
             double toLabel, double toLine, double tab)
         {
             if (direction == AxisOrientation.Y)
@@ -216,12 +216,16 @@ namespace LiveCharts.Wpf.Components
         public void FadeIn(AxisCore axis, ChartCore chart)
         {
             if (TextBlock.Visibility != Visibility.Collapsed)
+            {
                 TextBlock.BeginAnimation(UIElement.OpacityProperty,
                     new DoubleAnimation(0, 1, chart.View.AnimationsSpeed));
+            }
 
             if (Line.Visibility != Visibility.Collapsed)
+            {
                 Line.BeginAnimation(UIElement.OpacityProperty,
                     new DoubleAnimation(0, 1, chart.View.AnimationsSpeed));
+            }
         }
 
         /// <summary>
@@ -231,7 +235,10 @@ namespace LiveCharts.Wpf.Components
         public void FadeOutAndRemove(ChartCore chart)
         {
             if (TextBlock.Visibility == Visibility.Collapsed &&
-                Line.Visibility == Visibility.Collapsed) return;
+                Line.Visibility == Visibility.Collapsed)
+            {
+                return;
+            }
 
             var anim = new DoubleAnimation
             {

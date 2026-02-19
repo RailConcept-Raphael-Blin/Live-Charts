@@ -20,17 +20,17 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
-using System;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Shapes;
 using LiveCharts.Definitions.Points;
 using LiveCharts.Definitions.Series;
 using LiveCharts.Dtos;
 using LiveCharts.SeriesAlgorithms;
 using LiveCharts.Wpf.Charts.Base;
 using LiveCharts.Wpf.Points;
+using System;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace LiveCharts.Wpf
 {
@@ -71,7 +71,7 @@ namespace LiveCharts.Wpf
         /// The maximum column width property
         /// </summary>
         public static readonly DependencyProperty MaxColumnWidthProperty = DependencyProperty.Register(
-            "MaxColumnWidth", typeof (double), typeof (ColumnSeries), new PropertyMetadata(35d));
+            "MaxColumnWidth", typeof(double), typeof(ColumnSeries), new PropertyMetadata(35d));
         /// <summary>
         /// Gets or sets the MaxColumnWidht in pixels, the column width will be capped at this value.
         /// </summary>
@@ -85,7 +85,7 @@ namespace LiveCharts.Wpf
         /// The column padding property
         /// </summary>
         public static readonly DependencyProperty ColumnPaddingProperty = DependencyProperty.Register(
-            "ColumnPadding", typeof (double), typeof (ColumnSeries), new PropertyMetadata(2d));
+            "ColumnPadding", typeof(double), typeof(ColumnSeries), new PropertyMetadata(2d));
         /// <summary>
         /// Gets or sets the padding between the columns in the series.
         /// </summary>
@@ -99,7 +99,7 @@ namespace LiveCharts.Wpf
         /// The labels position property
         /// </summary>
         public static readonly DependencyProperty LabelsPositionProperty = DependencyProperty.Register(
-            "LabelsPosition", typeof (BarLabelPosition), typeof (ColumnSeries), 
+            "LabelsPosition", typeof(BarLabelPosition), typeof(ColumnSeries),
             new PropertyMetadata(default(BarLabelPosition), CallChartUpdater()));
         /// <summary>
         /// Gets or sets where the label is placed
@@ -178,13 +178,16 @@ namespace LiveCharts.Wpf
 
                 Panel.SetZIndex(pbv.HoverShape, int.MaxValue);
 
-                var wpfChart = (Chart)Model.Chart.View;
+                var wpfChart = (Chart) Model.Chart.View;
                 wpfChart.AttachHoverableEventTo(pbv.HoverShape);
 
                 Model.Chart.View.AddToDrawMargin(pbv.HoverShape);
             }
 
-            if (pbv.HoverShape != null) pbv.HoverShape.Visibility = Visibility;
+            if (pbv.HoverShape != null)
+            {
+                pbv.HoverShape.Visibility = Visibility;
+            }
 
             if (DataLabels)
             {
@@ -201,8 +204,15 @@ namespace LiveCharts.Wpf
                 pbv.DataLabel = null;
             }
 
-            if (point.Stroke != null) pbv.Rectangle.Stroke = (Brush)point.Stroke;
-            if (point.Fill != null) pbv.Rectangle.Fill = (Brush)point.Fill;
+            if (point.Stroke != null)
+            {
+                pbv.Rectangle.Stroke = (Brush) point.Stroke;
+            }
+
+            if (point.Fill != null)
+            {
+                pbv.Rectangle.Fill = (Brush) point.Fill;
+            }
 
             pbv.LabelPosition = LabelsPosition;
 

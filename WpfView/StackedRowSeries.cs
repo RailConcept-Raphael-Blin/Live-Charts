@@ -20,17 +20,17 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
-using System;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Shapes;
 using LiveCharts.Definitions.Points;
 using LiveCharts.Definitions.Series;
 using LiveCharts.Dtos;
 using LiveCharts.SeriesAlgorithms;
 using LiveCharts.Wpf.Charts.Base;
 using LiveCharts.Wpf.Points;
+using System;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace LiveCharts.Wpf
 {
@@ -72,7 +72,7 @@ namespace LiveCharts.Wpf
         /// The maximum row height property
         /// </summary>
         public static readonly DependencyProperty MaxRowHeightProperty = DependencyProperty.Register(
-            "MaxRowHeight", typeof (double), typeof (StackedRowSeries), new PropertyMetadata(default(double)));
+            "MaxRowHeight", typeof(double), typeof(StackedRowSeries), new PropertyMetadata(default(double)));
         /// <summary>
         /// Gets or sets the maximum height of row, any row height will be capped at this value.
         /// </summary>
@@ -86,7 +86,7 @@ namespace LiveCharts.Wpf
         /// The row padding property
         /// </summary>
         public static readonly DependencyProperty RowPaddingProperty = DependencyProperty.Register(
-            "RowPadding", typeof (double), typeof (StackedRowSeries), new PropertyMetadata(default(double)));
+            "RowPadding", typeof(double), typeof(StackedRowSeries), new PropertyMetadata(default(double)));
         /// <summary>
         /// Gets or sets the padding between each row in the series.
         /// </summary>
@@ -100,7 +100,7 @@ namespace LiveCharts.Wpf
         /// The stack mode property
         /// </summary>
         public static readonly DependencyProperty StackModeProperty = DependencyProperty.Register(
-            "StackMode", typeof (StackMode), typeof (StackedRowSeries), new PropertyMetadata(default(StackMode)));
+            "StackMode", typeof(StackMode), typeof(StackedRowSeries), new PropertyMetadata(default(StackMode)));
         /// <summary>
         /// Gets or sets the stacked mode, values or percentage.
         /// </summary>
@@ -121,7 +121,7 @@ namespace LiveCharts.Wpf
         /// </summary>
         public BarLabelPosition LabelsPosition
         {
-            get { return (BarLabelPosition)GetValue(LabelsPositionProperty); }
+            get { return (BarLabelPosition) GetValue(LabelsPositionProperty); }
             set { SetValue(LabelsPositionProperty, value); }
         }
 
@@ -130,7 +130,7 @@ namespace LiveCharts.Wpf
         /// </summary>
         public object Grouping
         {
-            get { return (object)GetValue(GroupingProperty); }
+            get { return (object) GetValue(GroupingProperty); }
             set { SetValue(GroupingProperty, value); }
         }
 
@@ -192,13 +192,16 @@ namespace LiveCharts.Wpf
 
                 Panel.SetZIndex(pbv.HoverShape, int.MaxValue);
 
-                var wpfChart = (Chart)Model.Chart.View;
+                var wpfChart = (Chart) Model.Chart.View;
                 wpfChart.AttachHoverableEventTo(pbv.HoverShape);
 
                 Model.Chart.View.AddToDrawMargin(pbv.HoverShape);
             }
 
-            if (pbv.HoverShape != null) pbv.HoverShape.Visibility = Visibility;
+            if (pbv.HoverShape != null)
+            {
+                pbv.HoverShape.Visibility = Visibility;
+            }
 
             if (DataLabels)
             {
@@ -215,8 +218,15 @@ namespace LiveCharts.Wpf
                 pbv.DataLabel = null;
             }
 
-            if (point.Stroke != null) pbv.Rectangle.Stroke = (Brush)point.Stroke;
-            if (point.Fill != null) pbv.Rectangle.Fill = (Brush)point.Fill;
+            if (point.Stroke != null)
+            {
+                pbv.Rectangle.Stroke = (Brush) point.Stroke;
+            }
+
+            if (point.Fill != null)
+            {
+                pbv.Rectangle.Fill = (Brush) point.Fill;
+            }
 
             pbv.LabelPosition = LabelsPosition;
 
@@ -234,7 +244,7 @@ namespace LiveCharts.Wpf
             SetCurrentValue(RowPaddingProperty, 2d);
             SetCurrentValue(ForegroundProperty, Brushes.White);
 
-            Func<ChartPoint, string> defaultLabel = x =>  Model.CurrentXAxis.GetFormatter()(x.X);
+            Func<ChartPoint, string> defaultLabel = x => Model.CurrentXAxis.GetFormatter()(x.X);
             SetCurrentValue(LabelPointProperty, defaultLabel);
 
             DefaultFillOpacity = 1;

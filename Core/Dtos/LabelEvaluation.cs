@@ -80,8 +80,8 @@ namespace LiveCharts.Dtos
             //OK now lets evaluate the rotation angle...
 
             // the rotation angle starts from an horizontal line, yes like this text
-            // - 0°, | 90°, - 180°, | 270°
-            // notice normally rotating a label from 90 to 270° will show the label
+            // - 0Â°, | 90Â°, - 180Â°, | 270Â°
+            // notice normally rotating a label from 90 to 270Â° will show the label
             // in a wrong orientation
             // we need to fix that angle
 
@@ -97,15 +97,21 @@ namespace LiveCharts.Dtos
             HFromH = Math.Abs(Math.Cos(angle * toRadians) * h); // H generated from the height of the label
 
             LabelAngle = angle % 360;
-            if (LabelAngle < 0) LabelAngle += 360;
+            if (LabelAngle < 0)
+            {
+                LabelAngle += 360;
+            }
+
             if (LabelAngle > 90 && LabelAngle < 270)
+            {
                 LabelAngle = (LabelAngle + 180) % 360;
+            }
 
             //at this points angles should only exist in 1st and 4th quadrant
             //those are the only quadrants that generates readable labels
             //the other 2 quadrants display inverted labels
 
-            var quadrant = ((int)(LabelAngle / 90)) % 4 + 1;
+            var quadrant = ((int) (LabelAngle / 90)) % 4 + 1;
 
             if (source == AxisOrientation.Y)
             {
@@ -153,7 +159,7 @@ namespace LiveCharts.Dtos
             {
                 // X Axis
 
-                //axis x has one exception, if labels rotation equals 0° then the label is centered
+                //axis x has one exception, if labels rotation equals 0Â° then the label is centered
                 if (Math.Abs(axis.View.LabelsRotation) < .01)
                 {
                     Left = TakenWidth / 2;

@@ -43,13 +43,16 @@ namespace LiveCharts.Wpf.Components
         {
             var series = value as IEnumerable<Series>;
             if (series != null)
+            {
                 return series.Select(x => new SeriesViewModel
                 {
 
                 });
+            }
 
             var serie = value as Series;
             if (serie != null)
+            {
                 return new SeriesViewModel
                 {
                     Title = serie.Title,
@@ -57,6 +60,7 @@ namespace LiveCharts.Wpf.Components
                     Fill = serie.Fill,
                     PointGeometry = serie.PointGeometry ?? Geometry.Parse("M 0,0.5 h 1,0.5 Z")
                 };
+            }
 
             return value;
         }

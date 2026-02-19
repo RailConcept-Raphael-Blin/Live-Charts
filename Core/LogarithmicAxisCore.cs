@@ -20,10 +20,10 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
-using System;
 using LiveCharts.Charts;
 using LiveCharts.Definitions.Charts;
 using LiveCharts.Dtos;
+using System;
 
 namespace LiveCharts
 {
@@ -44,14 +44,21 @@ namespace LiveCharts
 
         internal override CoreMargin PrepareChart(AxisOrientation source, ChartCore chart)
         {
-            if (!(Math.Abs(TopLimit - BotLimit) > S * .01) || !ShowLabels) return new CoreMargin();
+            if (!(Math.Abs(TopLimit - BotLimit) > S * .01) || !ShowLabels)
+            {
+                return new CoreMargin();
+            }
 
             CalculateSeparator(chart, source);
 
             var f = GetFormatter();
 
             var currentMargin = new CoreMargin();
-            if (S < 1) S = 1;
+            if (S < 1)
+            {
+                S = 1;
+            }
+
             var tolerance = S / 10;
 
             InitializeGarbageCollector();
@@ -61,12 +68,12 @@ namespace LiveCharts
 
             for (var i = bl; i <= TopLimit - (EvaluatesUnitWidth ? 1 : 0); i += S)
             {
-                var minTolerance = tolerance/10;
+                var minTolerance = tolerance / 10;
                 if (Math.Abs(i - bl) > tolerance)
                 {
                     var step = Math.Pow(@base, i - 1);
-                    for (var j = Math.Pow(@base, i - 1) + step; 
-                        j < Math.Pow(@base, i); 
+                    for (var j = Math.Pow(@base, i - 1) + step;
+                        j < Math.Pow(@base, i);
                         j += step)
                     {
                         SeparatorElementCore minorAsc;

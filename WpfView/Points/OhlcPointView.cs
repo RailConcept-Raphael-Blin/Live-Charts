@@ -20,12 +20,12 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
+using LiveCharts.Charts;
+using LiveCharts.Definitions.Points;
 using System;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using LiveCharts.Charts;
-using LiveCharts.Definitions.Points;
 
 namespace LiveCharts.Wpf.Points
 {
@@ -106,9 +106,9 @@ namespace LiveCharts.Wpf.Points
                 {
                     DataLabel.UpdateLayout();
 
-                    var cx = CorrectXLabel(current.ChartLocation.X - DataLabel.ActualHeight*.5, chart);
-                    var cy = CorrectYLabel(current.ChartLocation.Y - DataLabel.ActualWidth*.5, chart);
-                    
+                    var cx = CorrectXLabel(current.ChartLocation.X - DataLabel.ActualHeight * .5, chart);
+                    var cy = CorrectYLabel(current.ChartLocation.Y - DataLabel.ActualWidth * .5, chart);
+
                     Canvas.SetTop(DataLabel, cy);
                     Canvas.SetLeft(DataLabel, cx);
                 }
@@ -122,8 +122,8 @@ namespace LiveCharts.Wpf.Points
             {
                 DataLabel.UpdateLayout();
 
-                var cx = CorrectXLabel(current.ChartLocation.X - DataLabel.ActualWidth*.5, chart);
-                var cy = CorrectYLabel(current.ChartLocation.Y - DataLabel.ActualHeight*.5, chart);
+                var cx = CorrectXLabel(current.ChartLocation.X - DataLabel.ActualWidth * .5, chart);
+                var cy = CorrectYLabel(current.ChartLocation.Y - DataLabel.ActualHeight * .5, chart);
 
                 DataLabel.BeginAnimation(Canvas.LeftProperty, new DoubleAnimation(cx, animSpeed));
                 DataLabel.BeginAnimation(Canvas.TopProperty, new DoubleAnimation(cy, animSpeed));
@@ -155,12 +155,20 @@ namespace LiveCharts.Wpf.Points
 
         protected double CorrectXLabel(double desiredPosition, ChartCore chart)
         {
-            if (desiredPosition + DataLabel.ActualWidth * .5 < -0.1) return -DataLabel.ActualWidth;
+            if (desiredPosition + DataLabel.ActualWidth * .5 < -0.1)
+            {
+                return -DataLabel.ActualWidth;
+            }
 
             if (desiredPosition + DataLabel.ActualWidth > chart.DrawMargin.Width)
+            {
                 desiredPosition -= desiredPosition + DataLabel.ActualWidth - chart.DrawMargin.Width + 2;
+            }
 
-            if (desiredPosition < 0) desiredPosition = 0;
+            if (desiredPosition < 0)
+            {
+                desiredPosition = 0;
+            }
 
             return desiredPosition;
         }
@@ -168,12 +176,17 @@ namespace LiveCharts.Wpf.Points
         protected double CorrectYLabel(double desiredPosition, ChartCore chart)
         {
             if (desiredPosition + DataLabel.ActualHeight > chart.DrawMargin.Height)
+            {
                 desiredPosition -= desiredPosition + DataLabel.ActualHeight - chart.DrawMargin.Height + 2;
+            }
 
-            if (desiredPosition < 0) desiredPosition = 0;
+            if (desiredPosition < 0)
+            {
+                desiredPosition = 0;
+            }
 
             return desiredPosition;
         }
-        
+
     }
 }

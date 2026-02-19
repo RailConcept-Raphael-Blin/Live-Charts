@@ -83,7 +83,7 @@ namespace LiveCharts.SeriesAlgorithms
 
                 var bubbleView = (IScatterPointView) chartPoint.View;
 
-                bubbleView.Diameter = m*(chartPoint.Weight - p1.X) + p1.Y;
+                bubbleView.Diameter = m * (chartPoint.Weight - p1.X) + p1.Y;
 
                 chartPoint.View.DrawOrMove(null, chartPoint, 0, Chart);
             }

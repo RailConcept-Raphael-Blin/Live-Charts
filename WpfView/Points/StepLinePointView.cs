@@ -20,12 +20,12 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
+using LiveCharts.Charts;
+using LiveCharts.Definitions.Points;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using LiveCharts.Charts;
-using LiveCharts.Definitions.Points;
 
 namespace LiveCharts.Wpf.Points
 {
@@ -70,7 +70,7 @@ namespace LiveCharts.Wpf.Points
 
                 if (Shape != null)
                 {
-                    Canvas.SetLeft(Shape, current.ChartLocation.X - Shape.Width/2);
+                    Canvas.SetLeft(Shape, current.ChartLocation.X - Shape.Width / 2);
                     Canvas.SetTop(Shape, chart.DrawMargin.Height);
                 }
             }
@@ -118,8 +118,8 @@ namespace LiveCharts.Wpf.Points
 
                 if (Shape != null)
                 {
-                    Canvas.SetLeft(Shape, current.ChartLocation.X - Shape.Width/2);
-                    Canvas.SetTop(Shape, current.ChartLocation.Y - Shape.Height/2);
+                    Canvas.SetLeft(Shape, current.ChartLocation.X - Shape.Width / 2);
+                    Canvas.SetTop(Shape, current.ChartLocation.Y - Shape.Height / 2);
                 }
 
                 if (DataLabel != null)
@@ -180,9 +180,9 @@ namespace LiveCharts.Wpf.Points
             if (Shape != null)
             {
                 Shape.BeginAnimation(Canvas.LeftProperty,
-                    new DoubleAnimation(current.ChartLocation.X - Shape.Width/2, animSpeed));
+                    new DoubleAnimation(current.ChartLocation.X - Shape.Width / 2, animSpeed));
                 Shape.BeginAnimation(Canvas.TopProperty,
-                    new DoubleAnimation(current.ChartLocation.Y - Shape.Height/2, animSpeed));
+                    new DoubleAnimation(current.ChartLocation.Y - Shape.Height / 2, animSpeed));
             }
 
             if (DataLabel != null)
@@ -208,7 +208,11 @@ namespace LiveCharts.Wpf.Points
         public override void OnHover(ChartPoint point)
         {
             var lineSeries = (StepLineSeries) point.SeriesView;
-            if (Shape != null) Shape.Fill = Shape.Stroke;
+            if (Shape != null)
+            {
+                Shape.Fill = Shape.Stroke;
+            }
+
             lineSeries.StrokeThickness = lineSeries.StrokeThickness + 1;
         }
 
@@ -216,20 +220,31 @@ namespace LiveCharts.Wpf.Points
         {
             var lineSeries = (StepLineSeries) point.SeriesView;
             if (Shape != null)
+            {
                 Shape.Fill = point.Fill == null
                     ? lineSeries.PointForeground
                     : (Brush) point.Fill;
+            }
+
             lineSeries.StrokeThickness = lineSeries.StrokeThickness - 1;
         }
 
         protected double CorrectXLabel(double desiredPosition, ChartCore chart)
         {
-            if (desiredPosition + DataLabel.ActualWidth * .5 < -0.1) return -DataLabel.ActualWidth;
+            if (desiredPosition + DataLabel.ActualWidth * .5 < -0.1)
+            {
+                return -DataLabel.ActualWidth;
+            }
 
             if (desiredPosition + DataLabel.ActualWidth > chart.DrawMargin.Width)
+            {
                 desiredPosition -= desiredPosition + DataLabel.ActualWidth - chart.DrawMargin.Width + 2;
+            }
 
-            if (desiredPosition < 0) desiredPosition = 0;
+            if (desiredPosition < 0)
+            {
+                desiredPosition = 0;
+            }
 
             return desiredPosition;
         }
@@ -239,9 +254,14 @@ namespace LiveCharts.Wpf.Points
             desiredPosition -= (Shape == null ? 0 : Shape.ActualHeight * .5) + DataLabel.ActualHeight * .5 + 2;
 
             if (desiredPosition + DataLabel.ActualHeight > chart.DrawMargin.Height)
+            {
                 desiredPosition -= desiredPosition + DataLabel.ActualHeight - chart.DrawMargin.Height + 2;
+            }
 
-            if (desiredPosition < 0) desiredPosition = 0;
+            if (desiredPosition < 0)
+            {
+                desiredPosition = 0;
+            }
 
             return desiredPosition;
         }

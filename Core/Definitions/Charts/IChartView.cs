@@ -20,12 +20,12 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
-using System;
-using System.Collections.Generic;
 using LiveCharts.Charts;
 using LiveCharts.Definitions.Series;
 using LiveCharts.Dtos;
 using LiveCharts.Events;
+using System;
+using System.Collections.Generic;
 
 namespace LiveCharts.Definitions.Charts
 {
@@ -217,7 +217,7 @@ namespace LiveCharts.Definitions.Charts
         /// </summary>
         /// <param name="element">The element.</param>
         void EnsureElementBelongsToCurrentDrawMargin(object element);
-        
+
         /// <summary>
         /// Hides the tooltip.
         /// </summary>

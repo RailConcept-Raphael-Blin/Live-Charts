@@ -20,17 +20,17 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
-using System;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Shapes;
 using LiveCharts.Definitions.Points;
 using LiveCharts.Definitions.Series;
 using LiveCharts.Dtos;
 using LiveCharts.SeriesAlgorithms;
 using LiveCharts.Wpf.Charts.Base;
 using LiveCharts.Wpf.Points;
+using System;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace LiveCharts.Wpf
 {
@@ -71,7 +71,7 @@ namespace LiveCharts.Wpf
         /// The maximum column width property
         /// </summary>
         public static readonly DependencyProperty MaxColumnWidthProperty = DependencyProperty.Register(
-            "MaxColumnWidth", typeof (double), typeof (StackedColumnSeries), new PropertyMetadata(default(double)));
+            "MaxColumnWidth", typeof(double), typeof(StackedColumnSeries), new PropertyMetadata(default(double)));
         /// <summary>
         /// Gets or sets the maximum width of a column, any column will be capped at this value
         /// </summary>
@@ -85,7 +85,7 @@ namespace LiveCharts.Wpf
         /// The column padding property
         /// </summary>
         public static readonly DependencyProperty ColumnPaddingProperty = DependencyProperty.Register(
-            "ColumnPadding", typeof (double), typeof (StackedColumnSeries), new PropertyMetadata(default(double)));
+            "ColumnPadding", typeof(double), typeof(StackedColumnSeries), new PropertyMetadata(default(double)));
         /// <summary>
         /// Gets or sets the padding between every column in this series
         /// </summary>
@@ -99,7 +99,7 @@ namespace LiveCharts.Wpf
         /// The stack mode property
         /// </summary>
         public static readonly DependencyProperty StackModeProperty = DependencyProperty.Register(
-            "StackMode", typeof (StackMode), typeof (StackedColumnSeries), new PropertyMetadata(default(StackMode)));
+            "StackMode", typeof(StackMode), typeof(StackedColumnSeries), new PropertyMetadata(default(StackMode)));
         /// <summary>
         /// Gets or sets stacked mode, values or percentage
         /// </summary>
@@ -108,7 +108,7 @@ namespace LiveCharts.Wpf
             get { return (StackMode) GetValue(StackModeProperty); }
             set { SetValue(StackModeProperty, value); }
         }
-        
+
         /// <summary>
         /// The labels position property
         /// </summary>
@@ -120,7 +120,7 @@ namespace LiveCharts.Wpf
         /// </summary>
         public BarLabelPosition LabelsPosition
         {
-            get { return (BarLabelPosition)GetValue(LabelsPositionProperty); }
+            get { return (BarLabelPosition) GetValue(LabelsPositionProperty); }
             set { SetValue(LabelsPositionProperty, value); }
         }
 
@@ -129,7 +129,7 @@ namespace LiveCharts.Wpf
         /// </summary>
         public object Grouping
         {
-            get { return (object)GetValue(GroupingProperty); }
+            get { return (object) GetValue(GroupingProperty); }
             set { SetValue(GroupingProperty, value); }
         }
 
@@ -189,13 +189,16 @@ namespace LiveCharts.Wpf
 
                 Panel.SetZIndex(pbv.HoverShape, int.MaxValue);
 
-                var wpfChart = (Chart)Model.Chart.View;
+                var wpfChart = (Chart) Model.Chart.View;
                 wpfChart.AttachHoverableEventTo(pbv.HoverShape);
 
                 Model.Chart.View.AddToDrawMargin(pbv.HoverShape);
             }
 
-            if (pbv.HoverShape != null) pbv.HoverShape.Visibility = Visibility;
+            if (pbv.HoverShape != null)
+            {
+                pbv.HoverShape.Visibility = Visibility;
+            }
 
             if (DataLabels)
             {
@@ -228,7 +231,7 @@ namespace LiveCharts.Wpf
             SetCurrentValue(ColumnPaddingProperty, 2d);
             SetCurrentValue(ForegroundProperty, Brushes.White);
 
-            Func<ChartPoint, string> defaultLabel = x =>  Model.CurrentYAxis.GetFormatter()(x.Y);
+            Func<ChartPoint, string> defaultLabel = x => Model.CurrentYAxis.GetFormatter()(x.Y);
             SetCurrentValue(LabelPointProperty, defaultLabel);
 
             DefaultFillOpacity = 1;

@@ -20,11 +20,11 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
-using System;
 using LiveCharts.Defaults;
 using LiveCharts.Definitions.Points;
 using LiveCharts.Definitions.Series;
 using LiveCharts.Dtos;
+using System;
 using System.Linq;
 
 namespace LiveCharts.SeriesAlgorithms
@@ -34,7 +34,7 @@ namespace LiveCharts.SeriesAlgorithms
     /// </summary>
     /// <seealso cref="LiveCharts.SeriesAlgorithm" />
     /// <seealso cref="LiveCharts.Definitions.Series.ICartesianSeries" />
-    public class StackedColumnAlgorithm : SeriesAlgorithm , ICartesianSeries
+    public class StackedColumnAlgorithm : SeriesAlgorithm, ICartesianSeries
     {
         private readonly IStackModelableSeriesView _stackModelable;
         /// <summary>
@@ -85,13 +85,20 @@ namespace LiveCharts.SeriesAlgorithms
                 var x = ChartFunctions.ToDrawMargin(chartPoint.X, AxisOrientation.X, Chart, View.ScalesXAt);
                 var from = _stackModelable.StackMode == StackMode.Values
                     ? ChartFunctions.ToDrawMargin(chartPoint.From, AxisOrientation.Y, Chart, View.ScalesYAt)
-                    : ChartFunctions.ToDrawMargin(chartPoint.From/chartPoint.Sum, AxisOrientation.Y, Chart, View.ScalesYAt);
+                    : ChartFunctions.ToDrawMargin(chartPoint.From / chartPoint.Sum, AxisOrientation.Y, Chart, View.ScalesYAt);
                 var to = _stackModelable.StackMode == StackMode.Values
                     ? ChartFunctions.ToDrawMargin(chartPoint.To, AxisOrientation.Y, Chart, View.ScalesYAt)
-                    : ChartFunctions.ToDrawMargin(chartPoint.To/chartPoint.Sum, AxisOrientation.Y, Chart, View.ScalesYAt);
+                    : ChartFunctions.ToDrawMargin(chartPoint.To / chartPoint.Sum, AxisOrientation.Y, Chart, View.ScalesYAt);
 
-                if (double.IsNaN(from)) from = 0;
-                if (double.IsNaN(to)) to = 0;
+                if (double.IsNaN(from))
+                {
+                    from = 0;
+                }
+
+                if (double.IsNaN(to))
+                {
+                    to = 0;
+                }
 
                 chartPoint.View = View.GetPointView(chartPoint,
                     View.DataLabels
@@ -117,7 +124,7 @@ namespace LiveCharts.SeriesAlgorithms
 
                 rectangleView.ZeroReference = zero;
 
-                chartPoint.ChartLocation = new CorePoint(rectangleView.Data.Left + singleColWidth/2 - padding/2,
+                chartPoint.ChartLocation = new CorePoint(rectangleView.Data.Left + singleColWidth / 2 - padding / 2,
                     t);
 
                 chartPoint.View.DrawOrMove(null, chartPoint, 0, Chart);

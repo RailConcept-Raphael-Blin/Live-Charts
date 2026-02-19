@@ -20,16 +20,16 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
-using System;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Shapes;
 using LiveCharts.Definitions.Points;
 using LiveCharts.Definitions.Series;
 using LiveCharts.SeriesAlgorithms;
 using LiveCharts.Wpf.Charts.Base;
 using LiveCharts.Wpf.Points;
+using System;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace LiveCharts.Wpf
 {
@@ -71,7 +71,7 @@ namespace LiveCharts.Wpf
         /// The maximum point shape diameter property
         /// </summary>
         public static readonly DependencyProperty MaxPointShapeDiameterProperty = DependencyProperty.Register(
-            "MaxPointShapeDiameter", typeof (double), typeof (ScatterSeries), 
+            "MaxPointShapeDiameter", typeof(double), typeof(ScatterSeries),
             new PropertyMetadata(default(double), CallChartUpdater()));
         /// <summary>
         /// Gets or sets the max shape diameter, the points using the max weight in the series will have this radius.
@@ -86,7 +86,7 @@ namespace LiveCharts.Wpf
         /// The minimum point shape diameter property
         /// </summary>
         public static readonly DependencyProperty MinPointShapeDiameterProperty = DependencyProperty.Register(
-            "MinPointShapeDiameter", typeof (double), typeof (ScatterSeries), 
+            "MinPointShapeDiameter", typeof(double), typeof(ScatterSeries),
             new PropertyMetadata(default(double), CallChartUpdater()));
         /// <summary>
         /// Gets or sets the min shape diameter, the points using the min weight in the series will have this radius.
@@ -106,7 +106,7 @@ namespace LiveCharts.Wpf
         /// <returns></returns>
         public double GetPointDiameter()
         {
-            return MaxPointShapeDiameter/2;
+            return MaxPointShapeDiameter / 2;
         }
         #endregion
 
@@ -166,13 +166,16 @@ namespace LiveCharts.Wpf
 
                 Panel.SetZIndex(pbv.HoverShape, int.MaxValue);
 
-                var wpfChart = (Chart)Model.Chart.View;
+                var wpfChart = (Chart) Model.Chart.View;
                 wpfChart.AttachHoverableEventTo(pbv.HoverShape);
 
                 Model.Chart.View.AddToDrawMargin(pbv.HoverShape);
             }
 
-            if (pbv.HoverShape != null) pbv.HoverShape.Visibility = Visibility;
+            if (pbv.HoverShape != null)
+            {
+                pbv.HoverShape.Visibility = Visibility;
+            }
 
             if (DataLabels)
             {
@@ -189,8 +192,15 @@ namespace LiveCharts.Wpf
                 pbv.DataLabel = null;
             }
 
-            if (point.Stroke != null) pbv.Shape.Stroke = (Brush)point.Stroke;
-            if (point.Fill != null) pbv.Shape.Fill = (Brush)point.Fill;
+            if (point.Stroke != null)
+            {
+                pbv.Shape.Stroke = (Brush) point.Stroke;
+            }
+
+            if (point.Fill != null)
+            {
+                pbv.Shape.Fill = (Brush) point.Fill;
+            }
 
             return pbv;
         }

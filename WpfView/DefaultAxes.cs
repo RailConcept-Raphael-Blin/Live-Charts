@@ -34,7 +34,7 @@ namespace LiveCharts.Wpf
         /// </summary>
         public static AxesCollection DefaultAxis
         {
-            get { return new AxesCollection {new Axis()}; }
+            get { return new AxesCollection { new Axis() }; }
         }
 
         /// <summary>

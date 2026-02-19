@@ -20,13 +20,13 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
+using LiveCharts.Charts;
+using LiveCharts.Definitions.Charts;
+using LiveCharts.Dtos;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
-using LiveCharts.Charts;
-using LiveCharts.Definitions.Charts;
-using LiveCharts.Dtos;
 
 namespace LiveCharts.Wpf
 {
@@ -55,7 +55,7 @@ namespace LiveCharts.Wpf
         /// The x property
         /// </summary>
         public static readonly DependencyProperty XProperty = DependencyProperty.Register(
-            "X", typeof (double), typeof (VisualElement), 
+            "X", typeof(double), typeof(VisualElement),
             new PropertyMetadata(default(double), PropertyChangedCallback));
         /// <summary>
         /// Gets or sets the X value of the UiElement
@@ -70,7 +70,7 @@ namespace LiveCharts.Wpf
         /// The y property
         /// </summary>
         public static readonly DependencyProperty YProperty = DependencyProperty.Register(
-            "Y", typeof (double), typeof (VisualElement), 
+            "Y", typeof(double), typeof(VisualElement),
             new PropertyMetadata(default(double), PropertyChangedCallback));
         /// <summary>
         /// Gets or sets the Y value of the UiElement
@@ -89,8 +89,15 @@ namespace LiveCharts.Wpf
         /// </exception>
         public void AddOrMove(ChartCore chart)
         {
-            if (chart == null || UIElement == null) return;
-            if (!chart.AreComponentsLoaded) return;
+            if (chart == null || UIElement == null)
+            {
+                return;
+            }
+
+            if (!chart.AreComponentsLoaded)
+            {
+                return;
+            }
 
             if (UIElement.Parent == null)
             {
@@ -105,10 +112,10 @@ namespace LiveCharts.Wpf
 
             var uw = new CorePoint(
                 wpfChart.AxisX[AxisX].Model.EvaluatesUnitWidth
-                    ? ChartFunctions.GetUnitWidth(AxisOrientation.X, chart, AxisX)/2
+                    ? ChartFunctions.GetUnitWidth(AxisOrientation.X, chart, AxisX) / 2
                     : 0,
                 wpfChart.AxisY[AxisY].Model.EvaluatesUnitWidth
-                    ? ChartFunctions.GetUnitWidth(AxisOrientation.Y, chart, AxisY)/2
+                    ? ChartFunctions.GetUnitWidth(AxisOrientation.Y, chart, AxisY) / 2
                     : 0);
 
             coordinate += uw;
@@ -180,7 +187,10 @@ namespace LiveCharts.Wpf
         private static void PropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
             var element = (VisualElement) dependencyObject;
-            if (element._owner != null) element.AddOrMove(element._owner);
+            if (element._owner != null)
+            {
+                element.AddOrMove(element._owner);
+            }
         }
     }
 }

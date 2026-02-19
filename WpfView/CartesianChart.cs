@@ -20,12 +20,12 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
-using System;
-using System.ComponentModel;
-using System.Windows;
 using LiveCharts.Charts;
 using LiveCharts.Definitions.Charts;
 using LiveCharts.Wpf.Charts.Base;
+using System;
+using System.ComponentModel;
+using System.Windows;
 
 namespace LiveCharts.Wpf
 {
@@ -56,7 +56,7 @@ namespace LiveCharts.Wpf
         /// The visual elements property
         /// </summary>
         public static readonly DependencyProperty VisualElementsProperty = DependencyProperty.Register(
-            "VisualElements", typeof (VisualElementsCollection), typeof (CartesianChart),
+            "VisualElements", typeof(VisualElementsCollection), typeof(CartesianChart),
             new PropertyMetadata(default(VisualElementsCollection), OnVisualCollectionChanged));
 
         /// <summary>
@@ -70,9 +70,12 @@ namespace LiveCharts.Wpf
 
         private static void OnVisualCollectionChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
-            var chart = (CartesianChart)dependencyObject;
+            var chart = (CartesianChart) dependencyObject;
 
-            if (chart.VisualElements != null) chart.VisualElements.Chart = chart.Model;
+            if (chart.VisualElements != null)
+            {
+                chart.VisualElements.Chart = chart.Model;
+            }
         }
     }
 }

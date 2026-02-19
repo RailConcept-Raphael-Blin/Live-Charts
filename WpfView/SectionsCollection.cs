@@ -20,8 +20,8 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
-using System.Collections.Generic;
 using LiveCharts.Helpers;
+using System.Collections.Generic;
 
 namespace LiveCharts.Wpf
 {
@@ -40,7 +40,10 @@ namespace LiveCharts.Wpf
 
         private static void OnNoisyCollectionChanged(IEnumerable<AxisSection> oldItems, IEnumerable<AxisSection> newItems)
         {
-            if (oldItems == null) return;
+            if (oldItems == null)
+            {
+                return;
+            }
 
             foreach (var oldSection in oldItems)
             {

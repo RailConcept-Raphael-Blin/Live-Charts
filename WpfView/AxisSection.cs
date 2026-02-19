@@ -18,6 +18,10 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
+using LiveCharts.Definitions.Charts;
+using LiveCharts.Dtos;
+using LiveCharts.Helpers;
+using LiveCharts.Wpf.Charts.Base;
 using System;
 using System.Globalization;
 using System.Windows;
@@ -26,10 +30,6 @@ using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using LiveCharts.Definitions.Charts;
-using LiveCharts.Dtos;
-using LiveCharts.Helpers;
-using LiveCharts.Wpf.Charts.Base;
 
 namespace LiveCharts.Wpf
 {
@@ -48,17 +48,21 @@ namespace LiveCharts.Wpf
         public AxisSection()
         {
             _rectangle = new Rectangle();
-            
+
             _rectangle.MouseDown += (sender, args) =>
             {
-                if (!Draggable) return;
+                if (!Draggable)
+                {
+                    return;
+                }
+
                 Dragging = this;
                 args.Handled = true;
                 Chart.Ldsp = null;
             };
 
             SetCurrentValue(StrokeProperty, new SolidColorBrush(Color.FromRgb(131, 172, 191)));
-            SetCurrentValue(FillProperty, new SolidColorBrush(Color.FromRgb(131, 172, 191)) {Opacity = .35});
+            SetCurrentValue(FillProperty, new SolidColorBrush(Color.FromRgb(131, 172, 191)) { Opacity = .35 });
             SetCurrentValue(StrokeThicknessProperty, 0d);
         }
 
@@ -82,7 +86,7 @@ namespace LiveCharts.Wpf
         [Obsolete("Use a VisualElement instead")]
         public string Label
         {
-            get { return (string)GetValue(LabelProperty); }
+            get { return (string) GetValue(LabelProperty); }
             set { SetValue(LabelProperty, value); }
         }
 
@@ -98,7 +102,7 @@ namespace LiveCharts.Wpf
         [Obsolete("This property will be removed in future versions, instead use Value and SectionWidth properties")]
         public double FromValue
         {
-            get { return (double)GetValue(FromValueProperty); }
+            get { return (double) GetValue(FromValueProperty); }
             set { SetValue(FromValueProperty, value); }
         }
 
@@ -114,7 +118,7 @@ namespace LiveCharts.Wpf
         [Obsolete("This property will be removed in future versions, instead use Value and SectionWidth properties")]
         public double ToValue
         {
-            get { return (double)GetValue(ToValueProperty); }
+            get { return (double) GetValue(ToValueProperty); }
             set { SetValue(ToValueProperty, value); }
         }
 
@@ -173,7 +177,7 @@ namespace LiveCharts.Wpf
         /// </summary>
         public Brush Stroke
         {
-            get { return (Brush)GetValue(StrokeProperty); }
+            get { return (Brush) GetValue(StrokeProperty); }
             set { SetValue(StrokeProperty, value); }
         }
 
@@ -187,7 +191,7 @@ namespace LiveCharts.Wpf
         /// </summary>
         public Brush Fill
         {
-            get { return (Brush)GetValue(FillProperty); }
+            get { return (Brush) GetValue(FillProperty); }
             set { SetValue(FillProperty, value); }
         }
 
@@ -201,7 +205,7 @@ namespace LiveCharts.Wpf
         /// </summary>
         public double StrokeThickness
         {
-            get { return (double)GetValue(StrokeThicknessProperty); }
+            get { return (double) GetValue(StrokeThicknessProperty); }
             set { SetValue(StrokeThicknessProperty, value); }
         }
 
@@ -215,7 +219,7 @@ namespace LiveCharts.Wpf
         /// </summary>
         public DoubleCollection StrokeDashArray
         {
-            get { return (DoubleCollection)GetValue(StrokeDashArrayProperty); }
+            get { return (DoubleCollection) GetValue(StrokeDashArrayProperty); }
             set { SetValue(StrokeDashArrayProperty, value); }
         }
 
@@ -298,7 +302,7 @@ namespace LiveCharts.Wpf
             _rectangle.StrokeThickness = StrokeThickness;
             Panel.SetZIndex(_rectangle, Panel.GetZIndex(this));
             BindingOperations.SetBinding(_rectangle, VisibilityProperty,
-                new Binding {Path = new PropertyPath(VisibilityProperty), Source = this});
+                new Binding { Path = new PropertyPath(VisibilityProperty), Source = this });
 
             var ax = source == AxisOrientation.X ? Model.Chart.AxisX[axis] : Model.Chart.AxisY[axis];
             var uw = ax.EvaluatesUnitWidth ? ChartFunctions.GetUnitWidth(source, Model.Chart, axis) / 2 : 0;
@@ -320,11 +324,11 @@ namespace LiveCharts.Wpf
                 #endregion
             }
 
-            #pragma warning disable 618
+#pragma warning disable 618
             var from = ChartFunctions.ToDrawMargin(double.IsNaN(FromValue) ? Value + SectionOffset : FromValue, source, Model.Chart, axis) + uw;
 #pragma warning restore 618
 #pragma warning disable 618
-            var to = ChartFunctions.ToDrawMargin(double.IsNaN(ToValue) ? Value  + SectionOffset + SectionWidth : ToValue, source, Model.Chart, axis) + uw;
+            var to = ChartFunctions.ToDrawMargin(double.IsNaN(ToValue) ? Value + SectionOffset + SectionWidth : ToValue, source, Model.Chart, axis) + uw;
 #pragma warning restore 618
 
             if (from > to)
@@ -338,7 +342,11 @@ namespace LiveCharts.Wpf
 
             if (DataLabel)
             {
-                if (DataLabelForeground != null) _label.Foreground = DataLabelForeground;
+                if (DataLabelForeground != null)
+                {
+                    _label.Foreground = DataLabelForeground;
+                }
+
                 _label.UpdateLayout();
                 _label.Background = Stroke ?? Fill;
                 PlaceLabel(ax.GetFormatter()(Value), ax, source);
@@ -355,7 +363,7 @@ namespace LiveCharts.Wpf
                 if (Model.Chart.View.DisableAnimations || DisableAnimations)
                 {
                     _rectangle.Width = w > 0 ? w : 0;
-                    Canvas.SetLeft(_rectangle, from - StrokeThickness/2);
+                    Canvas.SetLeft(_rectangle, from - StrokeThickness / 2);
                 }
                 else
                 {
@@ -374,7 +382,7 @@ namespace LiveCharts.Wpf
 
             if (Model.Chart.View.DisableAnimations || DisableAnimations)
             {
-                Canvas.SetTop(_rectangle, from - StrokeThickness/2);
+                Canvas.SetTop(_rectangle, from - StrokeThickness / 2);
                 _rectangle.Height = h > 0 ? h : 0;
             }
             else
@@ -414,7 +422,11 @@ namespace LiveCharts.Wpf
 
             if (section.Model != null && section.Model.Chart != null)
             {
-                if (!section.Model.Chart.AreComponentsLoaded) return;
+                if (!section.Model.Chart.AreComponentsLoaded)
+                {
+                    return;
+                }
+
                 section.DrawOrMove(section.Model.Source, section.Model.AxisIndex);
             }
         }
@@ -455,13 +467,17 @@ namespace LiveCharts.Wpf
                 {
                     if (toLabel + transform.ActualHeight >
                         chart.DrawMargin.Top + chart.DrawMargin.Height)
+                    {
                         toLabel -= transform.ActualHeight + padding;
+                    }
                 }
                 else
                 {
                     if (toLabel + transform.ActualWidth >
                         chart.DrawMargin.Left + chart.DrawMargin.Width)
+                    {
                         toLabel -= transform.ActualWidth + padding;
+                    }
                 }
             }
 

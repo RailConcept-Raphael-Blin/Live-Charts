@@ -20,13 +20,13 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using LiveCharts.Definitions.Charts;
 using LiveCharts.Definitions.Series;
 using LiveCharts.Dtos;
 using LiveCharts.Helpers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace LiveCharts.Charts
 {
@@ -59,9 +59,11 @@ namespace LiveCharts.Charts
             base.PrepareAxes();
 
             if (View.ActualSeries.Any(x => !(x.Model is ICartesianSeries)))
+            {
                 throw new LiveChartsException(
                     "There is a invalid series in the series collection, " +
                     "verify that all the series implement ICartesianSeries.");
+            }
 
             var cartesianSeries = View.ActualSeries.Select(x => x.Model).Cast<ICartesianSeries>().ToArray();
 
@@ -78,16 +80,30 @@ namespace LiveCharts.Charts
                 {
                     if (Math.Abs(xi.PreviousBot - xi.PreviousTop) < xi.S * .01)
                     {
-                        if (double.IsNaN(xi.MinValue)) xi.BotLimit -= xi.S;
-                        else xi.BotLimit = xi.MinValue;
+                        if (double.IsNaN(xi.MinValue))
+                        {
+                            xi.BotLimit -= xi.S;
+                        }
+                        else
+                        {
+                            xi.BotLimit = xi.MinValue;
+                        }
 
-                        if (double.IsNaN(xi.MaxValue)) xi.TopLimit += xi.S;
-                        else xi.TopLimit = xi.MaxValue;
+                        if (double.IsNaN(xi.MaxValue))
+                        {
+                            xi.TopLimit += xi.S;
+                        }
+                        else
+                        {
+                            xi.TopLimit = xi.MaxValue;
+                        }
 
                         if (Math.Abs(xi.BotLimit - xi.TopLimit) < xi.S * .01 && !View.IsInDesignMode)
+                        {
                             throw new LiveChartsException("One axis has an invalid range, it is or it " +
                                                           "tends to zero, please ensure your axis has a valid " +
                                                           "range");
+                        }
                     }
                     else
                     {
@@ -112,16 +128,30 @@ namespace LiveCharts.Charts
                 {
                     if (Math.Abs(yi.PreviousBot - yi.PreviousTop) < yi.S * .01)
                     {
-                        if (double.IsNaN(yi.MinValue)) yi.BotLimit -= yi.S;
-                        else yi.BotLimit = yi.MinValue;
+                        if (double.IsNaN(yi.MinValue))
+                        {
+                            yi.BotLimit -= yi.S;
+                        }
+                        else
+                        {
+                            yi.BotLimit = yi.MinValue;
+                        }
 
-                        if (double.IsNaN(yi.MaxValue)) yi.TopLimit += yi.S;
-                        else yi.TopLimit = yi.MaxValue;
+                        if (double.IsNaN(yi.MaxValue))
+                        {
+                            yi.TopLimit += yi.S;
+                        }
+                        else
+                        {
+                            yi.TopLimit = yi.MaxValue;
+                        }
 
                         if (Math.Abs(yi.BotLimit - yi.TopLimit) < yi.S * .01)
+                        {
                             throw new LiveChartsException("One axis has an invalid range, it is or it " +
                                                           "tends to zero, please ensure your axis has a valid " +
                                                           "range");
+                        }
                     }
                     else
                     {
@@ -177,7 +207,7 @@ namespace LiveCharts.Charts
                     section.View.DrawOrMove(AxisOrientation.Y, index);
                 }
             }
-            
+
         }
 
         #endregion
@@ -210,9 +240,20 @@ namespace LiveCharts.Charts
                 var view = cartesianSeries.View as IAreaPoint;
                 var radius = view != null ? view.GetPointDiameter() : 0;
 
-                if (limit.Max > boundries[0]) boundries[0] = limit.Max;
-                if (limit.Min < boundries[1]) boundries[1] = limit.Min;
-                if (radius > boundries[2]) boundries[2] = radius;
+                if (limit.Max > boundries[0])
+                {
+                    boundries[0] = limit.Max;
+                }
+
+                if (limit.Min < boundries[1])
+                {
+                    boundries[1] = limit.Min;
+                }
+
+                if (radius > boundries[2])
+                {
+                    boundries[2] = radius;
+                }
             }
 
             ax.TopSeriesLimit = boundries[0];
@@ -236,7 +277,10 @@ namespace LiveCharts.Charts
 
         private void PrepareWeight()
         {
-            if (!View.ActualSeries.Any(x => x is IScatterSeriesView || x is IHeatSeriesView)) return;
+            if (!View.ActualSeries.Any(x => x is IScatterSeriesView || x is IHeatSeriesView))
+            {
+                return;
+            }
 
             var vs = View.ActualSeries
                 .Select(x => x.ActualValues.GetTracker(x).WLimit)
@@ -249,7 +293,7 @@ namespace LiveCharts.Charts
         {
             foreach (var series in View.ActualSeries)
             {
-                if (series is IStackedColumnSeriesView || series is IColumnSeriesView || 
+                if (series is IStackedColumnSeriesView || series is IColumnSeriesView ||
                     series is IFinancialSeriesView || series is IHeatSeriesView)
                 {
                     AxisX[series.ScalesXAt].EvaluatesUnitWidth = true;
@@ -263,7 +307,10 @@ namespace LiveCharts.Charts
 
         private void PrepareStackedColumns()
         {
-            if (!View.ActualSeries.Any(x => x is IStackedColumnSeriesView)) return;
+            if (!View.ActualSeries.Any(x => x is IStackedColumnSeriesView))
+            {
+                return;
+            }
 
             var isPercentage =
                 View.ActualSeries.Any(x => x is IStackModelableSeriesView && x is IStackedColumnSeriesView &&
@@ -278,7 +325,10 @@ namespace LiveCharts.Charts
 
         private void PrepareStackedRows()
         {
-            if (!View.ActualSeries.Any(x => x is IStackedRowSeriesView)) return;
+            if (!View.ActualSeries.Any(x => x is IStackedRowSeriesView))
+            {
+                return;
+            }
 
             var isPercentage =
                 View.ActualSeries.Any(x => x is IStackModelableSeriesView && x is IStackedRowSeriesView &&
@@ -292,7 +342,10 @@ namespace LiveCharts.Charts
 
         private void PrepareStackedAreas()
         {
-            if (!View.ActualSeries.Any(x => x is IStackedAreaSeriesView)) return;
+            if (!View.ActualSeries.Any(x => x is IStackedAreaSeriesView))
+            {
+                return;
+            }
 
             var isPercentage =
                 View.ActualSeries.Any(x => x is IStackModelableSeriesView && x is IStackedAreaSeriesView &&
@@ -306,7 +359,10 @@ namespace LiveCharts.Charts
 
         private void PrepareVerticalStackedAreas()
         {
-            if (!View.ActualSeries.Any(x => x is IVerticalStackedAreaSeriesView)) return;
+            if (!View.ActualSeries.Any(x => x is IVerticalStackedAreaSeriesView))
+            {
+                return;
+            }
 
             var isPercentage =
                 View.ActualSeries.Any(x => x is IStackModelableSeriesView && x is IVerticalStackedAreaSeriesView &&

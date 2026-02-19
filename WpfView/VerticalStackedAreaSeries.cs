@@ -20,6 +20,8 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
+using LiveCharts.Definitions.Series;
+using LiveCharts.SeriesAlgorithms;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -27,8 +29,6 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using LiveCharts.Definitions.Series;
-using LiveCharts.SeriesAlgorithms;
 
 namespace LiveCharts.Wpf
 {
@@ -65,7 +65,7 @@ namespace LiveCharts.Wpf
         /// The stack mode property
         /// </summary>
         public static readonly DependencyProperty StackModeProperty = DependencyProperty.Register(
-            "StackMode", typeof (StackMode), typeof (VerticalStackedAreaSeries), new PropertyMetadata(default(StackMode)));
+            "StackMode", typeof(StackMode), typeof(VerticalStackedAreaSeries), new PropertyMetadata(default(StackMode)));
         /// <summary>
         /// Gets or sets the series stack mode, values or percentage
         /// </summary>
@@ -99,11 +99,15 @@ namespace LiveCharts.Wpf
                 var yIni = ChartFunctions.ToDrawMargin(Values.GetTracker(this).YLimit.Min, AxisOrientation.Y, Model.Chart, ScalesYAt);
 
                 if (Model.Chart.View.DisableAnimations)
+                {
                     Figure.StartPoint = new Point(0, yIni);
+                }
                 else
+                {
                     Figure.BeginAnimation(PathFigure.StartPointProperty,
                         new PointAnimation(new Point(0, yIni),
                             Model.Chart.View.AnimationsSpeed));
+                }
             }
 
             if (IsPathInitialized)

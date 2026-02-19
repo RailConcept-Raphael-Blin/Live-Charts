@@ -20,12 +20,12 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
-using System;
-using System.Linq;
-using System.Windows;
 using LiveCharts.Charts;
 using LiveCharts.Definitions.Charts;
 using LiveCharts.Helpers;
+using System;
+using System.Linq;
+using System.Windows;
 
 namespace LiveCharts.Wpf
 {
@@ -63,7 +63,7 @@ namespace LiveCharts.Wpf
         /// </summary>
         public DateTime InitialDateTime
         {
-            get { return (DateTime)GetValue(InitialDateTimeProperty); }
+            get { return (DateTime) GetValue(InitialDateTimeProperty); }
             set { SetValue(InitialDateTimeProperty, value); }
         }
 
@@ -77,7 +77,7 @@ namespace LiveCharts.Wpf
         /// </summary>
         public PeriodUnits Period
         {
-            get { return (PeriodUnits)GetValue(PeriodProperty); }
+            get { return (PeriodUnits) GetValue(PeriodProperty); }
             set { SetValue(PeriodProperty, value); }
         }
 
@@ -91,7 +91,11 @@ namespace LiveCharts.Wpf
         /// <returns></returns>
         public override AxisCore AsCoreElement(ChartCore chart, AxisOrientation source)
         {
-            if (Model == null) Model = new DateAxisCore(this);
+            if (Model == null)
+            {
+                Model = new DateAxisCore(this);
+            }
+
             Model.ShowLabels = ShowLabels;
             Model.Chart = chart;
             Model.IsMerged = IsMerged;
@@ -103,10 +107,10 @@ namespace LiveCharts.Wpf
             Model.Position = Position;
             Model.Separator = Separator.AsCoreElement(Model, source);
             Model.DisableAnimations = DisableAnimations;
-            Model.Sections = Sections.Select(x => x.AsCoreElement(Model, source)).ToList();            
+            Model.Sections = Sections.Select(x => x.AsCoreElement(Model, source)).ToList();
 
-            ((DateAxisCore)Model).Windows = Windows.ToList();
-            ((DateAxisCore)Model).Windows.ForEach(w => ((DateAxisWindow)w).DateAxisCore = (DateAxisCore)Model);
+            ((DateAxisCore) Model).Windows = Windows.ToList();
+            ((DateAxisCore) Model).Windows.ForEach(w => ((DateAxisWindow) w).DateAxisCore = (DateAxisCore) Model);
             return Model;
         }
     }

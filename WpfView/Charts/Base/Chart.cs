@@ -20,6 +20,15 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
+using LiveCharts.Charts;
+using LiveCharts.Defaults;
+using LiveCharts.Definitions.Charts;
+using LiveCharts.Definitions.Series;
+using LiveCharts.Dtos;
+using LiveCharts.Events;
+using LiveCharts.Helpers;
+using LiveCharts.Wpf.Components;
+using LiveCharts.Wpf.Points;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -33,15 +42,6 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
-using LiveCharts.Charts;
-using LiveCharts.Defaults;
-using LiveCharts.Definitions.Charts;
-using LiveCharts.Definitions.Series;
-using LiveCharts.Dtos;
-using LiveCharts.Events;
-using LiveCharts.Helpers;
-using LiveCharts.Wpf.Components;
-using LiveCharts.Wpf.Points;
 
 namespace LiveCharts.Wpf.Charts.Base
 {
@@ -113,7 +113,11 @@ namespace LiveCharts.Wpf.Charts.Base
             Unloaded += (sender, args) =>
             {
                 var updater = (Components.ChartUpdater) Model.Updater;
-                if (updater.Timer == null) return;
+                if (updater.Timer == null)
+                {
+                    return;
+                }
+
                 updater.Timer.Tick -= updater.OnTimerOnTick;
                 updater.Timer.Stop();
                 updater.Timer.IsEnabled = false;
@@ -140,7 +144,10 @@ namespace LiveCharts.Wpf.Charts.Base
         {
             Model.ControlSize = new CoreSize(ActualWidth, ActualHeight);
             if (!(this is IPieChart))
-                Canvas.Clip = new RectangleGeometry(new Rect(new Point(0,0), new Size(ActualWidth, ActualHeight)));
+            {
+                Canvas.Clip = new RectangleGeometry(new Rect(new Point(0, 0), new Size(ActualWidth, ActualHeight)));
+            }
+
             Model.Updater.Run();
         }
 
@@ -159,7 +166,10 @@ namespace LiveCharts.Wpf.Charts.Base
             if (chart.Series != null)
             {
                 chart.Series.Chart = chart.Model;
-                foreach (var series in chart.Series) series.Model.Chart = chart.Model;
+                foreach (var series in chart.Series)
+                {
+                    series.Model.Chart = chart.Model;
+                }
             }
 
             if (chart.LastKnownSeriesCollection != chart.Series && chart.LastKnownSeriesCollection != null)
@@ -176,8 +186,15 @@ namespace LiveCharts.Wpf.Charts.Base
 
         internal void ChartUpdated()
         {
-            if (UpdaterTick != null) UpdaterTick.Invoke(this);
-            if (UpdaterTickCommand != null && UpdaterTickCommand.CanExecute(this)) UpdaterTickCommand.Execute(this);
+            if (UpdaterTick != null)
+            {
+                UpdaterTick.Invoke(this);
+            }
+
+            if (UpdaterTickCommand != null && UpdaterTickCommand.CanExecute(this))
+            {
+                UpdaterTickCommand.Execute(this);
+            }
         }
         #endregion
 
@@ -305,7 +322,7 @@ namespace LiveCharts.Wpf.Charts.Base
         /// </summary>
         public AxesCollection AxisY
         {
-            get { return (AxesCollection)GetValue(AxisYProperty); }
+            get { return (AxesCollection) GetValue(AxisYProperty); }
             set { SetValue(AxisYProperty, value); }
         }
 
@@ -321,7 +338,7 @@ namespace LiveCharts.Wpf.Charts.Base
         /// </summary>
         public AxesCollection AxisX
         {
-            get { return (AxesCollection)GetValue(AxisXProperty); }
+            get { return (AxesCollection) GetValue(AxisXProperty); }
             set { SetValue(AxisXProperty, value); }
         }
 
@@ -336,7 +353,7 @@ namespace LiveCharts.Wpf.Charts.Base
         /// </summary>
         public UserControl ChartLegend
         {
-            get { return (UserControl)GetValue(ChartLegendProperty); }
+            get { return (UserControl) GetValue(ChartLegendProperty); }
             set { SetValue(ChartLegendProperty, value); }
         }
 
@@ -351,7 +368,7 @@ namespace LiveCharts.Wpf.Charts.Base
         /// </summary>
         public ZoomingOptions Zoom
         {
-            get { return (ZoomingOptions)GetValue(ZoomProperty); }
+            get { return (ZoomingOptions) GetValue(ZoomProperty); }
             set { SetValue(ZoomProperty, value); }
         }
 
@@ -383,7 +400,7 @@ namespace LiveCharts.Wpf.Charts.Base
         /// </summary>
         public LegendLocation LegendLocation
         {
-            get { return (LegendLocation)GetValue(LegendLocationProperty); }
+            get { return (LegendLocation) GetValue(LegendLocationProperty); }
             set { SetValue(LegendLocationProperty, value); }
         }
 
@@ -415,7 +432,7 @@ namespace LiveCharts.Wpf.Charts.Base
         /// </summary>
         public TimeSpan AnimationsSpeed
         {
-            get { return (TimeSpan)GetValue(AnimationsSpeedProperty); }
+            get { return (TimeSpan) GetValue(AnimationsSpeedProperty); }
             set { SetValue(AnimationsSpeedProperty, value); }
         }
 
@@ -430,7 +447,7 @@ namespace LiveCharts.Wpf.Charts.Base
         /// </summary>
         public bool DisableAnimations
         {
-            get { return (bool)GetValue(DisableAnimationsProperty); }
+            get { return (bool) GetValue(DisableAnimationsProperty); }
             set { SetValue(DisableAnimationsProperty, value); }
         }
 
@@ -444,7 +461,7 @@ namespace LiveCharts.Wpf.Charts.Base
         /// </summary>
         public UserControl DataTooltip
         {
-            get { return (UserControl)GetValue(DataTooltipProperty); }
+            get { return (UserControl) GetValue(DataTooltipProperty); }
             set { SetValue(DataTooltipProperty, value); }
         }
 
@@ -467,7 +484,7 @@ namespace LiveCharts.Wpf.Charts.Base
         /// The scroll mode property
         /// </summary>
         public static readonly DependencyProperty ScrollModeProperty = DependencyProperty.Register(
-            "ScrollMode", typeof(ScrollMode), typeof(Chart), 
+            "ScrollMode", typeof(ScrollMode), typeof(Chart),
             new PropertyMetadata(ScrollMode.None, ScrollModeOnChanged));
         /// <summary>
         /// Gets or sets chart scroll mode
@@ -482,7 +499,7 @@ namespace LiveCharts.Wpf.Charts.Base
         /// The scroll horizontal from property
         /// </summary>
         public static readonly DependencyProperty ScrollHorizontalFromProperty = DependencyProperty.Register(
-            "ScrollHorizontalFrom", typeof(double), typeof(Chart), 
+            "ScrollHorizontalFrom", typeof(double), typeof(Chart),
             new PropertyMetadata(default(double), ScrollLimitOnChanged));
         /// <summary>
         /// Gets or sets the scrolling horizontal start value
@@ -497,8 +514,8 @@ namespace LiveCharts.Wpf.Charts.Base
         /// The scroll horizontal to property
         /// </summary>
         public static readonly DependencyProperty ScrollHorizontalToProperty = DependencyProperty.Register(
-            "ScrollHorizontalTo", typeof(double), typeof(Chart), 
-            new PropertyMetadata(default(double),  ScrollLimitOnChanged));
+            "ScrollHorizontalTo", typeof(double), typeof(Chart),
+            new PropertyMetadata(default(double), ScrollLimitOnChanged));
         /// <summary>
         /// Gets or sets the scrolling horizontal end value
         /// </summary>
@@ -568,7 +585,7 @@ namespace LiveCharts.Wpf.Charts.Base
         /// The updater state property
         /// </summary>
         public static readonly DependencyProperty UpdaterStateProperty = DependencyProperty.Register(
-            "UpdaterState", typeof(UpdaterState), typeof(Chart), 
+            "UpdaterState", typeof(UpdaterState), typeof(Chart),
             new PropertyMetadata(default(UpdaterState), CallChartUpdater()));
         /// <summary>
         /// Gets or sets chart's updater state
@@ -629,7 +646,9 @@ namespace LiveCharts.Wpf.Charts.Base
             get
             {
                 if (DesignerProperties.GetIsInDesignMode(this) && Series == null)
+                {
                     SetValue(SeriesProperty, GetDesignerModeCollection());
+                }
 
                 return (Series ?? Enumerable.Empty<ISeriesView>())
                     .Where(x => x.IsSeriesVisible);
@@ -680,7 +699,11 @@ namespace LiveCharts.Wpf.Charts.Base
 
         private void SetClip()
         {
-            if (this is IPieChart) return;
+            if (this is IPieChart)
+            {
+                return;
+            }
+
             DrawMargin.Clip = new RectangleGeometry
             {
                 Rect = new Rect(0, 0, DrawMargin.Width, DrawMargin.Height)
@@ -694,7 +717,11 @@ namespace LiveCharts.Wpf.Charts.Base
         public void AddToView(object element)
         {
             var wpfElement = (FrameworkElement) element;
-            if (wpfElement == null) return;
+            if (wpfElement == null)
+            {
+                return;
+            }
+
             Canvas.Children.Add(wpfElement);
         }
 
@@ -704,8 +731,12 @@ namespace LiveCharts.Wpf.Charts.Base
         /// <param name="element">The element.</param>
         public void AddToDrawMargin(object element)
         {
-            var wpfElement = (FrameworkElement)element;
-            if (wpfElement == null) return;
+            var wpfElement = (FrameworkElement) element;
+            if (wpfElement == null)
+            {
+                return;
+            }
+
             DrawMargin.Children.Add(wpfElement);
         }
 
@@ -715,8 +746,12 @@ namespace LiveCharts.Wpf.Charts.Base
         /// <param name="element">The element.</param>
         public void RemoveFromView(object element)
         {
-            var wpfElement = (FrameworkElement)element;
-            if (wpfElement == null) return;
+            var wpfElement = (FrameworkElement) element;
+            if (wpfElement == null)
+            {
+                return;
+            }
+
             Canvas.Children.Remove(wpfElement);
         }
 
@@ -726,8 +761,12 @@ namespace LiveCharts.Wpf.Charts.Base
         /// <param name="element">The element.</param>
         public void RemoveFromDrawMargin(object element)
         {
-            var wpfElement = (FrameworkElement)element;
-            if (wpfElement == null) return;
+            var wpfElement = (FrameworkElement) element;
+            if (wpfElement == null)
+            {
+                return;
+            }
+
             DrawMargin.Children.Remove(wpfElement);
         }
 
@@ -737,10 +776,17 @@ namespace LiveCharts.Wpf.Charts.Base
         /// <param name="element">The element.</param>
         public void EnsureElementBelongsToCurrentView(object element)
         {
-            var wpfElement = (FrameworkElement)element;
-            if (wpfElement == null) return;
-            var p = (Canvas)wpfElement.Parent;
-            if (p == null) AddToView(wpfElement);
+            var wpfElement = (FrameworkElement) element;
+            if (wpfElement == null)
+            {
+                return;
+            }
+
+            var p = (Canvas) wpfElement.Parent;
+            if (p == null)
+            {
+                AddToView(wpfElement);
+            }
         }
 
         /// <summary>
@@ -749,10 +795,18 @@ namespace LiveCharts.Wpf.Charts.Base
         /// <param name="element">The element.</param>
         public void EnsureElementBelongsToCurrentDrawMargin(object element)
         {
-            var wpfElement = (FrameworkElement)element;
-            if (wpfElement == null) return;
-            var p = (Canvas)wpfElement.Parent;
-            if (p != null) p.Children.Remove(wpfElement);
+            var wpfElement = (FrameworkElement) element;
+            if (wpfElement == null)
+            {
+                return;
+            }
+
+            var p = (Canvas) wpfElement.Parent;
+            if (p != null)
+            {
+                p.Children.Remove(wpfElement);
+            }
+
             AddToDrawMargin(wpfElement);
         }
 
@@ -762,7 +816,10 @@ namespace LiveCharts.Wpf.Charts.Base
         /// <param name="at">At.</param>
         public void ShowLegend(CorePoint at)
         {
-            if (ChartLegend == null) return;
+            if (ChartLegend == null)
+            {
+                return;
+            }
 
             if (ChartLegend.Parent == null)
             {
@@ -783,7 +840,9 @@ namespace LiveCharts.Wpf.Charts.Base
         public void HideLegend()
         {
             if (ChartLegend != null)
+            {
                 ChartLegend.Visibility = Visibility.Hidden;
+            }
         }
 
         /// <summary>
@@ -793,7 +852,10 @@ namespace LiveCharts.Wpf.Charts.Base
         /// <param name="force">Force the updater to run when called, without waiting for the next updater step.</param>
         public void Update(bool restartView = false, bool force = false)
         {
-            if (Model != null) Model.Updater.Run(restartView, force);
+            if (Model != null)
+            {
+                Model.Updater.Run(restartView, force);
+            }
         }
 
         /// <summary>
@@ -804,10 +866,14 @@ namespace LiveCharts.Wpf.Charts.Base
         public List<AxisCore> MapXAxes(ChartCore chart)
         {
             if (DesignerProperties.GetIsInDesignMode(this) && AxisX == null)
+            {
                 AxisX = DefaultAxes.DefaultAxis;
+            }
 
             if (AxisX.Count == 0)
-                AxisX.Add(new Axis {Separator = new Separator()});
+            {
+                AxisX.Add(new Axis { Separator = new Separator() });
+            }
 
             AxisX.Chart = this;
 
@@ -816,7 +882,11 @@ namespace LiveCharts.Wpf.Charts.Base
                 if (x.Parent == null)
                 {
                     x.AxisOrientation = AxisOrientation.X;
-                    if (x.Separator != null) chart.View.AddToView(x.Separator);
+                    if (x.Separator != null)
+                    {
+                        chart.View.AddToView(x.Separator);
+                    }
+
                     chart.View.AddToView(x);
                 }
                 return x.AsCoreElement(Model, AxisOrientation.X);
@@ -831,10 +901,14 @@ namespace LiveCharts.Wpf.Charts.Base
         public List<AxisCore> MapYAxes(ChartCore chart)
         {
             if (DesignerProperties.GetIsInDesignMode(this) && AxisY == null)
+            {
                 AxisY = DefaultAxes.DefaultAxis;
+            }
 
             if (AxisY.Count == 0)
-                AxisY.Add(new Axis {Separator = new Separator()});
+            {
+                AxisY.Add(new Axis { Separator = new Separator() });
+            }
 
             AxisY.Chart = this;
 
@@ -843,7 +917,11 @@ namespace LiveCharts.Wpf.Charts.Base
                 if (y.Parent == null)
                 {
                     y.AxisOrientation = AxisOrientation.Y;
-                    if (y.Separator != null) chart.View.AddToView(y.Separator);
+                    if (y.Separator != null)
+                    {
+                        chart.View.AddToView(y.Separator);
+                    }
+
                     chart.View.AddToView(y);
                 }
                 return y.AsCoreElement(Model, AxisOrientation.Y);
@@ -856,7 +934,11 @@ namespace LiveCharts.Wpf.Charts.Base
         /// <returns></returns>
         public Color GetNextDefaultColor()
         {
-            if (Series.CurrentSeriesIndex == int.MaxValue) Series.CurrentSeriesIndex = 0;
+            if (Series.CurrentSeriesIndex == int.MaxValue)
+            {
+                Series.CurrentSeriesIndex = 0;
+            }
+
             var i = Series.CurrentSeriesIndex;
             Series.CurrentSeriesIndex++;
 
@@ -869,7 +951,7 @@ namespace LiveCharts.Wpf.Charts.Base
             }
 
             var r = RandomizeStartingColor ? Randomizer.Next(0, Colors.Count) : 0;
-            return Colors[(i + r)%Colors.Count];
+            return Colors[(i + r) % Colors.Count];
         }
         #endregion
 
@@ -887,7 +969,7 @@ namespace LiveCharts.Wpf.Charts.Base
         /// </summary>
         public TimeSpan TooltipTimeout
         {
-            get { return (TimeSpan)GetValue(TooltipTimeoutProperty); }
+            get { return (TimeSpan) GetValue(TooltipTimeoutProperty); }
             set { SetValue(TooltipTimeoutProperty, value); }
         }
 
@@ -915,8 +997,15 @@ namespace LiveCharts.Wpf.Charts.Base
 
         internal void OnDataClick(object sender, ChartPoint point)
         {
-            if (DataClick != null) DataClick.Invoke(sender, point);
-            if (DataClickCommand != null && DataClickCommand.CanExecute(point)) DataClickCommand.Execute(point);
+            if (DataClick != null)
+            {
+                DataClick.Invoke(sender, point);
+            }
+
+            if (DataClickCommand != null && DataClickCommand.CanExecute(point))
+            {
+                DataClickCommand.Execute(point);
+            }
         }
 
         private void DataMouseEnter(object sender, EventArgs e)
@@ -927,16 +1016,22 @@ namespace LiveCharts.Wpf.Charts.Base
             var senderPoint = source.FirstOrDefault(x => x.View != null &&
                                                          Equals(((PointView) x.View).HoverShape, sender));
 
-            if (senderPoint == null) return;
+            if (senderPoint == null)
+            {
+                return;
+            }
 
-            if (Hoverable) senderPoint.View.OnHover(senderPoint);
+            if (Hoverable)
+            {
+                senderPoint.View.OnHover(senderPoint);
+            }
 
             if (DataTooltip != null)
             {
                 if (DataTooltip.Parent == null)
                 {
                     Panel.SetZIndex(DataTooltip, int.MaxValue);
-                    TooltipContainer = new Popup {AllowsTransparency = true, Placement = PlacementMode.RelativePoint};
+                    TooltipContainer = new Popup { AllowsTransparency = true, Placement = PlacementMode.RelativePoint };
                     AddToView(TooltipContainer);
                     TooltipContainer.Child = DataTooltip;
                     Canvas.SetTop(DataTooltip, 0d);
@@ -945,11 +1040,15 @@ namespace LiveCharts.Wpf.Charts.Base
 
                 var lcTooltip = DataTooltip as IChartTooltip;
                 if (lcTooltip == null)
+                {
                     throw new LiveChartsException(
                         "The current tooltip is not valid, ensure it implements IChartsTooltip");
+                }
 
                 if (lcTooltip.SelectionMode == null)
+                {
                     lcTooltip.SelectionMode = senderPoint.SeriesView.Model.PreferredSelectionMode;
+                }
 
                 var coreModel = ChartFunctions.GetTooltipData(senderPoint, Model, lcTooltip.SelectionMode.Value);
 
@@ -1004,8 +1103,15 @@ namespace LiveCharts.Wpf.Charts.Base
 
         internal void OnDataHover(object sender, ChartPoint point)
         {
-            if (DataHover != null) DataHover.Invoke(sender, point);
-            if (DataHoverCommand != null && DataHoverCommand.CanExecute(point)) DataHoverCommand.Execute(point);
+            if (DataHover != null)
+            {
+                DataHover.Invoke(sender, point);
+            }
+
+            if (DataHoverCommand != null && DataHoverCommand.CanExecute(point))
+            {
+                DataHoverCommand.Execute(point);
+            }
         }
 
         private void DataMouseLeave(object sender, EventArgs e)
@@ -1017,15 +1123,25 @@ namespace LiveCharts.Wpf.Charts.Base
             var senderPoint = source.FirstOrDefault(x => x.View != null &&
                                                          Equals(((PointView) x.View).HoverShape, sender));
 
-            if (senderPoint == null) return;
+            if (senderPoint == null)
+            {
+                return;
+            }
 
-            if (Hoverable) senderPoint.View.OnHoverLeave(senderPoint);
+            if (Hoverable)
+            {
+                senderPoint.View.OnHoverLeave(senderPoint);
+            }
         }
 
         private void TooltipTimeoutTimerOnTick(object sender, EventArgs eventArgs)
         {
             TooltipTimeoutTimer.Stop();
-            if (TooltipContainer == null) return;
+            if (TooltipContainer == null)
+            {
+                return;
+            }
+
             TooltipContainer.IsOpen = false;
         }
 
@@ -1037,10 +1153,14 @@ namespace LiveCharts.Wpf.Charts.Base
         public CoreSize LoadLegend()
         {
             if (ChartLegend == null || LegendLocation == LegendLocation.None)
+            {
                 return new CoreSize();
+            }
 
             if (ChartLegend.Parent == null)
+            {
                 Canvas.Children.Add(ChartLegend);
+            }
 
             var l = new List<SeriesViewModel>();
 
@@ -1048,7 +1168,7 @@ namespace LiveCharts.Wpf.Charts.Base
             {
                 var item = new SeriesViewModel();
 
-                var series = (Series)t;
+                var series = (Series) t;
 
                 item.Title = series.Title;
                 item.StrokeThickness = series.StrokeThickness;
@@ -1065,7 +1185,9 @@ namespace LiveCharts.Wpf.Charts.Base
 
             var iChartLegend = ChartLegend as IChartLegend;
             if (iChartLegend == null)
+            {
                 throw new LiveChartsException("The current legend is not valid, ensure it implements IChartLegend");
+            }
 
             iChartLegend.Series = l;
 
@@ -1095,9 +1217,12 @@ namespace LiveCharts.Wpf.Charts.Base
 
         private static void TooltipTimeoutCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
-            var chart = (Chart)dependencyObject;
+            var chart = (Chart) dependencyObject;
 
-            if (chart == null) return;
+            if (chart == null)
+            {
+                return;
+            }
 
             chart.TooltipTimeoutTimer.Interval = chart.TooltipTimeout;
         }
@@ -1107,7 +1232,10 @@ namespace LiveCharts.Wpf.Charts.Base
         /// </summary>
         public void HideTooltip()
         {
-            if (TooltipContainer == null) return;
+            if (TooltipContainer == null)
+            {
+                return;
+            }
 
             TooltipContainer.IsOpen = false;
         }
@@ -1136,10 +1264,13 @@ namespace LiveCharts.Wpf.Charts.Base
             Func<IChartValues> getValuesForPies = () =>
             {
                 var gvt = Type.GetType("LiveCharts.Geared.GearedValues`1, LiveCharts.Geared");
-                if (gvt != null) gvt = gvt.MakeGenericType(typeof(ObservableValue));
+                if (gvt != null)
+                {
+                    gvt = gvt.MakeGenericType(typeof(ObservableValue));
+                }
 
                 var obj = gvt != null
-                    ? (IChartValues)Activator.CreateInstance(gvt)
+                    ? (IChartValues) Activator.CreateInstance(gvt)
                     : new ChartValues<ObservableValue>();
 
                 obj.Add(new ObservableValue(r.Next(0, 100)));
@@ -1174,13 +1305,16 @@ namespace LiveCharts.Wpf.Charts.Base
                 Func<IChartValues> getRandomValues = () =>
                 {
                     var gvt = Type.GetType("LiveCharts.Geared.GearedValues`1, LiveCharts.Geared");
-                    if (gvt != null) gvt = gvt.MakeGenericType(typeof(ObservableValue));
+                    if (gvt != null)
+                    {
+                        gvt = gvt.MakeGenericType(typeof(ObservableValue));
+                    }
 
                     var obj = gvt != null
                         ? (IChartValues) Activator.CreateInstance(gvt)
                         : new ChartValues<ObservableValue>();
 
-                    obj.Add(new ObservableValue(r.Next(0,100)));
+                    obj.Add(new ObservableValue(r.Next(0, 100)));
                     obj.Add(new ObservableValue(r.Next(0, 100)));
                     obj.Add(new ObservableValue(r.Next(0, 100)));
                     obj.Add(new ObservableValue(r.Next(0, 100)));
@@ -1224,7 +1358,10 @@ namespace LiveCharts.Wpf.Charts.Base
 
         private void MouseWheelOnRoll(object sender, MouseWheelEventArgs e)
         {
-            if (Zoom == ZoomingOptions.None) return;
+            if (Zoom == ZoomingOptions.None)
+            {
+                return;
+            }
 
             var p = e.GetPosition(this);
 
@@ -1233,14 +1370,21 @@ namespace LiveCharts.Wpf.Charts.Base
             e.Handled = true;
 
             if (e.Delta > 0)
+            {
                 Model.ZoomIn(corePoint);
+            }
             else
+            {
                 Model.ZoomOut(corePoint);
+            }
         }
 
         private void OnDraggingStart(object sender, MouseButtonEventArgs e)
         {
-            if (Model == null || Model.AxisX == null || Model.AxisY == null) return;
+            if (Model == null || Model.AxisX == null || Model.AxisY == null)
+            {
+                return;
+            }
 
             DragOrigin = e.GetPosition(this);
             IsPanning = true;
@@ -1248,10 +1392,16 @@ namespace LiveCharts.Wpf.Charts.Base
 
         private void PanOnMouseMove(object sender, MouseEventArgs e)
         {
-            if (!IsPanning) return;
+            if (!IsPanning)
+            {
+                return;
+            }
 
             if (Pan == PanningOptions.Unset && Zoom == ZoomingOptions.None ||
-                Pan == PanningOptions.None) return;
+                Pan == PanningOptions.None)
+            {
+                return;
+            }
 
             var end = e.GetPosition(this);
 
@@ -1261,7 +1411,11 @@ namespace LiveCharts.Wpf.Charts.Base
 
         private void OnDraggingEnd(object sender, MouseButtonEventArgs e)
         {
-            if (!IsPanning) return;
+            if (!IsPanning)
+            {
+                return;
+            }
+
             IsPanning = false;
         }
         #endregion
@@ -1273,7 +1427,10 @@ namespace LiveCharts.Wpf.Charts.Base
 
         internal void PrepareScrolBar()
         {
-            if (!IsControlLoaded) return;
+            if (!IsControlLoaded)
+            {
+                return;
+            }
 
             if (ScrollMode == ScrollMode.None)
             {
@@ -1288,7 +1445,7 @@ namespace LiveCharts.Wpf.Charts.Base
                 ScrollBar = new Rectangle();
 
                 ScrollBar.SetBinding(Shape.FillProperty,
-                    new Binding {Path = new PropertyPath(ScrollBarFillProperty), Source = this});
+                    new Binding { Path = new PropertyPath(ScrollBarFillProperty), Source = this });
 
                 EnsureElementBelongsToCurrentView(ScrollBar);
                 ScrollBar.MouseDown += ScrollBarOnMouseDown;
@@ -1297,9 +1454,9 @@ namespace LiveCharts.Wpf.Charts.Base
             }
 
             ScrollBar.SetBinding(HeightProperty,
-                new Binding {Path = new PropertyPath(ActualHeightProperty), Source = this});
+                new Binding { Path = new PropertyPath(ActualHeightProperty), Source = this });
             ScrollBar.SetBinding(WidthProperty,
-                new Binding {Path = new PropertyPath(ActualWidthProperty), Source = this});
+                new Binding { Path = new PropertyPath(ActualWidthProperty), Source = this });
 
             var f = this.ConvertToPixels(new Point(ScrollHorizontalFrom, ScrollVerticalFrom));
             var t = this.ConvertToPixels(new Point(ScrollHorizontalTo, ScrollVerticalTo));
@@ -1307,13 +1464,19 @@ namespace LiveCharts.Wpf.Charts.Base
             if (ScrollMode == ScrollMode.X || ScrollMode == ScrollMode.XY)
             {
                 Canvas.SetLeft(ScrollBar, f.X);
-                if (t.X - f.X >= 0) ScrollBar.Width = t.X - f.X > 8 ? t.X - f.X : 8;
+                if (t.X - f.X >= 0)
+                {
+                    ScrollBar.Width = t.X - f.X > 8 ? t.X - f.X : 8;
+                }
             }
 
             if (ScrollMode == ScrollMode.Y || ScrollMode == ScrollMode.XY)
             {
                 Canvas.SetTop(ScrollBar, t.Y);
-                if (f.Y - t.Y >= 0) ScrollBar.Height = f.Y - t.Y > 8 ? f.Y - t.Y : 8;
+                if (f.Y - t.Y >= 0)
+                {
+                    ScrollBar.Height = f.Y - t.Y > 8 ? f.Y - t.Y : 8;
+                }
             }
         }
 
@@ -1325,7 +1488,10 @@ namespace LiveCharts.Wpf.Charts.Base
 
         private void ScrollBarOnMouseMove(object sender, MouseEventArgs e)
         {
-            if (!_isDragging) return;
+            if (!_isDragging)
+            {
+                return;
+            }
 
             var d = e.GetPosition(this);
 
@@ -1338,14 +1504,22 @@ namespace LiveCharts.Wpf.Charts.Base
 
             if (ScrollMode == ScrollMode.X || ScrollMode == ScrollMode.XY)
             {
-                if (Math.Abs(dp.X) < 0.1) return;
+                if (Math.Abs(dp.X) < 0.1)
+                {
+                    return;
+                }
+
                 ScrollHorizontalFrom -= dv.X;
                 ScrollHorizontalTo -= dv.X;
             }
 
             if (ScrollMode == ScrollMode.Y || ScrollMode == ScrollMode.XY)
             {
-                if (Math.Abs(dp.Y) < 0.1) return;
+                if (Math.Abs(dp.Y) < 0.1)
+                {
+                    return;
+                }
+
                 ScrollVerticalFrom += dv.Y;
                 ScrollVerticalTo += dv.Y;
             }
@@ -1361,14 +1535,22 @@ namespace LiveCharts.Wpf.Charts.Base
         private static void ScrollModeOnChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
             var wpfChart = (Chart) o;
-            if (o == null) return;
+            if (o == null)
+            {
+                return;
+            }
+
             wpfChart.PrepareScrolBar();
         }
 
         private static void ScrollLimitOnChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            var wpfChart = (Chart)o;
-            if (o == null) return;
+            var wpfChart = (Chart) o;
+            if (o == null)
+            {
+                return;
+            }
+
             wpfChart.PrepareScrolBar();
         }
 
@@ -1382,7 +1564,10 @@ namespace LiveCharts.Wpf.Charts.Base
         {
             var ax = AxisSection.Dragging;
 
-            if (ax == null) return;
+            if (ax == null)
+            {
+                return;
+            }
 
             if (Ldsp == null)
             {
@@ -1427,8 +1612,15 @@ namespace LiveCharts.Wpf.Charts.Base
             return (o, args) =>
             {
                 var wpfChart = o as Chart;
-                if (wpfChart == null) return;
-                if (wpfChart.Model != null) wpfChart.Model.Updater.Run(animate, updateNow);
+                if (wpfChart == null)
+                {
+                    return;
+                }
+
+                if (wpfChart.Model != null)
+                {
+                    wpfChart.Model.Updater.Run(animate, updateNow);
+                }
             };
         }
 
@@ -1438,7 +1630,10 @@ namespace LiveCharts.Wpf.Charts.Base
 
             var freq = wpfChart.DisableAnimations ? TimeSpan.FromMilliseconds(10) : wpfChart.AnimationsSpeed;
 
-            if (wpfChart.Model == null || wpfChart.Model.Updater == null) return;
+            if (wpfChart.Model == null || wpfChart.Model.Updater == null)
+            {
+                return;
+            }
 
             wpfChart.Model.Updater.UpdateFrequency(freq);
 
@@ -1454,10 +1649,13 @@ namespace LiveCharts.Wpf.Charts.Base
                 var ax = orientation == AxisOrientation.X ? chart.PreviousXAxis : chart.PreviousYAxis;
 
                 if (ax != null)
+                {
                     foreach (var axis in ax)
                     {
                         axis.Clean();
                     }
+                }
+
                 if (orientation == AxisOrientation.X)
                 {
                     chart.PreviousXAxis = chart.AxisX;

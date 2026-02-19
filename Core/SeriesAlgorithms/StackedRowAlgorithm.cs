@@ -20,11 +20,11 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
-using System;
 using LiveCharts.Defaults;
 using LiveCharts.Definitions.Points;
 using LiveCharts.Definitions.Series;
 using LiveCharts.Dtos;
+using System;
 using System.Linq;
 
 namespace LiveCharts.SeriesAlgorithms
@@ -85,10 +85,10 @@ namespace LiveCharts.SeriesAlgorithms
                 var y = ChartFunctions.ToDrawMargin(chartPoint.Y, AxisOrientation.Y, Chart, View.ScalesYAt) - ChartFunctions.GetUnitWidth(AxisOrientation.Y, Chart, View.ScalesYAt);
                 var from = _stackModelable.StackMode == StackMode.Values
                     ? ChartFunctions.ToDrawMargin(chartPoint.From, AxisOrientation.X, Chart, View.ScalesXAt)
-                    : ChartFunctions.ToDrawMargin(chartPoint.From/chartPoint.Sum, AxisOrientation.X, Chart, View.ScalesXAt);
+                    : ChartFunctions.ToDrawMargin(chartPoint.From / chartPoint.Sum, AxisOrientation.X, Chart, View.ScalesXAt);
                 var to = _stackModelable.StackMode == StackMode.Values
                     ? ChartFunctions.ToDrawMargin(chartPoint.To, AxisOrientation.X, Chart, View.ScalesXAt)
-                    : ChartFunctions.ToDrawMargin(chartPoint.To/chartPoint.Sum, AxisOrientation.X, Chart, View.ScalesXAt);
+                    : ChartFunctions.ToDrawMargin(chartPoint.To / chartPoint.Sum, AxisOrientation.X, Chart, View.ScalesXAt);
 
                 chartPoint.View = View.GetPointView(chartPoint,
                     View.DataLabels

@@ -1,9 +1,9 @@
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows;
 using LiveCharts.Definitions.Series;
 using LiveCharts.Dtos;
 using LiveCharts.Wpf.Charts.Base;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
 
 namespace LiveCharts.Wpf
 {
@@ -22,7 +22,10 @@ namespace LiveCharts.Wpf
         /// <returns></returns>
         public static Point ConvertToChartValues(this Chart chart, Point screenPoint, int axisX = 0, int axisY = 0)
         {
-            if (chart.Model == null || chart.AxisX == null || chart.AxisX.Any(x => x.Model == null)) return new Point();
+            if (chart.Model == null || chart.AxisX == null || chart.AxisX.Any(x => x.Model == null))
+            {
+                return new Point();
+            }
 
             var uw = new CorePoint(
                 chart.AxisX[axisX].Model.EvaluatesUnitWidth
@@ -47,7 +50,10 @@ namespace LiveCharts.Wpf
         /// <returns></returns>
         public static Point ConvertToPixels(this Chart chart, Point chartPoint, int axisX = 0, int axisY = 0)
         {
-            if (chart.Model == null || chart.AxisX.Any(x => x.Model == null)) return new Point();
+            if (chart.Model == null || chart.AxisX.Any(x => x.Model == null))
+            {
+                return new Point();
+            }
 
             var uw = new CorePoint(
                 chart.AxisX[axisX].Model.EvaluatesUnitWidth

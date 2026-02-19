@@ -20,10 +20,10 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
-using System.Windows;
-using System.Windows.Media;
 using LiveCharts.Charts;
 using LiveCharts.Definitions.Charts;
+using System.Windows;
+using System.Windows.Media;
 
 namespace LiveCharts.Wpf
 {
@@ -54,7 +54,7 @@ namespace LiveCharts.Wpf
         /// The stroke property
         /// </summary>
         public static readonly DependencyProperty StrokeProperty = DependencyProperty.Register(
-            "Stroke", typeof (Brush), typeof (Separator),
+            "Stroke", typeof(Brush), typeof(Separator),
             new PropertyMetadata(default(Brush), CallChartUpdater()));
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace LiveCharts.Wpf
         /// The stroke thickness property
         /// </summary>
         public static readonly DependencyProperty StrokeThicknessProperty = DependencyProperty.Register(
-            "StrokeThickness", typeof (double), typeof (Separator),
+            "StrokeThickness", typeof(double), typeof(Separator),
             new PropertyMetadata(default(double), CallChartUpdater()));
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace LiveCharts.Wpf
         /// The stroke dash array property
         /// </summary>
         public static readonly DependencyProperty StrokeDashArrayProperty = DependencyProperty.Register(
-            "StrokeDashArray", typeof (DoubleCollection), typeof (Separator),
+            "StrokeDashArray", typeof(DoubleCollection), typeof(Separator),
             new PropertyMetadata(default(DoubleCollection), CallChartUpdater()));
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace LiveCharts.Wpf
         /// The step property
         /// </summary>
         public static readonly DependencyProperty StepProperty = DependencyProperty.Register(
-            "Step", typeof (double), typeof (Separator),
+            "Step", typeof(double), typeof(Separator),
             new PropertyMetadata(double.NaN, CallChartUpdater()));
 
         /// <summary>
@@ -140,7 +140,7 @@ namespace LiveCharts.Wpf
         /// </summary>
         public AxisOrientation AxisOrientation
         {
-            get { return (AxisOrientation)GetValue(AxisOrientationProperty); }
+            get { return (AxisOrientation) GetValue(AxisOrientationProperty); }
             internal set { SetValue(AxisOrientationProperty, value); }
         }
 
@@ -170,9 +170,15 @@ namespace LiveCharts.Wpf
             return (o, args) =>
             {
                 var wpfSeparator = o as Separator;
-                if (wpfSeparator == null) return;
+                if (wpfSeparator == null)
+                {
+                    return;
+                }
 
-                if (wpfSeparator.Chart != null) wpfSeparator.Chart.Updater.Run(animate);
+                if (wpfSeparator.Chart != null)
+                {
+                    wpfSeparator.Chart.Updater.Run(animate);
+                }
             };
         }
     }

@@ -20,15 +20,15 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
-using System;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
 using LiveCharts.Definitions.Points;
 using LiveCharts.Definitions.Series;
 using LiveCharts.SeriesAlgorithms;
 using LiveCharts.Wpf.Charts.Base;
 using LiveCharts.Wpf.Points;
+using System;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace LiveCharts.Wpf
 {
@@ -70,7 +70,7 @@ namespace LiveCharts.Wpf
         /// The push out property
         /// </summary>
         public static readonly DependencyProperty PushOutProperty = DependencyProperty.Register(
-            "PushOut", typeof (double), typeof (PieSeries), new PropertyMetadata(default(double), CallChartUpdater()));
+            "PushOut", typeof(double), typeof(PieSeries), new PropertyMetadata(default(double), CallChartUpdater()));
         /// <summary>
         /// Gets or sets the slice push out, this property highlights the slice
         /// </summary>
@@ -84,7 +84,7 @@ namespace LiveCharts.Wpf
         /// The label position property
         /// </summary>
         public static readonly DependencyProperty LabelPositionProperty = DependencyProperty.Register(
-            "LabelPosition", typeof(PieLabelPosition), typeof(PieSeries), 
+            "LabelPosition", typeof(PieLabelPosition), typeof(PieSeries),
             new PropertyMetadata(PieLabelPosition.InsideSlice, CallChartUpdater()));
         /// <summary>
         /// Gets or sets the label position.
@@ -139,7 +139,7 @@ namespace LiveCharts.Wpf
             pbv.Slice.PushOut = PushOut;
             pbv.Slice.Visibility = Visibility;
             Panel.SetZIndex(pbv.Slice, Panel.GetZIndex(this));
-            
+
             if (Model.Chart.RequiresHoverShape && pbv.HoverShape == null)
             {
                 pbv.HoverShape = new PieSlice
@@ -150,13 +150,16 @@ namespace LiveCharts.Wpf
 
                 Panel.SetZIndex(pbv.HoverShape, int.MaxValue);
 
-                var wpfChart = (Chart)Model.Chart.View;
+                var wpfChart = (Chart) Model.Chart.View;
                 wpfChart.AttachHoverableEventTo(pbv.HoverShape);
 
                 Model.Chart.View.AddToDrawMargin(pbv.HoverShape);
             }
 
-            if (pbv.HoverShape != null) pbv.HoverShape.Visibility = Visibility;
+            if (pbv.HoverShape != null)
+            {
+                pbv.HoverShape.Visibility = Visibility;
+            }
 
             if (DataLabels)
             {
@@ -173,10 +176,17 @@ namespace LiveCharts.Wpf
                 pbv.DataLabel = null;
             }
 
-            if (point.Stroke != null) pbv.Slice.Stroke = (Brush)point.Stroke;
-            if (point.Fill != null) pbv.Slice.Fill = (Brush)point.Fill;
+            if (point.Stroke != null)
+            {
+                pbv.Slice.Stroke = (Brush) point.Stroke;
+            }
 
-            pbv.OriginalPushOut  = PushOut;
+            if (point.Fill != null)
+            {
+                pbv.Slice.Fill = (Brush) point.Fill;
+            }
+
+            pbv.OriginalPushOut = PushOut;
 
             return pbv;
         }

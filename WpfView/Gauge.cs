@@ -20,6 +20,7 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
+using LiveCharts.Wpf.Points;
 using System;
 using System.Globalization;
 using System.Windows;
@@ -28,7 +29,6 @@ using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using LiveCharts.Wpf.Points;
 
 namespace LiveCharts.Wpf
 {
@@ -77,7 +77,7 @@ namespace LiveCharts.Wpf
             PieBack.SetBinding(Shape.StrokeProperty,
                 new Binding { Path = new PropertyPath(StrokeProperty), Source = this });
             PieBack.SetBinding(RenderTransformProperty,
-                new Binding {Path = new PropertyPath(GaugeRenderTransformProperty), Source = this});
+                new Binding { Path = new PropertyPath(GaugeRenderTransformProperty), Source = this });
 
             Pie.SetBinding(Shape.StrokeThicknessProperty,
                 new Binding { Path = new PropertyPath(StrokeThicknessProperty), Source = this });
@@ -180,7 +180,7 @@ namespace LiveCharts.Wpf
         /// </summary>
         public bool Uses360Mode
         {
-            get { return (bool)GetValue(Uses360ModeProperty); }
+            get { return (bool) GetValue(Uses360ModeProperty); }
             set { SetValue(Uses360ModeProperty, value); }
         }
 
@@ -194,7 +194,7 @@ namespace LiveCharts.Wpf
         /// </summary>
         public double From
         {
-            get { return (double)GetValue(FromProperty); }
+            get { return (double) GetValue(FromProperty); }
             set { SetValue(FromProperty, value); }
         }
 
@@ -208,7 +208,7 @@ namespace LiveCharts.Wpf
         /// </summary>
         public double To
         {
-            get { return (double)GetValue(ToProperty); }
+            get { return (double) GetValue(ToProperty); }
             set { SetValue(ToProperty, value); }
         }
 
@@ -222,7 +222,7 @@ namespace LiveCharts.Wpf
         /// </summary>
         public double Value
         {
-            get { return (double)GetValue(ValueProperty); }
+            get { return (double) GetValue(ValueProperty); }
             set { SetValue(ValueProperty, value); }
         }
 
@@ -236,7 +236,7 @@ namespace LiveCharts.Wpf
         /// </summary>
         public double? InnerRadius
         {
-            get { return (double?)GetValue(InnerRadiusProperty); }
+            get { return (double?) GetValue(InnerRadiusProperty); }
             set { SetValue(InnerRadiusProperty, value); }
         }
 
@@ -250,7 +250,7 @@ namespace LiveCharts.Wpf
         /// </summary>
         public Brush Stroke
         {
-            get { return (Brush)GetValue(StrokeProperty); }
+            get { return (Brush) GetValue(StrokeProperty); }
             set { SetValue(StrokeProperty, value); }
         }
 
@@ -265,7 +265,7 @@ namespace LiveCharts.Wpf
         /// </summary>
         public double StrokeThickness
         {
-            get { return (double)GetValue(StrokeThicknessProperty); }
+            get { return (double) GetValue(StrokeThicknessProperty); }
             set { SetValue(StrokeThicknessProperty, value); }
         }
 
@@ -279,7 +279,7 @@ namespace LiveCharts.Wpf
         /// </summary>
         public Color ToColor
         {
-            get { return (Color)GetValue(ToColorProperty); }
+            get { return (Color) GetValue(ToColorProperty); }
             set { SetValue(ToColorProperty, value); }
         }
 
@@ -293,7 +293,7 @@ namespace LiveCharts.Wpf
         /// </summary>
         public Color FromColor
         {
-            get { return (Color)GetValue(FromColorProperty); }
+            get { return (Color) GetValue(FromColorProperty); }
             set { SetValue(FromColorProperty, value); }
         }
 
@@ -307,7 +307,7 @@ namespace LiveCharts.Wpf
         /// </summary>
         public Brush GaugeBackground
         {
-            get { return (Brush)GetValue(GaugeBackgroundProperty); }
+            get { return (Brush) GetValue(GaugeBackgroundProperty); }
             set { SetValue(GaugeBackgroundProperty, value); }
         }
 
@@ -321,11 +321,11 @@ namespace LiveCharts.Wpf
         /// </summary>
         public TimeSpan AnimationsSpeed
         {
-            get { return (TimeSpan)GetValue(AnimationsSpeedProperty); }
+            get { return (TimeSpan) GetValue(AnimationsSpeedProperty); }
             set { SetValue(AnimationsSpeedProperty, value); }
         }
-		
-		/// <summary>
+
+        /// <summary>
         /// The disablea animations property
         /// </summary>
         public static readonly DependencyProperty DisableAnimationsProperty = DependencyProperty.Register(
@@ -335,7 +335,7 @@ namespace LiveCharts.Wpf
         /// </summary>
         public bool DisableAnimations
         {
-            get { return (bool)GetValue(DisableAnimationsProperty); }
+            get { return (bool) GetValue(DisableAnimationsProperty); }
             set { SetValue(DisableAnimationsProperty, value); }
         }
 
@@ -349,7 +349,7 @@ namespace LiveCharts.Wpf
         /// </summary>
         public Func<double, string> LabelFormatter
         {
-            get { return (Func<double, string>)GetValue(LabelFormatterProperty); }
+            get { return (Func<double, string>) GetValue(LabelFormatterProperty); }
             set { SetValue(LabelFormatterProperty, value); }
         }
 
@@ -363,7 +363,7 @@ namespace LiveCharts.Wpf
         /// </summary>
         public double? HighFontSize
         {
-            get { return (double?)GetValue(HighFontSizeProperty); }
+            get { return (double?) GetValue(HighFontSizeProperty); }
             set { SetValue(HighFontSizeProperty, value); }
         }
 
@@ -371,14 +371,17 @@ namespace LiveCharts.Wpf
 
         private static void UpdateCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
-            var gauge = (Gauge)dependencyObject;
+            var gauge = (Gauge) dependencyObject;
 
             gauge.Update();
         }
 
         private void Update()
         {
-            if (!IsChartInitialized) return;
+            if (!IsChartInitialized)
+            {
+                return;
+            }
 
             Func<double, string> defFormatter = x => x.ToString(CultureInfo.InvariantCulture);
 
@@ -425,9 +428,9 @@ namespace LiveCharts.Wpf
             {
                 r = ActualWidth;
 
-                if (ActualWidth > ActualHeight*2)
+                if (ActualWidth > ActualHeight * 2)
                 {
-                    r = ActualHeight*2;
+                    r = ActualHeight * 2;
                 }
                 else
                 {
@@ -439,7 +442,10 @@ namespace LiveCharts.Wpf
                 top = ActualHeight / 2 + r / 2;
             }
 
-            if (r < 0) r = 1;
+            if (r < 0)
+            {
+                r = 1;
+            }
 
             PieBack.Radius = r;
             PieBack.InnerRadius = InnerRadius ?? r * .6;
@@ -460,7 +466,7 @@ namespace LiveCharts.Wpf
             Canvas.SetRight(LeftLabel, ActualWidth / 2 + (r + PieBack.InnerRadius) / 2 - LeftLabel.ActualWidth / 2);
             Canvas.SetRight(RightLabel, ActualWidth / 2 - (r + PieBack.InnerRadius) / 2 - RightLabel.ActualWidth / 2);
 
-            MeasureTextBlock.FontSize = HighFontSize ?? Pie.InnerRadius*.4;
+            MeasureTextBlock.FontSize = HighFontSize ?? Pie.InnerRadius * .4;
             MeasureTextBlock.Text = (LabelFormatter ?? defFormatter)(Value);
             MeasureTextBlock.UpdateLayout();
             Canvas.SetTop(MeasureTextBlock, top - MeasureTextBlock.ActualHeight * (Uses360Mode ? .5 : 1));
@@ -513,7 +519,7 @@ namespace LiveCharts.Wpf
 
             var v = Value > To ? To : (Value < From ? From : Value);
 
-            return (byte)(m * (v - p1.X) + p1.Y);
+            return (byte) (m * (v - p1.X) + p1.Y);
         }
     }
 }

@@ -49,8 +49,15 @@ namespace LiveCharts.Configurations
             point.Y = _y(value, key);
             point.XStart = _startX(value, key);
             point.YStart = _startY(value, key);
-            if (_stroke != null) point.Stroke = _stroke(value, key);
-            if (_fill != null) point.Fill = _fill(value, key);
+            if (_stroke != null)
+            {
+                point.Stroke = _stroke(value, key);
+            }
+
+            if (_fill != null)
+            {
+                point.Fill = _fill(value, key);
+            }
 
             point.EvaluatesGantt = true;
         }
@@ -106,7 +113,7 @@ namespace LiveCharts.Configurations
         {
             return Y((t, i) => predicate(t));
         }
-        
+
         /// <summary>
         /// Sets the Y mapper
         /// </summary>

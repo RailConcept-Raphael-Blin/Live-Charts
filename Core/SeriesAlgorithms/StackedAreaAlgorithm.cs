@@ -20,13 +20,13 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
-using System;
-using System.Linq;
 using LiveCharts.Defaults;
 using LiveCharts.Definitions.Points;
 using LiveCharts.Definitions.Series;
 using LiveCharts.Dtos;
 using LiveCharts.Helpers;
+using System;
+using System.Linq;
 
 namespace LiveCharts.SeriesAlgorithms
 {
@@ -46,7 +46,7 @@ namespace LiveCharts.SeriesAlgorithms
         public StackedAreaAlgorithm(ISeriesView view) : base(view)
         {
             SeriesOrientation = SeriesOrientation.Horizontal;
-            _stackModelable = (IStackModelableSeriesView)view;
+            _stackModelable = (IStackModelableSeriesView) view;
             PreferredSelectionMode = TooltipSelectionMode.SharedXValues;
         }
 
@@ -60,7 +60,10 @@ namespace LiveCharts.SeriesAlgorithms
             var segmentPosition = 0;
 
             var lineView = View as ILineSeriesView;
-            if (lineView == null) return;
+            if (lineView == null)
+            {
+                return;
+            }
 
             var smoothness = lineView.LineSmoothness;
             smoothness = smoothness > 1 ? 1 : (smoothness < 0 ? 0 : smoothness);
@@ -120,8 +123,15 @@ namespace LiveCharts.SeriesAlgorithms
                     var k1 = len1 / (len1 + len2);
                     var k2 = len2 / (len2 + len3);
 
-                    if (double.IsNaN(k1)) k1 = 0d;
-                    if (double.IsNaN(k2)) k2 = 0d;
+                    if (double.IsNaN(k1))
+                    {
+                        k1 = 0d;
+                    }
+
+                    if (double.IsNaN(k2))
+                    {
+                        k2 = 0d;
+                    }
 
                     var xm1 = xc1 + (xc2 - xc1) * k1;
                     var ym1 = yc1 + (yc2 - yc1) * k1;
@@ -139,7 +149,10 @@ namespace LiveCharts.SeriesAlgorithms
                             : null);
 
                     var bezierView = chartPoint.View as IBezierPointView;
-                    if (bezierView == null) continue;
+                    if (bezierView == null)
+                    {
+                        continue;
+                    }
 
                     bezierView.Data = index == segment.Count - 1
                         ? new BezierData(new CorePoint(p1.X, p1.Y))
@@ -179,9 +192,12 @@ namespace LiveCharts.SeriesAlgorithms
         protected virtual CorePoint GetStackedPoint(ChartPoint chartPoint)
         {
             if (_stackModelable.StackMode == StackMode.Values)
+            {
                 return new CorePoint(
                     ChartFunctions.ToDrawMargin(chartPoint.X, AxisOrientation.X, Chart, View.ScalesXAt),
                     ChartFunctions.ToDrawMargin(chartPoint.To, AxisOrientation.Y, Chart, View.ScalesYAt));
+            }
+
             return new CorePoint(
                 ChartFunctions.ToDrawMargin(chartPoint.X, AxisOrientation.X, Chart, View.ScalesXAt),
                 ChartFunctions.ToDrawMargin(chartPoint.StackedParticipation, AxisOrientation.Y, Chart, View.ScalesYAt));

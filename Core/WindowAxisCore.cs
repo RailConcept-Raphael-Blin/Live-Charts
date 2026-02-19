@@ -20,12 +20,12 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using LiveCharts.Charts;
 using LiveCharts.Definitions.Charts;
 using LiveCharts.Dtos;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace LiveCharts
 {
@@ -41,9 +41,13 @@ namespace LiveCharts
             get { return _selectedWindow; }
             set
             {
-                if (Equals(_selectedWindow, value)) return;
+                if (Equals(_selectedWindow, value))
+                {
+                    return;
+                }
+
                 _selectedWindow = value;
-                ((IWindowAxisView)View).SetSelectedWindow(value);
+                ((IWindowAxisView) View).SetSelectedWindow(value);
             }
         }
 
@@ -65,7 +69,10 @@ namespace LiveCharts
         /// </summary>
         internal override CoreMargin PrepareChart(AxisOrientation source, ChartCore chart)
         {
-            if (!(Math.Abs(TopLimit - BotLimit) > S * .01) || !ShowLabels) return new CoreMargin();
+            if (!(Math.Abs(TopLimit - BotLimit) > S * .01) || !ShowLabels)
+            {
+                return new CoreMargin();
+            }
 
             var currentMargin = new CoreMargin();
             var tolerance = S / 10;
@@ -90,8 +97,15 @@ namespace LiveCharts
 
         internal IEnumerable<double> CalculateSeparatorIndices(ChartCore chart, AxisOrientation source, double unit)
         {
-            if (!double.IsNaN(Separator.Step)) throw new Exception("Step should be NaN for WindowAxis separators");
-            if (Windows == null) return Enumerable.Empty<double>();
+            if (!double.IsNaN(Separator.Step))
+            {
+                throw new Exception("Step should be NaN for WindowAxis separators");
+            }
+
+            if (Windows == null)
+            {
+                return Enumerable.Empty<double>();
+            }
 
             // Holder for the calculated separator indices and the proposed window
             var supportedSeparatorCount = 0;
@@ -99,7 +113,7 @@ namespace LiveCharts
             IAxisWindow proposedWindow = AxisWindows.EmptyWindow;
 
             // Build a range of possible separator indices
-            var rangeIndices = Enumerable.Range((int)Math.Floor(BotLimit), (int)Math.Floor(TopLimit - (EvaluatesUnitWidth ? unit : 0) - BotLimit)).Select(i => (double)i).ToList();
+            var rangeIndices = Enumerable.Range((int) Math.Floor(BotLimit), (int) Math.Floor(TopLimit - (EvaluatesUnitWidth ? unit : 0) - BotLimit)).Select(i => (double) i).ToList();
 
             // Make sure we have at least 2 separators to show
             if (Windows != null && rangeIndices.Count > 1)
@@ -109,16 +123,22 @@ namespace LiveCharts
                     IEnumerable<double> proposedSeparatorIndices;
 
                     // Calculate the number of supported separators.
-                    supportedSeparatorCount = (int)Math.Floor(chart.ControlSize.Width / (window.MinimumSeparatorWidth * CleanFactor));
+                    supportedSeparatorCount = (int) Math.Floor(chart.ControlSize.Width / (window.MinimumSeparatorWidth * CleanFactor));
 
                     // Try go get separators. Continue if the window invalidated.
-                    if (!window.TryGetSeparatorIndices(rangeIndices, supportedSeparatorCount, out proposedSeparatorIndices)) continue;
+                    if (!window.TryGetSeparatorIndices(rangeIndices, supportedSeparatorCount, out proposedSeparatorIndices))
+                    {
+                        continue;
+                    }
 
                     // Double check whether the window exceeded the maximum separator count.
                     // It might be it does not respect the supportedSeparatorCount parameter.
                     separatorIndices = proposedSeparatorIndices.ToList();
-                    if (supportedSeparatorCount < separatorIndices.Count) continue;
-                    
+                    if (supportedSeparatorCount < separatorIndices.Count)
+                    {
+                        continue;
+                    }
+
                     // Pick this window. It is the first who passed both validations and our best candidate
                     proposedWindow = window;
                     break;
@@ -156,7 +176,7 @@ namespace LiveCharts
             }
 
             // Determine whether this separator is a header now
-            ((DateSeparatorElementCore)elementCore).IsHeader = SelectedWindow.IsHeader(x);
+            ((DateSeparatorElementCore) elementCore).IsHeader = SelectedWindow.IsHeader(x);
 
             View.RenderSeparator(elementCore, Chart);
 

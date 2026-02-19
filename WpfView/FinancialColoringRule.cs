@@ -12,7 +12,7 @@ namespace LiveCharts.Wpf
         /// </summary>
         public FinancialColoringRule()
         {
-            
+
         }
 
         /// <summary>

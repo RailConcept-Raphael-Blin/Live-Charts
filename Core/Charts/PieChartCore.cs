@@ -20,12 +20,12 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
-using System;
-using System.Linq;
 using LiveCharts.Definitions.Charts;
 using LiveCharts.Definitions.Series;
 using LiveCharts.Dtos;
 using LiveCharts.Helpers;
+using System;
+using System.Linq;
 
 namespace LiveCharts.Charts
 {
@@ -60,9 +60,11 @@ namespace LiveCharts.Charts
             View.Zoom = ZoomingOptions.None;
 
             if (View.ActualSeries.Any(x => !(x.Model is IPieSeries)))
+            {
                 throw new LiveChartsException(
                     "There is a invalid series in the series collection, " +
                     "verify that all the series implement IPieSeries.");
+            }
 
             foreach (var xi in AxisX)
             {

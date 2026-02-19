@@ -20,11 +20,11 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
-using System;
-using System.Collections.Generic;
 using LiveCharts.Configurations;
 using LiveCharts.Defaults;
 using LiveCharts.Helpers;
+using System;
+using System.Collections.Generic;
 
 namespace LiveCharts
 {
@@ -110,9 +110,9 @@ namespace LiveCharts
 
             For<decimal>(Mappers.Xy<decimal>()
                 .X((value, index) => index)
-                .Y(value => (double)value), SeriesOrientation.Horizontal);
+                .Y(value => (double) value), SeriesOrientation.Horizontal);
             For<decimal>(Mappers.Xy<decimal>()
-                .X(value => (double)value)
+                .X(value => (double) value)
                 .Y((value, index) => index), SeriesOrientation.Vertical);
 
             For<short>(Mappers.Xy<short>()
@@ -186,7 +186,7 @@ namespace LiveCharts
         public static void For<T>(object config, SeriesOrientation orientation = SeriesOrientation.All)
         {
             ConfigWrapper wrapper;
-            var t = typeof (T);
+            var t = typeof(T);
 
             if (!Configurations.TryGetValue(t, out wrapper))
             {
@@ -202,8 +202,14 @@ namespace LiveCharts
                 return;
             }
 
-            if (orientation == SeriesOrientation.Horizontal) wrapper.HorizontalConfig = config;
-            else wrapper.VerticalConfig = config;
+            if (orientation == SeriesOrientation.Horizontal)
+            {
+                wrapper.HorizontalConfig = config;
+            }
+            else
+            {
+                wrapper.VerticalConfig = config;
+            }
         }
 
         #endregion

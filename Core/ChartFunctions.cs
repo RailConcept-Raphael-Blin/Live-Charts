@@ -20,12 +20,12 @@
 //OUT OF OR IN CONNECTION WITH SOFTWARE OR USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using LiveCharts.Charts;
 using LiveCharts.Definitions.Charts;
 using LiveCharts.Dtos;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace LiveCharts
 {
@@ -66,7 +66,7 @@ namespace LiveCharts
 
             var deltaX = p2.X - p1.X;
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            var m = (p2.Y - p1.Y)/(deltaX == 0 ? double.MinValue : deltaX);
+            var m = (p2.Y - p1.Y) / (deltaX == 0 ? double.MinValue : deltaX);
             return m * (value - p1.X) + p1.Y;
         }
 
@@ -118,7 +118,7 @@ namespace LiveCharts
         {
             var p1 = new CorePoint();
             var p2 = new CorePoint();
-            
+
             if (source == AxisOrientation.Y)
             {
                 p1.X = chart.AxisY[axis].TopLimit;
@@ -252,7 +252,7 @@ namespace LiveCharts
                     {
                         XFormatter = ax.GetFormatter(),
                         YFormatter = ay.GetFormatter(),
-                        Points = new List<ChartPoint> {senderPoint},
+                        Points = new List<ChartPoint> { senderPoint },
                         Shares = null
                     };
                 case TooltipSelectionMode.SharedXValues:
@@ -308,4 +308,3 @@ namespace LiveCharts
 
     }
 }
- 

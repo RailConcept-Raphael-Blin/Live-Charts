@@ -20,11 +20,11 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
+using LiveCharts.Dtos;
+using LiveCharts.Wpf.Charts.Base;
 using System;
 using System.Diagnostics;
 using System.Windows.Threading;
-using LiveCharts.Dtos;
-using LiveCharts.Wpf.Charts.Base;
 
 namespace LiveCharts.Wpf.Components
 {
@@ -32,7 +32,7 @@ namespace LiveCharts.Wpf.Components
     {
         public ChartUpdater(TimeSpan frequency)
         {
-            Timer = new DispatcherTimer {Interval = frequency};
+            Timer = new DispatcherTimer { Interval = frequency };
 
             Timer.Tick += OnTimerOnTick;
             Freq = frequency;
@@ -46,7 +46,7 @@ namespace LiveCharts.Wpf.Components
         {
             if (Timer == null)
             {
-                Timer = new DispatcherTimer {Interval = Freq};
+                Timer = new DispatcherTimer { Interval = Freq };
                 Timer.Tick += OnTimerOnTick;
                 IsUpdating = false;
             }
@@ -59,7 +59,10 @@ namespace LiveCharts.Wpf.Components
 
             RequiresRestart = restartView || RequiresRestart;
             // What if the update runner was already launched and another Series is added ??
-            if (IsUpdating) return;
+            if (IsUpdating)
+            {
+                return;
+            }
 
             IsUpdating = true;
             // Refreshing the chart every interval, in WPF ?!
@@ -79,8 +82,11 @@ namespace LiveCharts.Wpf.Components
         private void UpdaterTick(bool restartView, bool force)
         {
             var wpfChart = (Chart) Chart.View;
-            
-            if (!force && !wpfChart.IsVisible && !wpfChart.IsMocked) return;
+
+            if (!force && !wpfChart.IsVisible && !wpfChart.IsMocked)
+            {
+                return;
+            }
 
             Chart.ControlSize = wpfChart.IsMocked
                 ? wpfChart.Model.ControlSize
@@ -91,7 +97,7 @@ namespace LiveCharts.Wpf.Components
             IsUpdating = false;
 
             RequiresRestart = false;
-            
+
             wpfChart.ChartUpdated();
             wpfChart.PrepareScrolBar();
         }
